@@ -3,5 +3,10 @@ var express = require('express');
 var app = express();
 
 
-console.log("Hello World")
+app.get('/', (request, response) => {
+    response.send("Hello World!");
+  })
 
+app.listen(PORT, function() {
+console.log(`Example app listening at http://localhost:${PORT}`);
+})
