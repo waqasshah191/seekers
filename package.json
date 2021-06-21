@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/waqasshah191/seekers/issues"
   },
-  "homepage": "https://github.com/waqasshah191/seekers#readme"
+  "homepage": "https://github.com/waqasshah191/seekers#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
