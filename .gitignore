@@ -16,6 +16,7 @@
 *.seed
 *.tgz
 .DS_Store
+.env
 .env.*.local
 .env.local
 .eslintcache
