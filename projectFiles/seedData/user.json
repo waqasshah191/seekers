@@ -14,10 +14,6 @@
     "baking",
     "asian dishes"
   ],
-  "tags": [
-    "tag1",
-    "tag2"
-  ],
   "password": "abc123",
   "isProUser": false,
   "dateRegisteredAsPro": null,
@@ -37,10 +33,6 @@
     "baking",
     "european dishes",
     "alteration"
-  ],
-  "tags": [
-    "tag1",
-    "tag2"
   ],
   "password": "abc123",
   "isProUser": true,
@@ -64,10 +56,6 @@
     "ford mechanic",
     "chevrolet mechanic"
   ],
-  "tags": [
-    "tag1",
-    "tag2"
-  ],
   "password": "abc123",
   "isProUser": false,
   "dateRegisteredAsPro": null,
@@ -87,10 +75,6 @@
     "knitting",
     "cricut printer enthusiast",
     "scrapbooking"
-  ],
-  "tags": [
-    "tag1",
-    "tag2"
   ],
   "password": "abc123",
   "isProUser": false,
@@ -112,36 +96,8 @@
     "deck building",
     "fence building"
   ],
-  "tags": [
-    "tag1",
-    "tag2"
-  ],
   "password": "abc123",
   "isProUser": false,
   "dateRegisteredAsPro": null,
-  "dateRegistered": "2021-07-02T06:38:09.104Z"
-},{
-  "_id": {
-    "$oid": "60e60ade04423c2491308b08"
-  },
-  "name": "Waqas",
-  "address": "Somewhere in NW,",
-  "city": "Calgary",
-  "province": "Alberta",
-  "postalCode": "T3R 0J4",
-  "emailAddress": "waqas@hotmail.com",
-  "detailInformation": "Software developer",
-  "skills": [
-    "Javascipt",
-    "Node",
-    "MongoDB"
-  ],
-  "tags": [
-    "tag1",
-    "tag2"
-  ],
-  "password": "abc123",
-  "isProUser": true,
-  "dateRegisteredAsPro": "2021-07-07T06:38:09.104Z",
   "dateRegistered": "2021-07-02T06:38:09.104Z"
 }]

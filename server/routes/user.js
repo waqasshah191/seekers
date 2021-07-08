@@ -23,21 +23,22 @@ router.get('/:id', async function(req, res) {
     }
 })
 
-
 //Find users by skill
+//To use in Postman:  http://localhost:3000/user/skill/dish
 router.get('/skill/:skill', async function(req, res) {
     try{
         console.log('skill = ', req.params.skill);
-        let data = await user.findOne({skills: req.params.skill});
-        console.info('Found the user:', data);
+
+        //let data = await user.find({skills: req.params.skill});
+        let data = await user.find({skills: new RegExp(req.params.skill)});
+
+        console.info('Found the users with skill :', data);
         res.send(data);
     } catch(error){
         console.log(error);
         res.sendStatus(500);
     }
 })
-
-
 
 //Create a new user
 router.post('/', async (req, res) =>{
