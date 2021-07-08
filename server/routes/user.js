@@ -28,11 +28,39 @@ router.get('/:id', async function(req, res) {
 router.get('/skill/:skill', async function(req, res) {
     try{
         console.log('skill = ', req.params.skill);
-
         //let data = await user.find({skills: req.params.skill});
         let data = await user.find({skills: new RegExp(req.params.skill)});
-
         console.info('Found the users with skill :', data);
+        res.send(data);
+    } catch(error){
+        console.log(error);
+        res.sendStatus(500);
+    }
+})
+
+//Find users by skill and postal code
+//To use in Postman:  http://localhost:3000/user/skillpostalCode/dish&T2Y
+router.get('/skillPostalCode/:skill&:postalCode', async function(req, res) {
+    try{
+        console.log('skill = ', req.params.skill);
+        console.log('postalCode = ', req.params.postalCode);
+        let data = await user.find({skills: new RegExp(req.params.skill), postalCode: new RegExp(req.params.postalCode) });
+        console.info('Found the users with skill and postal code:', data);
+        res.send(data);
+    } catch(error){
+        console.log(error);
+        res.sendStatus(500);
+    }
+})
+
+//Find users by skill and city
+//To use in Postman:  http://localhost:3000/user/skillpostalCode/dish&Calgary
+router.get('/skillCity/:skill&:city', async function(req, res) {
+    try{
+        console.log('skill = ', req.params.skill);
+        console.log('city = ', req.params.city);
+        let data = await user.find({skills: new RegExp(req.params.skill), city: new RegExp(req.params.city) });
+        console.info('Found the users with skill and city:', data);
         res.send(data);
     } catch(error){
         console.log(error);
