@@ -1,8 +1,33 @@
 require('./db');
 const mongoose = require('mongoose');
-require('./userLevel');
 const Schema = mongoose.Schema;
 
+const userSchema = new Schema({
+    name: String,
+    address: String,
+    city: String,
+    province: String,
+    postalCode: String,    
+    emailAddress:{
+        type: String,
+        required: true,
+        unique: true,
+        // trim:true
+    },
+    detailInformation: String,
+    skills:[{ 
+        type: String
+    },],
+    tags:[{
+        type: String
+    },],
+    password: String,
+    isProUser: Boolean,
+    dateRegisteredAsPro: Date,
+    dateRegistered: Date
+});
+
+/*
 const userSchema = new Schema({
     firstName: String,
     lastName: String,
@@ -21,5 +46,7 @@ const userSchema = new Schema({
     dateAdded: Date,
     lastUpdateDate: Date
 });
+*/
 
-module.exports = mongoose.model('user', userSchema, 'user');
+//module.exports = mongoose.model('user', userSchema, 'user');
+module.exports = mongoose.model('User', userSchema, 'user');

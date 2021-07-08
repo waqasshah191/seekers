@@ -4,17 +4,17 @@ const user = require('../models/user');
 
 //List all users
 router.get('/', async (req, res) =>{
-    //let data = await user.find({}).populate("userLevel", {name:1});
-    //let data = await user.find({}).populate("userLevel").populate("supplier").sort({name:1});
-    let data = await user.find({}).populate("userLevel", {name:1});
+    let data = await user.find({});
     console.info('Records retrieved from mongoose:', data?.length);
     res.send(data);
 })
 
 //Find one user by id
-router.get('/:id', async (req,res) => {
+router.get('/:id', async function(req, res) {
     try{
-        let data = await user.find({}).populate("userLevel", {name:1});
+        console.log('id = ', req.params.id);
+        //let data = await user.find({}).populate("userLevel", {name:1});
+        let data = await user.findOne({_id: req.params.id});
         console.info('Found the user:', data);
         res.send(data);
     } catch(error){
@@ -22,6 +22,22 @@ router.get('/:id', async (req,res) => {
         res.sendStatus(500);
     }
 })
+
+
+//Find users by skill
+router.get('/skill/:skill', async function(req, res) {
+    try{
+        console.log('skill = ', req.params.skill);
+        let data = await user.findOne({skills: req.params.skill});
+        console.info('Found the user:', data);
+        res.send(data);
+    } catch(error){
+        console.log(error);
+        res.sendStatus(500);
+    }
+})
+
+
 
 //Create a new user
 router.post('/', async (req, res) =>{

@@ -1,108 +1,147 @@
 [{
   "_id": {
-    "$oid": "6099cdc63fedfb45458a073c"
+    "$oid": "60e37fbf04423c24912344f2"
   },
-  "firstName": "Greg",
-  "lastName": "Hutton",
-  "emailAddress": "greg.hutton@gmail.com",
-  "userLevel": [
-    {
-      "$oid": "609b04383fedfb45458a5f6e"
-    },
-    {
-      "$oid": "609b04213fedfb45458a5f58"
-    }
+  "name": "Mark Halm",
+  "address": "39 Somercrest Circle SW,",
+  "city": "Calgary",
+  "province": "Alberta",
+  "postalCode": "T2Y 3H1",
+  "emailAddress": "mark.halm@hotmail.com",
+  "detailInformation": "Mechanical engineer with over 8 years of experience in Oil and Gas industry",
+  "skills": [
+    "piano",
+    "baking",
+    "asian dishes"
   ],
-  "password": "RTX123ABC",
-  "active": true,
-  "dateAdded": {
-    "$date": "2021-05-10T05:25:53.202Z"
-  },
-  "lastUpdateDate": {
-    "$date": "2021-05-25T19:41:09.727Z"
-  }
+  "tags": [
+    "tag1",
+    "tag2"
+  ],
+  "password": "abc123",
+  "isProUser": false,
+  "dateRegisteredAsPro": null,
+  "dateRegistered": "2021-07-05T15:54:20.664Z"
 },{
   "_id": {
-    "$oid": "60b656141f23371e1085f48f"
+    "$oid": "60e381896ae728f7efb06543"
   },
-  "userLevel": [
-    {
-      "$oid": "609b04383fedfb45458a5f6e"
-    }
+  "name": "Susan Keller",
+  "address": "45 Bridleridge Ln SW,",
+  "city": "Calgary",
+  "province": "Alberta",
+  "postalCode": "T2Y 0E4",
+  "emailAddress": "susankeller652@yahoo.com",
+  "detailInformation": "Registered Nurse working at Rocky View hospital",
+  "skills": [
+    "baking",
+    "european dishes",
+    "alteration"
   ],
-  "firstName": "Marcus",
-  "lastName": "Evanstone",
-  "emailAddress": "marcus.evanstone@yahoo.ca",
-  "password": "WhAtIsUp668",
-  "active": true,
-  "dateAdded": {
-    "$date": "2021-06-01T15:45:24.480Z"
-  },
-  "lastUpdateDate": {
-    "$date": "2021-06-01T15:45:24.480Z"
-  },
-  "__v": 0
+  "tags": [
+    "tag1",
+    "tag2"
+  ],
+  "password": "abc123",
+  "isProUser": true,
+  "dateRegisteredAsPro": "2021-07-06T07:13:28.324Z",
+  "dateRegistered": "2021-07-04T11:21:20.664Z"
 },{
   "_id": {
-    "$oid": "60b6563f1f23371e1085f490"
+    "$oid": "60e3820e6ae728f7efb06544"
   },
-  "userLevel": [
-    {
-      "$oid": "609b044c3fedfb45458a5f7b"
-    }
+  "name": "Edward Colins",
+  "address": "6 Bridlecrest Gardens SW,",
+  "city": "Calgary",
+  "province": "Alberta",
+  "postalCode": "T2Y 4Y4",
+  "emailAddress": "edward.colins651@gmail.com",
+  "detailInformation": "Experienced auto mechanic with over 10 years of experience.  I specialized in North American made trucks",
+  "skills": [
+    "fence building",
+    "sprinkler system",
+    "deck building",
+    "ford mechanic",
+    "chevrolet mechanic"
   ],
-  "firstName": "Randy",
-  "lastName": "Paulson",
-  "emailAddress": "randy.paulson@hotmail.com",
-  "password": "kj2jY6F",
-  "active": true,
-  "dateAdded": {
-    "$date": "2021-06-01T15:46:07.552Z"
-  },
-  "lastUpdateDate": {
-    "$date": "2021-06-01T15:46:07.552Z"
-  },
-  "__v": 0
+  "tags": [
+    "tag1",
+    "tag2"
+  ],
+  "password": "abc123",
+  "isProUser": false,
+  "dateRegisteredAsPro": null,
+  "dateRegistered": "2021-07-04T08:01:30.664Z"
 },{
   "_id": {
-    "$oid": "60b656701f23371e1085f491"
+    "$oid": "60e382606ae728f7efb06545"
   },
-  "userLevel": [
-    {
-      "$oid": "609b04213fedfb45458a5f58"
-    }
+  "name": "Jane Williams",
+  "address": "167 Hawkview Manor Cir NW,",
+  "city": "Calgary",
+  "province": "Alberta",
+  "postalCode": "T3G 2Z8",
+  "emailAddress": "janewilliams6521@telus.net",
+  "detailInformation": "Senior civil engineer experienced in the building and planning of infrastructure projects like roads, bridges, etc.",
+  "skills": [
+    "knitting",
+    "cricut printer enthusiast",
+    "scrapbooking"
   ],
-  "firstName": "Andrea",
-  "lastName": "Richardson",
-  "emailAddress": "andrearich@gmail.com",
-  "password": "JidlH86Hs",
-  "active": true,
-  "dateAdded": {
-    "$date": "2021-06-01T15:46:55.840Z"
-  },
-  "lastUpdateDate": {
-    "$date": "2021-06-01T15:46:55.840Z"
-  },
-  "__v": 0
+  "tags": [
+    "tag1",
+    "tag2"
+  ],
+  "password": "abc123",
+  "isProUser": false,
+  "dateRegisteredAsPro": null,
+  "dateRegistered": "2021-07-02T16:15:12.214Z"
 },{
   "_id": {
-    "$oid": "60b656a41f23371e1085f492"
+    "$oid": "60e382b06ae728f7efb06546"
   },
-  "userLevel": [
-    {
-      "$oid": "609b04383fedfb45458a5f6e"
-    }
+  "name": "Arnold Walker",
+  "address": "65 Nolanshire Cres NW,",
+  "city": "Calgary",
+  "province": "Alberta",
+  "postalCode": "T3R 0J4",
+  "emailAddress": "arnold.walker9512@hotmail.com",
+  "detailInformation": "Master plumber currently working at Pete the Plumber",
+  "skills": [
+    "landscaping",
+    "deck building",
+    "fence building"
   ],
-  "firstName": "Ruby",
-  "lastName": "Jordan",
-  "emailAddress": "ruby.jordan@gmail.com",
-  "password": "j7GF65s",
-  "active": true,
-  "dateAdded": {
-    "$date": "2021-06-01T15:47:48.544Z"
+  "tags": [
+    "tag1",
+    "tag2"
+  ],
+  "password": "abc123",
+  "isProUser": false,
+  "dateRegisteredAsPro": null,
+  "dateRegistered": "2021-07-02T06:38:09.104Z"
+},{
+  "_id": {
+    "$oid": "60e60ade04423c2491308b08"
   },
-  "lastUpdateDate": {
-    "$date": "2021-06-01T15:47:48.544Z"
-  },
-  "__v": 0
+  "name": "Waqas",
+  "address": "Somewhere in NW,",
+  "city": "Calgary",
+  "province": "Alberta",
+  "postalCode": "T3R 0J4",
+  "emailAddress": "waqas@hotmail.com",
+  "detailInformation": "Software developer",
+  "skills": [
+    "Javascipt",
+    "Node",
+    "MongoDB"
+  ],
+  "tags": [
+    "tag1",
+    "tag2"
+  ],
+  "password": "abc123",
+  "isProUser": true,
+  "dateRegisteredAsPro": "2021-07-07T06:38:09.104Z",
+  "dateRegistered": "2021-07-02T06:38:09.104Z"
 }]
