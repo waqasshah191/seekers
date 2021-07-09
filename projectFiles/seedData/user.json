@@ -2,7 +2,8 @@
   "_id": {
     "$oid": "60e37fbf04423c24912344f2"
   },
-  "name": "Mark Halm",
+  "firstName": "Mark",
+  "lastName": "Halm",
   "address": "39 Somercrest Circle SW,",
   "city": "Calgary",
   "province": "Alberta",
@@ -22,7 +23,8 @@
   "_id": {
     "$oid": "60e381896ae728f7efb06543"
   },
-  "name": "Susan Keller",
+  "firstName": "Susan",
+  "lastName": "Keller",
   "address": "45 Bridleridge Ln SW,",
   "city": "Calgary",
   "province": "Alberta",
@@ -42,7 +44,8 @@
   "_id": {
     "$oid": "60e3820e6ae728f7efb06544"
   },
-  "name": "Edward Colins",
+  "firstName": "Edward",
+  "lastName": "Colins",
   "address": "6 Bridlecrest Gardens SW,",
   "city": "Calgary",
   "province": "Alberta",
@@ -64,7 +67,8 @@
   "_id": {
     "$oid": "60e382606ae728f7efb06545"
   },
-  "name": "Jane Williams",
+  "firstName": "Jane",
+  "lastName": "Williams",
   "address": "167 Hawkview Manor Cir NW,",
   "city": "Calgary",
   "province": "Alberta",
@@ -84,7 +88,8 @@
   "_id": {
     "$oid": "60e382b06ae728f7efb06546"
   },
-  "name": "Arnold Walker",
+  "firstName": "Arnold",
+  "lastName": "Walker",
   "address": "65 Nolanshire Cres NW,",
   "city": "Calgary",
   "province": "Alberta",
