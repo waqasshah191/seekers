@@ -1,5 +1,5 @@
 # Introduction
-Project 2 - POS Ftp
+Project 3 - Group Seekers 
 
 This project is a MERN (MongoDB, ExpressJS, ReactJS, Node.js) application made
 of two processes:
@@ -67,8 +67,8 @@ this project
 
 Here are the command-line steps taken to create the initial version of this project:
 ```bash
-$ mkdir POS
-$ cd POS
+$ mkdir seeker
+$ cd seeker
 $ npx create-react-app --use-npm client
 $ npx express-generator server
 $ rm -rf client/.git client/.gitignore client/yarn.k
