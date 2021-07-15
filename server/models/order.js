@@ -19,7 +19,7 @@ const orderSchema = new Schema({
     comment: String,
     salesPerson:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "user"
+        ref: "userX"
     },    
     orderStatus:{
         type: mongoose.Schema.Types.ObjectId,
