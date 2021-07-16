@@ -5,6 +5,9 @@ import Navbar from './components/navbar/Navbar';
 import Home from './components/home/Home';
 import OrderTable from './components/orders/OrderTable';
 
+import Profile from './components/profile/Profile';
+
+
 const App = () => {
   
   return (
@@ -18,6 +21,11 @@ const App = () => {
           <Route path='/orders'>
             <OrderTable/>
           </Route>
+
+          <Route path='/profile'>
+            <Profile />
+          </Route>
+
         </Switch>
       </Router>
     </>

@@ -22,7 +22,15 @@ const Navbar = () => {
             path:'/orders',
             icon: <RiIcons.RiFileList3Fill />,
             class_name:'nav-text'
+        },
+
+        {
+            title:'Profile',
+            path:'/profile',
+            icon: <RiIcons.RiFileList3Fill />,
+            class_name:'nav-text'
         }
+
     ]
 
     const [sidebar, setSidebar] = useState(false)
