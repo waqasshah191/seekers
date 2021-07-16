@@ -52,7 +52,7 @@ const OrderTable = () => {
 
     //fetch sales person list 
     const getSalesPersonList = async () => {
-        let response= await fetch('/user');
+        let response= await fetch('/userX');
         let data = await response.json();
         setSalesPersonList(data);
     }
