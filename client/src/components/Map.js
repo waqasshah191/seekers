@@ -5,14 +5,16 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
         defaultZoom={8}
         defaultCenter={{ lat: -34.397, lng: 150.644 }}
     >
-        {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
+        {props.list.map(i => (
+            <Marker key={i._id} position={{ lat: -34.397, lng: 150.644 }} />
+        ))}
     </GoogleMap>
 ))
 
-const Map = () => (
+const Map = ({ data = [] }) => (
     <MyMapComponent
-        isMarkerShown
-        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+        list={data}
+        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyBmvvn3UPSO3T3NSXMmngtwNoxfsd8qDZE"
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ width: '100%', height: `400px` }} />}
         mapElement={<div style={{ height: `100%` }} />}

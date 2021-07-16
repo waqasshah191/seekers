@@ -2,10 +2,26 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles((theme) => ({
+    button: {
+        fontSize: 15,
+        borderRadius: 25,
+        paddingBlock: 7,
+        paddingInline: 30,
+        display: 'block',
+        minWidth: 'auto',
+        "& span": {
+            marginLeft: 0,
+        }
+    },
     root: {
         width: 'calc(100% - 500px)',
         backgroundColor: '#efe09e',
         marginRight: 20,
+    },
+    link: {
+        display: 'block',
+        color: '#000',
+        textDecoration: 'none',
     },
     map: {
         width: '500px',
@@ -42,8 +58,9 @@ const useStyles = makeStyles((theme) => ({
     },
     date: {
         display: 'block',
-        marginTop: 8,
-        color: '#999'
+        marginTop: 10,
+        color: '#999',
+        textAlign: 'center'
     }
 }));
 

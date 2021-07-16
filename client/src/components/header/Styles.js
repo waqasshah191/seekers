@@ -40,7 +40,7 @@ const useStyles = makeStyles({
     },
 
     loginBtn: {
-        marginRight: 8
+        marginRight: '8px !important'
     }
 });
 
