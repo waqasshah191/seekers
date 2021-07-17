@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
     root: {
         width: 'calc(100% - 500px)',
-        backgroundColor: '#efe09e',
+        backgroundColor: '#FDF0BD',
         marginRight: 20,
     },
     link: {

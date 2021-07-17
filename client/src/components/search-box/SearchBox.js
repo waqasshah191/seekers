@@ -72,7 +72,7 @@ const SearchBox = () => {
                             href={`/search?category=${item.slug}`}
                             size="small"
                             label={item.title}
-                            color="primary"
+                            color="#43C0F6"
                             className={styles.chip}
                         />
                     ))}

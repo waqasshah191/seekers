@@ -1,7 +1,7 @@
 import React from 'react';
-import useStyles from './Styles.js';
 import { Button, Container } from '@material-ui/core';
-
+import useStyles from './Styles.js';
+import LogoImage from './../images/Logo.png'
 
 const Header = () => {
     const styles = useStyles();
@@ -9,7 +9,7 @@ const Header = () => {
         <div className={styles.headerContainer}>
             <Container className={styles.header}>
                 <a href="/" className={styles.logo}>
-                    <img src="https://cdn.logo.com/hotlink-ok/logo-social.png" className={styles.logoImage} />
+                    <img src={LogoImage} className={styles.logoImage} />
                 </a>
 
                 <div className={styles.buttons}>

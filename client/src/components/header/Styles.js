@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 
     logo: {
         display: 'block',
-        width: '100px',
+        width: '150px',
     },
 
     logoImage: {

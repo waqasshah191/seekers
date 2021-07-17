@@ -14,7 +14,7 @@ const useStyles = makeStyles({
         }
     },
     search: {
-        background: '#999',
+        background: '#FFFFCD',
         padding: 16,
     },
     form: {
@@ -32,7 +32,8 @@ const useStyles = makeStyles({
     },
     chip: {
         margin: 5,
-        backgroundColor: '#fff',
+        backgroundColor: '#43C0F6',
+        color: '#fff'
     },
 
 });

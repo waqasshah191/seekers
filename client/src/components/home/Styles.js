@@ -39,7 +39,7 @@ const useStyles = makeStyles({
         padding: 16,
         margin: 0,
         listStyle: 'none',
-        backgroundColor: '#aaa',
+        backgroundColor: '#FDF0BD',
         minWidth: 300,
         width: 300,
     },

@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
     footerContainer: {
         borderTop: '1px solid rgba(0,0,0,0.1)',
-        backgroundColor: '#222'
+        backgroundColor: '#F0F8D4'
     },
     footer: {
         display: 'flex',
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
         display: 'block',
         textAlign: 'center',
         textDecoration: 'none',
-        color: '#fff',
+        color: '#000',
         padding: 10,
     },
 
@@ -33,7 +33,7 @@ const useStyles = makeStyles({
         display: 'block',
         textAlign: 'center',
         textDecoration: 'none',
-        color: '#fff',
+        color: '#000',
         padding: 10,
     },
 

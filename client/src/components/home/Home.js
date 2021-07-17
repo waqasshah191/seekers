@@ -4,6 +4,7 @@ import useStyles from './Styles';
 import categoriesData from './categories';
 import PippsyVideo from '../../pippsy.mp4';
 import SearchBox from '../search-box/SearchBox';
+import bannerImage from '../images/banner-image.jpg';
 
 
 const HomeCategories = () => {
@@ -40,7 +41,7 @@ const HomeContent = () => {
                     <Button className={styles.button} color="secondary" variant="contained">Join</Button>
                 </div>
                 <div className={styles.videoBanner}>
-                    <video className={styles.video}>
+                    <video controls className={styles.video}>
                         <source src={PippsyVideo} />
                     </video>
                 </div>
@@ -48,7 +49,6 @@ const HomeContent = () => {
         </div>
     )
 }
-
 const Home = () => {
     const styles = useStyles();
     return (
@@ -57,7 +57,7 @@ const Home = () => {
             <Container className={styles.wrapper}>
                 <HomeCategories />
                 <div className={styles.banner}>
-                    <img className={styles.bannerImage} src="https://www.adorama.com/alc/wp-content/uploads/2010/01/shutterstock_229625527-2.jpg" />
+                    <img className={styles.bannerImage} src={bannerImage} />
                     <div className={styles.bannerContent}>
                         <h3 className={styles.bannerTitle}>
                             Find skilled people |
