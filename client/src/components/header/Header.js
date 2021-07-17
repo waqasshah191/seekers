@@ -9,7 +9,7 @@ const Header = () => {
         <div className={styles.headerContainer}>
             <Container className={styles.header}>
                 <a href="/" className={styles.logo}>
-                    <img src="https://cdn.logo.com/hotlink-ok/logo-social.png" className={styles.logoImage} />
+                    <img src="https://i.pinimg.com/originals/37/9b/35/379b350abfde256799a9219c4cb976f3.jpg" className={styles.logoImage} />
                 </a>
 
                 <div className={styles.buttons}>

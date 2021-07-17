@@ -31,7 +31,7 @@ export default [
             },
             {
                 id: 4,
-                title: 'Financial planner'
+                title: 'Financial planning'
             },
         ]
     },
@@ -86,6 +86,96 @@ export default [
             {
                 id: 4,
                 title: 'Electrical services'
+            },
+        ]
+    },
+    {
+        id: 6,
+        title: 'Trade & Transport & Moving',
+        subcategories: [
+            {
+                id: 2,
+                title: 'Moving services'
+            },
+            {
+                id: 3,
+                title: 'Furniture Transport'
+            },
+            {
+                id: 4,
+                title: 'Towing service'
+            },
+        ]
+    },
+    {
+        id: 7,
+        title: 'IT & Programming',
+        subcategories: [
+            {
+                id: 2,
+                title: 'Website design'
+            },
+            {
+                id: 3,
+                title: 'Computer & Laptop repair'
+            },
+            {
+                id: 4,
+                title: 'Programming'
+            },
+        ]
+    },
+    {
+        id: 8,
+        title: 'Craft',
+        subcategories: [
+            {
+                id: 2,
+                title: 'Custom painting'
+            },
+            {
+                id: 3,
+                title: 'Ring resizing'
+            },
+            {
+                id: 4,
+                title: 'Embroidery services'
+            },
+        ]
+    },
+    {
+        id: 9,
+        title: 'Sport & Fitness',
+        subcategories: [
+            {
+                id: 2,
+                title: 'Personal training'
+            },
+            {
+                id: 3,
+                title: 'Nutrition consulting '
+            },
+            {
+                id: 4,
+                title: 'Skate training'
+            },
+        ]
+    },
+    {
+        id: 10,
+        title: 'Legals',
+        subcategories: [
+            {
+                id: 2,
+                title: 'Legal document preparation'
+            },
+            {
+                id: 3,
+                title: 'Immigration consultant'
+            },
+            {
+                id: 4,
+                title: 'Will & services'
             },
         ]
     },

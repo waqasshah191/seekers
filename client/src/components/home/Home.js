@@ -33,7 +33,7 @@ const HomeContent = () => {
         <div className={styles.contentContainer}>
             <Container className={styles.wrapper}>
                 <div className={styles.content}>
-                    <h2 className={styles.contentTitle}>How Skillik works</h2>
+                    <h2 className={styles.contentTitle}>How Pippsy works</h2>
                     <p className={styles.contentDescription}>
                         Meet new people who share your interests through online and in-person events. It’s free to create an account.
                     </p>
@@ -57,7 +57,7 @@ const Home = () => {
             <Container className={styles.wrapper}>
                 <HomeCategories />
                 <div className={styles.banner}>
-                    <img className={styles.bannerImage} src="https://livingprettyhappy.com/wp-content/uploads/2020/10/Girl-Laughing--e1603731896100.jpeg" />
+                    <img className={styles.bannerImage} src="https://www.adorama.com/alc/wp-content/uploads/2010/01/shutterstock_229625527-2.jpg" />
                     <div className={styles.bannerContent}>
                         <h3 className={styles.bannerTitle}>
                             Find skilled people |

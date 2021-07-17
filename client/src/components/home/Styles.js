@@ -100,17 +100,19 @@ const useStyles = makeStyles({
 
     bannerContent: {
         position: 'absolute',
-        left: '10%',
+        left: '3%',
         width: 300
     },
 
     bannerTitle: {
-        fontSize: 30,
-        marginBottom: 16
+        fontSize: 40,
+        marginBottom: 96,
+
+
     },
 
     bannerDesc: {
-        fontSize: 16,
+        fontSize: 17,
         textAlign: 'center'
     },
 

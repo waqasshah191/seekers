@@ -30,11 +30,11 @@ const SearchBox = () => {
     return (
         <div className={styles.search}>
             <Container>
-                <h3>What skill do you need?</h3>
+                <h3>What service do you need?</h3>
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <TextField
                         id="outlined-full-width"
-                        label="Skill"
+                        label="Service"
                         className={styles.input}
                         value={skill}
                         placeholder="Piano Teacher"
@@ -48,10 +48,10 @@ const SearchBox = () => {
                     />
                     <TextField
                         id="outlined-full-width"
-                        label="Post Code"
+                        label="Postal Code"
                         value={postCode}
                         className={styles.input}
-                        placeholder="Post Code"
+                        placeholder="Postal Code"
                         fullWidth
                         margin="normal"
                         onChange={(e) => setPostCode(e.target.value)}
