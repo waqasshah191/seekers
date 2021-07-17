@@ -7,6 +7,9 @@ import Home from './components/home/Home';
 import OrderTable from './components/orders/OrderTable';
 import Search from './components/search/Search';
 
+import Profile from './components/profile/Profile';
+
+
 const App = () => {
 
   return (
@@ -23,6 +26,11 @@ const App = () => {
           <Route path='/orders'>
             <OrderTable />
           </Route>
+
+          <Route path='/profile'>
+            <Profile />
+          </Route>
+
         </Switch>
         <Footer />
       </Router>
