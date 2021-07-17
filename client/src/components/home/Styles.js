@@ -117,7 +117,7 @@ const useStyles = makeStyles({
     },
 
     contentContainer: {
-        backgroundColor: '#eee',
+        backgroundColor: '#FDF0BD',
         padding: 16,
     },
 
