@@ -8,6 +8,9 @@ import OrderTable from './components/orders/OrderTable';
 import Search from './components/search/Search';
 
 import Profile from './components/profile/Profile';
+import LoginButton from './components/login/LoginButton';
+import LogoutButton from './components/logout/LogoutButton';
+
 
 
 const App = () => {
@@ -16,6 +19,9 @@ const App = () => {
     <>
       <Router>
         <Header />
+        <LoginButton />
+        
+        <LogoutButton />
         <Switch>
           <Route exact path='/'>
             <Home />

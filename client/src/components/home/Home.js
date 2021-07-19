@@ -5,25 +5,27 @@ import categoriesData from './categories';
 import PippsyVideo from '../../pippsy.mp4';
 import SearchBox from '../search-box/SearchBox';
 import bannerImage from '../images/banner-image.jpg';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const HomeCategories = () => {
+    const { user } = useAuth0();
     const styles = useStyles();
     return (
-        <ul className={styles.categories}>
-            {categoriesData.map(category => (
-                <li className={styles.category}>
-                    <a href={`/search?category=${category.id}`} className={styles.link}>{category.title}</a>
-                    <ul className={styles.subcategories}>
-                        {category.subcategories.map(sub => (
-                            <li>
-                                <a href={`/search?category=${sub.id}`} className={styles.link}>{sub.title}</a>
-                            </li>
-                        ))}
-                    </ul>
-                </li>
-            ))}
-        </ul>
+            <ul className={styles.categories}>
+                {categoriesData.map(category => (
+                    <li className={styles.category}>
+                        <a href={`/search?category=${category.id}`} className={styles.link}>{category.title}</a>
+                        <ul className={styles.subcategories}>
+                            {category.subcategories.map(sub => (
+                                <li>
+                                    <a href={`/search?category=${sub.id}`} className={styles.link}>{sub.title}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    </li>
+                ))}
+            </ul>
     )
 }
 
