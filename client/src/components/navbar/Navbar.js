@@ -42,7 +42,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="navbar">
+            <div>
                 <Link to='#' className='menu-bars'>
                     <FaIcons.FaBars onClick={showSidebar}/>
                 </Link>
