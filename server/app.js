@@ -16,6 +16,8 @@ var logger = require('morgan');
 var order = require('./routes/order');
 var home = require('./routes/home');
 
+var user = require('./routes/user');
+
 var app = express();
 
 // view engine setup
@@ -32,6 +34,9 @@ app.use('/product', product);
 app.use('/customer',customer);
 app.use('/supplier',supplier);
 app.use('/userX',userX);
+
+app.use('/user', user);
+
 app.use('/orderStatus',orderStatus);
 app.use('/order', order);
 app.use('/home',home);

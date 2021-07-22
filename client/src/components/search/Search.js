@@ -10,14 +10,15 @@ import { DateDiff } from '../../dateUtils';
 
 const SearchItem = ({ item }) => {
     const classes = useStyles();
-    const date = item.dateAdded.split('T')[0];
-    const timeString = item.dateAdded.split('T')[1];
+
+    const date = item.ad.dateAdded.split('T')[0];
+    const timeString = item.ad.dateAdded.split('T')[1];
+    
     const time = timeString.split('.')[0];
     const createDate = new Date(date + ' ' + time);
     const today = new Date();
 
     const weekTime = DateDiff.inWeeks(createDate, today);
-
 
     return (
         <>
@@ -36,13 +37,14 @@ const SearchItem = ({ item }) => {
                                 color="textPrimary"
                             >
                                 <Link to={`/profile/${item._id}`} className={classes.link}>
-                                    {item.name}
+                                    {item.adTitle}
                                 </Link>
                             </Typography>
                             <span className={classes.headMeta}>
                                 <StarRounded />
-                                {item.gstRate} &nbsp;
-                                (45 reviews)
+                                {item.ad.adDescription} &nbsp;                                
+                                {/* (45 reviews) */}
+                                {item.ad.count} reviews
                             </span>
                         </div>
                     }
@@ -54,9 +56,8 @@ const SearchItem = ({ item }) => {
                                 className={classes.inline}
                                 color="textPrimary"
                             >
-                                Ali Connors
                             </Typography>
-                            {" — I'll be in your neighborhood doing errands this…"}
+                            {item.firstName} — I'll be in your neighborhood doing errands this…
                         </>
                     }
                 />
@@ -92,22 +93,52 @@ const Search = () => {
     const [data, setData] = useState([]);
     const styles = useStyles();
     const location = useLocation();
+
+    //fetch data and set rows
+    const getUser = async () =>{
+
+        const queryArr = location.search ?  location.search.substring(1, location.search.length) : [];
+        console.log('getUser queryArr', queryArr)
+
+        let res = await fetch(`/user/${queryArr}`)
+        .then(async res => {
+            const result = await res.json();
+            setData(result);
+        })
+    }
+
     useEffect(() => {
-        const queryArr = location.search ? location.search.substr(1).split('&') : [];
-        let query = {};
-        if (queryArr.length > 0) {
-            queryArr.forEach(q => {
-                const key = q.split('=')[0];
-                const value = q.split('=')[1];
-                query[key] = value;
-            })
-        }
-        console.log('query', query)
-        fetch(`http://localhost:3000/customer${location.search}`)
+//        const queryArr = location.search ? location.search.substr(1).split('&') : [];
+//        const queryArr = location.search ? location.search.substr(1).split('/') : [];
+
+        const queryArr = location.search ?  location.search.substring(1, location.search.length) : [];
+
+        getUser();
+
+/*
+        console.log('queryArr', queryArr)
+        // let query = {};
+        // if (queryArr.length > 0) {
+        //     queryArr.forEach(q => {
+        //         const key = q.split('=')[0];
+        //         const value = q.split('=')[1];
+        //         query[key] = value;
+        //     })
+        // }
+        //console.log('query', query)
+        console.log('location.search', location.search.substring(1, location.search.length ))
+
+//        fetch(`http://localhost:3000/customer${location.search}`)
+          fetch(`http://localhost:3000/user/${queryArr}`)
+//            fetch(`/user/${queryArr}`)
+
+
             .then(async res => {
                 const result = await res.json();
                 setData(result);
             })
+*/
+
     }, [location]);
 
     return (

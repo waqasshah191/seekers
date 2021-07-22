@@ -1,0 +1,126 @@
+[{
+  "_id": {
+    "$oid": "60f635353a12d93b0651b5d0"
+  },
+  "user": {
+    "$oid": "60e37fbf04423c24912344f2"
+  },
+  "category": "Arts & Entertainment",
+  "subCategory": "Piano classes",
+  "adTitle": "Piano lessons in SW Calgary",
+  "adDescription": "I am offering Piano Lessons in the community of Somerset in the SW Calgary. I have over 20 years of training in both Suzuki and Royal Conservatory. I also have over 10 years of experience teaching piano to students aged 4 - 55 years. Currently booking lessons for September.",
+  "rating": [
+    {
+      "user": {
+        "$oid": "60e381896ae728f7efb06543"
+      },
+      "ratingScore": 4.5,
+      "userFeedback": "Very knowledgeable.",
+      "dateAdded": "2021-07-15T19:21:41.544Z"
+    },
+    {
+      "user": {
+        "$oid": "60f07e7172959445b4dffdb7"
+      },
+      "ratingScore": 4.5,
+      "userFeedback": "Very good teacher.",
+      "dateAdded": "2021-07-11T09:29:51.421Z"
+    }
+  ],
+  "dateAdded": "2021-07-01T09:18:41.544Z",
+  "active": true
+},{
+  "_id": {
+    "$oid": "60f63a1c3a12d93b0654bfe9"
+  },
+  "user": {
+    "$oid": "60e381896ae728f7efb06543"
+  },
+  "category": "Arts & Entertainment",
+  "subCategory": "Drawing classes",
+  "adTitle": "Cartoons drawing lessons in SW Calgary",
+  "adDescription": "I am offering drawing lessons in the community of Bridlewood in the SW Calgary. I have over 10 years of experience in teaching beginner artists.",
+  "rating": [
+    {
+      "user": {
+        "$oid": "60f07e7172959445b4dffdb7"
+      },
+      "ratingScore": 4.5,
+      "dateAdded": "2021-07-15T19:21:41.544Z"
+    },
+    {
+      "user": {
+        "$oid": "60e382b06ae728f7efb06546"
+      },
+      "ratingScore": 4.5,
+      "dateAdded": "2021-07-11T09:29:51.421Z"
+    }
+  ],
+  "dateAdded": "2021-07-01T09:18:41.544Z",
+  "active": true
+},{
+  "_id": {
+    "$oid": "60f63af33a12d93b065549fa"
+  },
+  "user": {
+    "$oid": "60e3820e6ae728f7efb06544"
+  },
+  "category": "Transport & Moving",
+  "subCategory": "Moving services",
+  "adTitle": "Moving services anywhere in Calgary",
+  "adDescription": "I am offering my services as a mover. I have helped individuals and families in there moving undertaking for over 5 years now.",
+  "rating": [
+    {
+      "user": {
+        "$oid": "60e37fbf04423c24912344f2"
+      },
+      "ratingScore": 4.5,
+      "dateAdded": "2021-07-15T19:21:41.544Z"
+    },
+    {
+      "user": {
+        "$oid": "60e381896ae728f7efb06543"
+      },
+      "ratingScore": 4.5,
+      "dateAdded": "2021-07-11T09:29:51.421Z"
+    }
+  ],
+  "dateAdded": "2021-07-01T09:18:41.544Z",
+  "active": true
+},{
+  "_id": {
+    "$oid": "60f644113a12d93b065b00ca"
+  },
+  "user": {
+    "$oid": "60e37fbf04423c24912344f2"
+  },
+  "category": "Arts & Entertainment",
+  "subCategory": "Drawing classes",
+  "adTitle": "Custom painings services Calgary",
+  "adDescription": "I am offering custom painting services anywhere in Calgary. I have been helping homeowners with their home painting jobs in the past 3 years.",
+  "rating": [
+    {
+      "user": {
+        "$oid": "60f07e7172959445b4dffdb7"
+      },
+      "ratingScore": 4.5,
+      "dateAdded": "2021-07-02T06:12:41.544Z"
+    }
+  ],
+  "dateAdded": "2021-07-01T09:18:41.544Z",
+  "active": true
+},{
+  "_id": {
+    "$oid": "60f644d23a12d93b065b7b2d"
+  },
+  "user": {
+    "$oid": "60f07e7172959445b4dffdb7"
+  },
+  "category": "Sports",
+  "subCategory": "Swimming lessons",
+  "adTitle": "Swimming lessons in NE Calgary",
+  "adDescription": "I am offering swimming lessons anywhere in the NE Calgary. I have been giving swimming lessons to childen age from 5 to 10.",
+  "rating": [],
+  "dateAdded": "2021-07-14T16:21:29.544Z",
+  "active": true
+}]

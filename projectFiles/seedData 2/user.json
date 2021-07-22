@@ -1,0 +1,228 @@
+[{
+  "_id": {
+    "$oid": "60e37fbf04423c24912344f2"
+  },
+  "firstName": "Mark",
+  "lastName": "Halm",
+  "address": "39 Somercrest Circle SW,",
+  "city": "Calgary",
+  "province": "Alberta",
+  "postalCode": "T2Y 3H1",
+  "longitude": "-114.080775",
+  "latitude": "50.902142",
+  "emailAddress": "mark.halm@hotmail.com",
+  "detailInformation": "Mechanical engineer with over 8 years of experience in Oil and Gas industry",
+  "skills": [
+    {
+      "category": "Arts & Entertainment",
+      "subCategory": "Piano classes"
+    },
+    {
+      "category": "General Services",
+      "subCategory": "Baking"
+    },
+    {
+      "category": "Crafts",
+      "subCategory": "Custom Paintings"
+    }
+  ],
+  "socialMedia": [
+    {
+      "socialMediaName": "facebook",
+      "socialMediaLink": "/rick.shaw.3950"
+    },
+    {
+      "socialMediaName": "linkedin",
+      "socialMediaLink": "linkedin.com/in/mark-halm-c810t29"
+    }
+  ],
+  "password": "abc123",
+  "isProUser": false,
+  "dateRegisteredAsPro": null,
+  "dateRegistered": "2021-07-05T15:54:20.664Z"
+},{
+  "_id": {
+    "$oid": "60e381896ae728f7efb06543"
+  },
+  "firstName": "Susan",
+  "lastName": "Keller",
+  "address": "45 Bridleridge Ln SW,",
+  "city": "Calgary",
+  "province": "Alberta",
+  "postalCode": "T2Y 0E4",
+  "longitude": "-114.113511",
+  "latitude": "50.900846",
+  "emailAddress": "susankeller652@yahoo.com",
+  "detailInformation": "Registered Nurse working at Rocky View hospital",
+  "skills": [
+    {
+      "category": "General Services",
+      "subCategory": "Baking"
+    },
+    {
+      "category": "Arts & Entertainment",
+      "subCategory": "Drawing classes"
+    }
+  ],
+  "socialMedia": [
+    {
+      "socialMediaName": "linkedin",
+      "socialMediaLink": "linkedin.com/in/susan-keller-d612r26"
+    }
+  ],
+  "password": "abc123",
+  "isProUser": true,
+  "dateRegisteredAsPro": "2021-07-06T07:13:28.324Z",
+  "dateRegistered": "2021-07-04T11:21:20.664Z"
+},{
+  "_id": {
+    "$oid": "60e3820e6ae728f7efb06544"
+  },
+  "firstName": "Edward",
+  "lastName": "Colins",
+  "address": "6 Bridlecrest Gardens SW,",
+  "city": "Calgary",
+  "province": "Alberta",
+  "postalCode": "T2Y 4Y4",
+  "longitude": "-114.122167",
+  "latitude": "50.905278",
+  "emailAddress": "edward.colins651@gmail.com",
+  "detailInformation": "Experienced auto mechanic with over 10 years of experience.  I specialized in North American made trucks",
+  "skills": [
+    {
+      "category": "Transport & Moving",
+      "subCategory": "Moving services"
+    },
+    {
+      "category": "Transport & Moving",
+      "subCategory": "Towing service"
+    }
+  ],
+  "socialMedia": [
+    {
+      "socialMediaName": "facebook",
+      "socialMediaLink": "/edward.colins.1450"
+    },
+    {
+      "socialMediaName": "linkedin",
+      "socialMediaLink": "linkedin.com/in/edward-colins-w242r72"
+    }
+  ],
+  "password": "abc123",
+  "isProUser": false,
+  "dateRegisteredAsPro": null,
+  "dateRegistered": "2021-07-04T08:01:30.664Z"
+},{
+  "_id": {
+    "$oid": "60e382606ae728f7efb06545"
+  },
+  "firstName": "Jane",
+  "lastName": "Williams",
+  "address": "167 Hawkview Manor Cir NW,",
+  "city": "Calgary",
+  "province": "Alberta",
+  "postalCode": "T3G 2Z8",
+  "longitude": "-114.170136",
+  "latitude": "51.126576",
+  "emailAddress": "janewilliams6521@telus.net",
+  "detailInformation": "Senior civil engineer experienced in the building and planning of infrastructure projects like roads, bridges, etc.",
+  "skills": [
+    {
+      "category": "Sports",
+      "subCategory": "Badminton"
+    },
+    {
+      "category": "Education & Training",
+      "subCategory": "Math Tutor"
+    }
+  ],
+  "socialMedia": [
+    {
+      "socialMediaName": "facebook",
+      "socialMediaLink": "/jane.williams.8273"
+    }
+  ],
+  "password": "abc123",
+  "isProUser": false,
+  "dateRegisteredAsPro": null,
+  "dateRegistered": "2021-07-02T16:15:12.214Z"
+},{
+  "_id": {
+    "$oid": "60e382b06ae728f7efb06546"
+  },
+  "firstName": "Arnold",
+  "lastName": "Walker",
+  "address": "65 Nolanshire Cres NW,",
+  "city": "Calgary",
+  "province": "Alberta",
+  "postalCode": "T3R 0J4",
+  "longitude": "-114.164893",
+  "latitude": "51.173922",
+  "emailAddress": "arnold.walker9512@hotmail.com",
+  "detailInformation": "Master plumber currently working at Pete the Plumber",
+  "skills": [
+    {
+      "category": "Trades & Maintenance",
+      "subCategory": "Landscaping"
+    },
+    {
+      "category": "Trades & Maintenance",
+      "subCategory": "Plumbing"
+    }
+  ],
+  "socialMedia": [
+    {
+      "socialMediaName": "facebook",
+      "socialMediaLink": "/arnold.walker.9832"
+    },
+    {
+      "socialMediaName": "linkedin",
+      "socialMediaLink": "linkedin.com/in/arnold-walker-a374b13"
+    }
+  ],
+  "password": "abc123",
+  "isProUser": false,
+  "dateRegisteredAsPro": null,
+  "dateRegistered": "2021-07-02T06:38:09.104Z"
+},{
+  "_id": {
+    "$oid": "60f07e7172959445b4dffdb7"
+  },
+  "firstName": "Cidney",
+  "lastName": "Wardrick",
+  "address": "157 Rundleson Way NE,",
+  "city": "Calgary",
+  "province": "Alberta",
+  "postalCode": "T1Y 4A4",
+  "longitude": "-113.974326",
+  "latitude": "51.079916",
+  "emailAddress": "cidney555wardrick@gmail.com",
+  "detailInformation": "RCAF Air Reserve.  Currently working in the air force as an HR administrator.",
+  "skills": [
+    {
+      "category": "Arts & Entertainment",
+      "subCategory": "Salsa dance"
+    },
+    {
+      "category": "Sports",
+      "subCategory": "Swimming lessons"
+    }
+  ],
+  "socialMedia": [
+    {
+      "socialMediaName": "facebook",
+      "socialMediaLink": "/cidney.wardrick.2739"
+    },
+    {
+      "socialMediaName": "linkedin",
+      "socialMediaLink": "linkedin.com/in/cidney-wardrick-j740g63"
+    }
+  ],
+  "password": "abc123",
+  "isProUser": false,
+  "dateRegisteredAsPro": null,
+  "dateRegistered": {
+    "$date": "2021-07-15T14:31:12.104Z"
+  },
+  "__v": 0
+}]
