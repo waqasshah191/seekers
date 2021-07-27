@@ -167,9 +167,9 @@ $ npm install react-icons --save
 $ npm install react-paginate
 $ npm install uuid
 
-$ npm @fortawesome/fontawesome-svg-core  @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
+$ npm install @fortawesome/fontawesome-svg-core  @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
 $ npm install @material-ui/lab
-$ npm i react-select
+$ npm install react-select
 
 $ cd ..
 $ git add .
