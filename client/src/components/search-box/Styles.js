@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-
 const useStyles = makeStyles({
     button: {
         fontSize: 17,
@@ -32,7 +31,7 @@ const useStyles = makeStyles({
     },
     chip: {
         margin: 5,
-        backgroundColor: '#43C0F6',
+        backgroundColor: '#EF6C00',
         color: '#fff'
     },
 

@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-
 const useStyles = makeStyles({
     button: {
         fontSize: 17,
@@ -12,6 +11,9 @@ const useStyles = makeStyles({
         "& span": {
             marginLeft: 0,
         }
+    },
+    proBtn: {
+        marginLeft: 16
     },
     headerContainer: {
         borderBottom: '1px solid #999',
@@ -25,7 +27,7 @@ const useStyles = makeStyles({
 
     logo: {
         display: 'block',
-        width: '150px',
+        width: '200px',
     },
 
     logoImage: {

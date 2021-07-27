@@ -166,6 +166,11 @@ $ npm install react-router-dom
 $ npm install react-icons --save
 $ npm install react-paginate
 $ npm install uuid
+
+$ npm @fortawesome/fontawesome-svg-core  @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
+$ npm install @material-ui/lab
+$ npm i react-select
+
 $ cd ..
 $ git add .
 $ git commit -m "adding nodemon to speed development"

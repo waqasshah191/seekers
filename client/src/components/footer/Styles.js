@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-
 const useStyles = makeStyles({
     footerContainer: {
         borderTop: '1px solid rgba(0,0,0,0.1)',
@@ -29,7 +28,7 @@ const useStyles = makeStyles({
 
     headTitle: {
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 20,
         display: 'block',
         textAlign: 'center',
         textDecoration: 'none',

@@ -10,10 +10,10 @@ const SearchBox = () => {
     const location = useLocation();
     const history = useHistory();
     const styles = useStyles();
-    
+
     useEffect(() => {
 
-//        const queryArr = location.search ? location.search.substr(1).split('&') : [];
+        //        const queryArr = location.search ? location.search.substr(1).split('&') : [];
         const queryArr = location.search ? location.search.substr(1).split('/') : [];
 
         let query = {};
@@ -27,16 +27,25 @@ const SearchBox = () => {
         setSkill(query?.skill || '');
         setPostCode(query?.code || '');
 
-        console.log("skill", skill);
-        console.log("postCode", postCode);
+        console.log("skill = ", skill);
+        console.log("postCode = ", postCode);
 
 
     }, [location]);
-    
+
     const handleSubmit = e => {
         e.preventDefault();
-//        history.push(`/search?skill=${skill}&postalCode=${postCode}`)
-          history.push(`/search/skillPostalCode/${skill}/${postCode}`)
+        //        history.push(`/search?skill=${skill}&postalCode=${postCode}`)
+        // history.push(`/search?adSubCategoryPostalCode/${skill}&${postCode}`)
+        if (postCode.trim().length < 1 ) {
+            history.push(`/search?adSubCategory/${skill}`)    
+        }
+        else if (skill.trim().length < 1 ) {
+            history.push(`/search?postalCode/${postCode}`)
+        }
+        else {
+            history.push(`/search?adSubCategoryPostalCode/${skill}&${postCode}`)            
+        }
     }
 
     return (
@@ -82,7 +91,7 @@ const SearchBox = () => {
                             clickable
                             component="a"
 
-//                            href={`/search?category=${item.slug}`}
+                            // href={`/search?category=${item.slug}`}
                             // href={`/search?skill/${item.slug}`}
                             href={`/search?adSubCategory/${item.slug}`}
 

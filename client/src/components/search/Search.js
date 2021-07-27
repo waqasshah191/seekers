@@ -7,13 +7,12 @@ import { List, ListItem, Divider, ListItemText, ListItemAvatar, Avatar, Typograp
 import Map from '../Map';
 import { DateDiff } from '../../dateUtils';
 
-
 const SearchItem = ({ item }) => {
     const classes = useStyles();
 
     const date = item.ad.dateAdded.split('T')[0];
     const timeString = item.ad.dateAdded.split('T')[1];
-    
+
     const time = timeString.split('.')[0];
     const createDate = new Date(date + ' ' + time);
     const today = new Date();
@@ -37,12 +36,13 @@ const SearchItem = ({ item }) => {
                                 color="textPrimary"
                             >
                                 <Link to={`/profile/${item._id}`} className={classes.link}>
+                                    {item.firstName} {item.lastName}
                                     {item.adTitle}
                                 </Link>
                             </Typography>
                             <span className={classes.headMeta}>
                                 <StarRounded />
-                                {item.ad.adDescription} &nbsp;                                
+                                {item.ad.adDescription} &nbsp;
                                 {/* (45 reviews) */}
                                 {item.ad.count} reviews
                             </span>
@@ -57,15 +57,15 @@ const SearchItem = ({ item }) => {
                                 color="textPrimary"
                             >
                             </Typography>
-                            {item.firstName} — I'll be in your neighborhood doing errands this…
+                            {item.firstName} — {item.detailInformation}
                         </>
                     }
                 />
-                <div className={classes.information}>
+                < div className={classes.information} >
                     <Button className={classes.button} variant="contained" color="secondary">Message</Button>
                     <span className={classes.date}>{weekTime} {weekTime > 1 ? 'Weeks' : 'Week'} Ago</span>
-                </div>
-            </ListItem>
+                </div >
+            </ListItem >
             <Divider variant="inset" component="li" />
         </>
     )
@@ -83,61 +83,58 @@ const SearchList = ({ data = [] }) => {
     );
 }
 
-const SearchMap = () => {
-    return (
-        <Map />
-    )
-}
-
 const Search = () => {
     const [data, setData] = useState([]);
     const styles = useStyles();
     const location = useLocation();
 
     //fetch data and set rows
-    const getUser = async () =>{
+    const getUser = async () => {
 
-        const queryArr = location.search ?  location.search.substring(1, location.search.length) : [];
+        const queryArr = location.search ? location.search.substring(1, location.search.length) : [];
         console.log('getUser queryArr', queryArr)
 
         let res = await fetch(`/user/${queryArr}`)
-        .then(async res => {
-            const result = await res.json();
-            setData(result);
-        })
+            .then(async res => {
+                const result = await res.json();
+
+                console.log("!!!!result = ", result)
+
+                setData(result);
+            })
     }
 
     useEffect(() => {
-//        const queryArr = location.search ? location.search.substr(1).split('&') : [];
-//        const queryArr = location.search ? location.search.substr(1).split('/') : [];
+        //        const queryArr = location.search ? location.search.substr(1).split('&') : [];
+        //        const queryArr = location.search ? location.search.substr(1).split('/') : [];
 
-        const queryArr = location.search ?  location.search.substring(1, location.search.length) : [];
+        //const queryArr = location.search ? location.search.substring(1, location.search.length) : [];
 
         getUser();
 
-/*
-        console.log('queryArr', queryArr)
-        // let query = {};
-        // if (queryArr.length > 0) {
-        //     queryArr.forEach(q => {
-        //         const key = q.split('=')[0];
-        //         const value = q.split('=')[1];
-        //         query[key] = value;
-        //     })
-        // }
-        //console.log('query', query)
-        console.log('location.search', location.search.substring(1, location.search.length ))
-
-//        fetch(`http://localhost:3000/customer${location.search}`)
-          fetch(`http://localhost:3000/user/${queryArr}`)
-//            fetch(`/user/${queryArr}`)
-
-
-            .then(async res => {
-                const result = await res.json();
-                setData(result);
-            })
-*/
+        /*
+                console.log('queryArr', queryArr)
+                // let query = {};
+                // if (queryArr.length > 0) {
+                //     queryArr.forEach(q => {
+                //         const key = q.split('=')[0];
+                //         const value = q.split('=')[1];
+                //         query[key] = value;
+                //     })
+                // }
+                //console.log('query', query)
+                console.log('location.search', location.search.substring(1, location.search.length ))
+        
+        //        fetch(`http://localhost:3000/customer${location.search}`)
+                  fetch(`http://localhost:3000/user/${queryArr}`)
+        //            fetch(`/user/${queryArr}`)
+        
+        
+                    .then(async res => {
+                        const result = await res.json();
+                        setData(result);
+                    })
+        */
 
     }, [location]);
 
@@ -147,7 +144,7 @@ const Search = () => {
             <Container className={styles.container}>
                 <SearchList data={data} />
                 <div className={styles.map}>
-                    <SearchMap data={data} />
+                    <Map data={data} />
                 </div>
             </Container>
         </div>

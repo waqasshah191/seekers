@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Auth0Provider } from '@auth0/auth0-react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Home from './components/home/Home';
@@ -8,39 +9,72 @@ import OrderTable from './components/orders/OrderTable';
 import Search from './components/search/Search';
 
 import Profile from './components/profile/Profile';
-import LoginButton from './components/login/LoginButton';
-import LogoutButton from './components/logout/LogoutButton';
+import BecomePro from './components/become-pro/BecomePro';
+import CreateAds from './components/create-ads/CreateAds';
 
-
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 const App = () => {
+  const [redirect, setRedirect] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const redirectUri = localStorage.getItem('_redirect');
+    if (!redirectUri) {
+      setLoading(false);
+    }
+  }, []);
+
+  const handleRedirect = () => {
+    const redirectUri = localStorage.getItem('_redirect');
+    localStorage.removeItem('_redirect')
+    setRedirect(redirectUri);
+    setLoading(false);
+  }
 
   return (
-    <>
+    <Auth0Provider
+      domain={domain}
+      clientId={clientId}
+      redirectUri={window.location.origin}
+      onRedirectCallback={handleRedirect}
+    >
       <Router>
-        <Header />
-        <LoginButton />
-        
-        <LogoutButton />
-        <Switch>
-          <Route exact path='/'>
-            <Home />
-          </Route>
-          <Route exact path='/search'>
-            <Search />
-          </Route>
-          <Route path='/orders'>
-            <OrderTable />
-          </Route>
+        {redirect && <Redirect to={redirect} />}
+        {!loading && (
+          <>
+            <Header />
+            <Switch>
 
-          <Route path='/profile'>
-            <Profile />
-          </Route>
+              <Route exact path='/'>
+                <Home />
+              </Route>
+              <Route exact path='/search'>
+                <Search />
+              </Route>
+              <Route path='/orders'>
+                <OrderTable />
+              </Route>
 
-        </Switch>
-        <Footer />
+              <Route path='/profile'>
+                <Profile />
+              </Route>
+
+              <Route path='/become-pro'>
+                <BecomePro />
+              </Route>
+
+              <Route path='/create-ads'>
+                <CreateAds />
+              </Route>
+
+            </Switch>
+            <Footer />
+          </>
+        )}
       </Router>
-    </>
+    </Auth0Provider>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container } from '@material-ui/core';
 import useStyles from './Styles';
-import categoriesData from './categories';
+import categoriesData from '../../categories';
 import PippsyVideo from '../../pippsy.mp4';
 import SearchBox from '../search-box/SearchBox';
 import bannerImage from '../images/banner-image.jpg';
@@ -46,7 +46,8 @@ const HomeContent = () => {
                 <div className={styles.content}>
                     <h2 className={styles.contentTitle}>How Pippsy works</h2>
                     <p className={styles.contentDescription}>
-                        Meet new people who share your interests through online and in-person events. It’s free to create an account.
+                        Pippsy is a social utility which enables a better way for you to get found by people who need your skill and also, to find people who have the skills you need. Pippsy is free to use.
+
                     </p>
                     <Button className={styles.button} color="secondary" variant="contained">Join</Button>
                 </div>
@@ -74,7 +75,7 @@ const Home = () => {
                             <br />
                             &nbsp;&nbsp;Get your skills found
                         </h3>
-                        <p className={styles.bannerDesc}>Meet new people who share your interests through online and in-</p>
+                        <p className={styles.bannerDesc}>Pippsy transforms the way people with skills connect to the people who need them</p>
                     </div>
                 </div>
             </Container>
