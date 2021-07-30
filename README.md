@@ -171,8 +171,34 @@ $ npm install @fortawesome/fontawesome-svg-core  @fortawesome/free-solid-svg-ico
 $ npm install @material-ui/lab
 $ npm install react-select
 
+npm install multer-gridfs-storage --save
+npm install gridfs-stream --save
+
 $ cd ..
 $ git add .
 $ git commit -m "adding nodemon to speed development"
 $ cd ..
+```
+
+NOTE: IF YOU GET THE ERROR BELOW:
+```
+Server listening on port 3000
+connected to database
+POST /upload/ 500 9.485 ms - 578
+TypeError: mongodb_1.ObjectID is not a constructor
+    at Function.<anonymous> (C:\EvolveU\Project3\seekers\server\node_modules\multer-gridfs-storage\lib\gridfs.js:125:31)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\EvolveU\Project3\seekers\server\node_modules\multer-gridfs-storage\lib\gridfs.js:5:58)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+
+Problem is in the \server\node_modules\multer-grids-storage\lib\types\gridfs.js
+On line 125:
+                previous.id = new mongodb_1.ObjectID();
+
+Should be:
+                previous.id = new mongodb_1.ObjectId();
+
+Bug was already reported to developer.
+
+Edit the file then save, then run the server
 ```

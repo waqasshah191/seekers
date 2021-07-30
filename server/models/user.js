@@ -14,9 +14,9 @@ const userSchema = new Schema({
     latitude: String,    
 
     emailAddress:{
-        type: String,
-        required: true,
-        unique: true
+        type: String
+        // required: true,
+        // unique: true
         // trim:true
     },
     detailInformation: String,
