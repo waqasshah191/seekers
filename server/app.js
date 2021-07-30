@@ -16,6 +16,7 @@ var home = require('./routes/home');
 
 var user = require('./routes/user');
 var upload = require('./routes/upload');
+var longLat = require('./routes/longLat');
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/userX',userX);
 
 app.use('/user', user);
 app.use('/upload', upload);
+app.use('/longLat', longLat);
 
 app.use('/orderStatus',orderStatus);
 app.use('/order', order);
