@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 import useStyles from './Styles.js';
 
@@ -26,13 +27,13 @@ const Footer = () => {
                         <a href="/" className={styles.headTitle}>Company</a>
                     </li>
                     <li>
-                        <a href="/" className={styles.link}>About Us</a>
+                        <Link to="/about" className={styles.link}>About Us</Link>
                     </li>
                     <li>
                         <a href="/" className={styles.link}>Team</a>
                     </li>
                     <li>
-                        <a href="/" className={styles.link}>Terms & Privacy</a>
+                        <Link to="/terms-privacy" className={styles.link}>Terms & Privacy</Link>
                     </li>
                 </ul>
                 <ul className={styles.column}>
@@ -40,10 +41,10 @@ const Footer = () => {
                         <a href="/" className={styles.headTitle}>Support</a>
                     </li>
                     <li>
-                        <a href="/" className={styles.link}>Help Center</a>
+                        <Link to="/help-center" className={styles.link}>Help Center</Link>
                     </li>
                     <li>
-                        <a href="/" className={styles.link}>Contact Us</a>
+                        <Link to="/contact" className={styles.link}>Contact Us</Link>
                     </li>
                     <li>
                         <a href="/" className={styles.link}>Blog</a>

@@ -7,6 +7,7 @@ import { List, ListItem, Divider, ListItemText, ListItemAvatar, Avatar, Typograp
 import Map from '../Map';
 import { DateDiff } from '../../dateUtils';
 
+
 const SearchItem = ({ item }) => {
     const classes = useStyles();
 

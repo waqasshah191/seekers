@@ -14,18 +14,16 @@ const searchList = skillList.map(
 
       }
      }
-);
+    );
 
 class SearchBar extends React.Component{
  state = {
   selectedOption: null,
  }
-
  handleChange = selectedOption => {
   this.setState({ selectedOption })
   // code to make something happen after selecting an option
  }
-
  render() {
   const { selectedOption } = this.state
   const DropdownIndicator = props => {
@@ -37,7 +35,6 @@ class SearchBar extends React.Component{
          )
         )
   }
-  
   return (
     <div>
     <Select
@@ -56,5 +53,4 @@ class SearchBar extends React.Component{
   )
  }
 }
-
 export default SearchBar
