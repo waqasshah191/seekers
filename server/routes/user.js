@@ -85,22 +85,22 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-//Find users by ad.subCategory
-//To use in Postman:  http://localhost:3000/user/adSubCategory/Drawing classes
-//router.get('/adSubCategory/:subCategory', async function(req, res) {
-router.get('/adSubCategory/:subCategory', async (req, res) => {
+async function adSubCategorySearch(subCategory) {
+
+    console.log("subCategory = ", subCategory);
+
     try {
-        console.log('subCategory = ', req.params.subCategory);
+        console.log('subCategory = ', subCategory);
 
         let data1 = await user.aggregate([
             {
-                "$match": { "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }
+                "$match": { "ad.subCategory": {$regex: subCategory, $options : 'i'} }
             },
             {
                 "$unwind": "$ad"
             },
             {
-                "$match": { "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }
+                "$match": { "ad.subCategory": {$regex: subCategory, $options : 'i'} }
             },
         ])
 
@@ -135,28 +135,96 @@ router.get('/adSubCategory/:subCategory', async (req, res) => {
         });
 
         console.info('Found the users with subCategory :', data3);
-        res.send(data3);
+
+        return data3;
+
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
-    }
+    }    
+
+}
+
+
+//Find users by ad.subCategory
+//To use in Postman:  http://localhost:3000/user/adSubCategory/Drawing classes
+//router.get('/adSubCategory/:subCategory', async function(req, res) {
+router.get('/adSubCategory/:subCategory', async (req, res) => {
+
+    let data = await adSubCategorySearch(req.params.subCategory);
+
+    res.send(data);
+
+    // try {
+    //     console.log('subCategory = ', req.params.subCategory);
+
+    //     let data1 = await user.aggregate([
+    //         {
+    //             "$match": { "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }
+    //         },
+    //         {
+    //             "$unwind": "$ad"
+    //         },
+    //         {
+    //             "$match": { "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }
+    //         },
+    //     ])
+
+    //     //get data of aggregated average rating of all reviews per user
+    //     //let data = await user.find({"ad.subCategory": new RegExp(req.params.subCategory), postalCode: new RegExp(req.params.postalCode) });
+    //     let data2 = await user.aggregate([
+    //         {
+    //             "$unwind": "$ad"
+    //         },
+    //         {
+    //             "$unwind": "$ad.rating"
+    //         },
+    //         {
+    //             "$group": {
+    //                 "_id": "$_id",
+    //                 "avgRatingScore": { "$avg": "$ad.rating.ratingScore" },
+    //                 "countRating" : { "$sum" : 1 }
+    //             }
+    //         }
+    //     ])
+
+    //     //conbine data from data 1 and data 2
+    //     let data3 = data1.map(obj => {
+    //         const index = data2.findIndex(el => el["_id"].toString() === obj["_id"].toString());
+    //         const { avgRatingScore } = index !== -1 ? data2[index] : {};
+    //         const { countRating } = index !== -1 ? data2[index] : {};
+    //         return {
+    //             ...obj,
+    //             avgRatingScore,
+    //             countRating
+    //         };
+    //     });
+
+    //     console.info('Found the users with subCategory :', data3);
+
+    //     res.send(data3);
+
+    // } catch (error) {
+    //     console.log(error);
+    //     res.sendStatus(500);
+    // }
+
+
 })
 
-//Find users by postal code
-//To use in Postman:  http://localhost:3000/user/postalCode/T2Y
-router.get('/postalCode/:postalCode', async (req, res) => {
+async function postalCodeSearch(postalCode) {
+
     try {
-        console.log('postalCode = ', req.params.postalCode);
+        console.log('postalCode = ', postalCode);
 
         //get data matching criteria
         let data1 = await user.aggregate([
             {
-                "$match": { "postalCode": {$regex: req.params.postalCode, $options : 'i'} }                
+                "$match": { "postalCode": {$regex: postalCode, $options : 'i'} }                
             },
             {
                 "$unwind": "$ad"
             },
-
         ])
 
         //get data of aggregated average rating of all reviews per user
@@ -174,7 +242,6 @@ router.get('/postalCode/:postalCode', async (req, res) => {
                     "countRating" : { "$sum" : 1 }
                 }
             }
-
         ])
 
         //conbine data from data 1 and data 2
@@ -189,12 +256,87 @@ router.get('/postalCode/:postalCode', async (req, res) => {
             };
         });
 
+        //return no match message if no criteria match was found
+        if (data3.length === 0) {
+            data3 = {"result": "No match found."}
+       }
+
         console.info('Found the users with postal code:', data3);
-        res.send(data3);
+
+        return data3;
+
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
     }
+
+}
+
+//Find users by postal code
+//To use in Postman:  http://localhost:3000/user/postalCode/T2Y
+router.get('/postalCode/:postalCode', async (req, res) => {
+
+    let data = await postalCodeSearch(req.params.postalCode);
+
+    res.send(data);
+
+    // try {
+    //     console.log('postalCode = ', req.params.postalCode);
+
+    //     //get data matching criteria
+    //     let data1 = await user.aggregate([
+    //         {
+    //             "$match": { "postalCode": {$regex: req.params.postalCode, $options : 'i'} }                
+    //         },
+    //         {
+    //             "$unwind": "$ad"
+    //         },
+
+    //     ])
+
+    //     //get data of aggregated average rating of all reviews per user
+    //     let data2 = await user.aggregate([
+    //         {
+    //             "$unwind": "$ad"
+    //         },
+    //         {
+    //             "$unwind": "$ad.rating"
+    //         },
+    //         {
+    //             "$group": {
+    //                 "_id": "$_id",
+    //                 "avgRatingScore": { "$avg": "$ad.rating.ratingScore" },
+    //                 "countRating" : { "$sum" : 1 }
+    //             }
+    //         }
+
+    //     ])
+
+    //     //conbine data from data 1 and data 2
+    //     let data3 = data1.map(obj => {
+    //         const index = data2.findIndex(el => el["_id"].toString() === obj["_id"].toString());
+    //         const { avgRatingScore } = index !== -1 ? data2[index] : {};
+    //         const { countRating } = index !== -1 ? data2[index] : {};
+    //         return {
+    //             ...obj,
+    //             avgRatingScore,
+    //             countRating
+    //         };
+    //     });
+
+    //     //return no match message if no criteria match was found
+    //     if (data3.length === 0) {
+    //         data3 = {"result": "No match found."}
+    //    }
+
+    //     console.info('Found the users with postal code:', data3);
+
+    //     res.send(data3);
+
+    // } catch (error) {
+    //     console.log(error);
+    //     res.sendStatus(500);
+    // }
 })
 
 //Find users by ad.subCategory and postal code
@@ -205,7 +347,9 @@ router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res)
         console.log('subCategory = ', req.params.subCategory);
         console.log('postalCode = ', req.params.postalCode);
 
-        //get data matching criteria
+        let dataFinal = [];
+
+        //get data matching criteria, subCategory + Postal Code combo
         let data1 = await user.aggregate([
             {
                 "$match": { "postalCode": {$regex: req.params.postalCode, $options : 'i'}, "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }                
@@ -217,72 +361,33 @@ router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res)
                 "$match": { "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }
             },
         ])
+       
+        console.log("subCategory + postalCode, data1.length = ", data1.length);
 
-        //get data of aggregated average rating of all reviews per user
-        //let data = await user.find({"ad.subCategory": new RegExp(req.params.subCategory), postalCode: new RegExp(req.params.postalCode) });
-        let data2 = await user.aggregate([
-            {
-                "$unwind": "$ad"
-            },
-            {
-                "$unwind": "$ad.rating"
-            },
-            {
-                "$group": {
-                    "_id": "$_id",
-                    "avgRatingScore": { "$avg": "$ad.rating.ratingScore" },
-                    "countRating" : { "$sum" : 1 }
+        //Found record(s) in subCategory + postal code combe criteria
+        if (data1.length > 0) {
+
+            //get data of aggregated average rating of all reviews per user
+            //let data = await user.find({"ad.subCategory": new RegExp(req.params.subCategory), postalCode: new RegExp(req.params.postalCode) });
+            let data2 = await user.aggregate([
+                {
+                    "$unwind": "$ad"
+                },
+                {
+                    "$unwind": "$ad.rating"
+                },
+                {
+                    "$group": {
+                        "_id": "$_id",
+                        "avgRatingScore": { "$avg": "$ad.rating.ratingScore" },
+                        "countRating" : { "$sum" : 1 }
+                    }
                 }
-            }
 
-        ])
+            ])
 
-        //conbine data from data 1 and data 2
-        let data3 = data1.map(obj => {
-            const index = data2.findIndex(el => el["_id"].toString() === obj["_id"].toString());
-            const { avgRatingScore } = index !== -1 ? data2[index] : {};
-            const { countRating } = index !== -1 ? data2[index] : {};
-            return {
-                ...obj,
-                avgRatingScore,
-                countRating
-            };
-        });
-
-        //
-        // add search by subCategory at end of result
-        //
-
-        //get data matching criteria
-        let data4 = await user.aggregate([
-            // {
-            //     "$match": { "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }                
-            // },
-            {
-                "$unwind": "$ad"
-            },
-            {
-                "$match": { "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }
-            },
-            {
-                "$unwind": "$ad"
-            },
-        ])
-
-        //data4 = data4.filter( ( el ) => !data1.includes( el ) );
-        //data4 = data4.filter(e => data1._id.toString().excludeIDArray.indexOf(e._id.toString()) === -1)
-        let data5 = data4.filter(value => !data1.find(x => x["_id"].toString() === value["_id"].toString()));
-
-        console.log('data5 = ', data5)
-        console.log('data5.length = ', data5.length)
-
-        let data6 = [];
-        let data7 = [];
-
-        if (data5.length > 0) {
-
-            //conbine data from data 4 and data 2
-            data6 = data5.map(obj => {
+            //conbine data from data 1 and data 2
+            let data3 = data1.map(obj => {
                 const index = data2.findIndex(el => el["_id"].toString() === obj["_id"].toString());
                 const { avgRatingScore } = index !== -1 ? data2[index] : {};
                 const { countRating } = index !== -1 ? data2[index] : {};
@@ -294,17 +399,77 @@ router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res)
             });
 
             //
-            // combine result from subCategory+postalCode and subCategory
+            // add search by subCategory at end of result
             //
-            data7 = [...data3, ...data6] 
+            //get data matching criteria
+            // let data4 = await user.aggregate([
+            //     // {
+            //     //     "$match": { "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }                
+            //     // },
+            //     {
+            //         "$unwind": "$ad"
+            //     },
+            //     {
+            //         "$match": { "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }
+            //     },
+            //     {
+            //         "$unwind": "$ad"
+            //     },
+            // ])
+
+            //call search for subcategory    
+            //add result to end of data1, subCategory + postal code result
+            let data4 = await adSubCategorySearch(req.params.subCategory);
+
+            //exclude records in data4 that are already found in data1
+            //data4 = data4.filter( ( el ) => !data1.includes( el ) );
+            //data4 = data4.filter(e => data1._id.toString().excludeIDArray.indexOf(e._id.toString()) === -1)
+            let data5 = data4.filter(value => !data1.find(x => x["_id"].toString() === value["_id"].toString()));
+
+            dataFinal = [...data3, ...data5];
+
+            console.log('data3 = ', data3);
+            console.log('data5 = ', data5);
+            console.log('subCategory + postalCode + rest of subCategory, dataFinal = ', dataFinal);
+
         }
-        else
-        {
-            data7 = [...data3]
+        else { //Nothing found in subCategory + postal code combe criteria
+               //try finding just subCategory regardless of postal code, if something found, send it back
+               //if subCategory return non, try finding just postal code regardless of subCategory, if something found, send it back
+        
+            console.log("INSIDE subcategory+postalcode!!!");
+
+            let data6 = await adSubCategorySearch(req.params.subCategory);
+
+            console.log("!!!data6.length = ", data6.length);
+
+            //found something in subCategory
+            if (data6.length > 0) {
+
+                console.log("INSIDE subcategory condition if data > 0!!!");
+
+                dataFinal = [...data6];
+            }
+            else {
+
+                console.log("INSIDE subcategory condition else data > 0!!!");
+
+                let data7 = await postalCodeSearch(req.params.postalCode);
+
+                if (data7.length > 0) {
+                    dataFinal = [...data7];
+                }
+                else {
+                    dataFinal = {"result": "No match found."};
+                }
+            } 
         }
 
-        console.info('Found the users with ad.subCategory and postal code:', data7);
-        res.send(data7);
+        console.log("dataFinal.length = ", dataFinal.length);
+
+        console.info('Found the users with ad.subCategory and postal code:', dataFinal);
+        res.send(dataFinal);
+
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
