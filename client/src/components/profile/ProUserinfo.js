@@ -10,12 +10,13 @@ import RoomIcon from '@material-ui/icons/Room'
 import Rating from '@material-ui/lab/Rating'
 import {Twitter, Facebook, Instagram, Edit, Delete, Save, PostAdd} from '@material-ui/icons'
 import SearchBar from '../searchinprofile/Searchskills'
-import { useAuth0 } from '@auth0/auth0-react'
+//import { useAuth0 } from '@auth0/auth0-react'
 
 
 const CreateProfile = (props) => {
     let [firstName, setFirstName] = useState("")
-    let [lastName, setLastName] = useState("")    
+    let [lastName, setLastName] = useState("") 
+    let [imageUrl, setImageUrl] =useState("")   
     let [address, setAddress] = useState("")
     let [city, setCity] = useState("")
     let [province, setProvince] = useState("")
@@ -36,6 +37,7 @@ const CreateProfile = (props) => {
         let profileToCreate = {
             firstName,
             lastName,
+            imageUrl,
             address,
             city,
             province,
@@ -86,7 +88,7 @@ const onInputChange=(event, setFunction) =>{
 }
 let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 0)
 /*let postAdStatusDataInvalid = !ad || (ad.trim().length ===0)*/
-const { user } = useAuth0()
+/*const { user } = useAuth0()*/
  return (
     <Container justify='center'>
       <Grid container spacing={1} className={classes.grid1}>
