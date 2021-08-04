@@ -13,6 +13,9 @@ const useStyles = makeStyles({
             marginLeft: 0,
         }
     },
+    proBtn: {
+        marginLeft: 16
+    },
     headerContainer: {
         borderBottom: '1px solid #999',
         paddingBlock: 16,
@@ -27,7 +30,7 @@ const useStyles = makeStyles({
 
     logo: {
         display: 'block',
-        width: '150px',
+        width: '200px',
     },
 
     logoImage: {
@@ -43,6 +46,24 @@ const useStyles = makeStyles({
 
     loginBtn: {
         marginRight: '8px !important'
+    },
+
+    menuLink: {
+        fontWeight: 'bold',
+        padding: 8,
+        width: 200,
+        textDecoration: 'none',
+        color: '#333',
+        textAlign: 'right'
+    },
+
+    userImage: {
+        width: 50,
+        height: 50,
+        display: 'block',
+        borderRadius: '50%',
+        marginLeft: 8,
+        objectFit: 'cover',
     }
 });
 

@@ -1,17 +1,17 @@
 export default [
     {
         id: 1,
-        slug: 'violin',
-        title: 'Violin',
+        slug: 'Piano classes',
+        title: 'Piano classes',
     },
     {
         id: 2,
-        slug: 'drawing',
-        title: 'Drawing',
+        slug: 'Drawing classes',
+        title: 'Drawing classes',
     },
     {
         id: 3,
-        slug: 'piano',
-        title: 'Piano'
+        slug: 'Custom Paintings',
+        title: 'Custom Paintings'
     },
 ]

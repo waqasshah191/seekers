@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 
     headTitle: {
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 20,
         display: 'block',
         textAlign: 'center',
         textDecoration: 'none',

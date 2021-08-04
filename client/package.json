@@ -5,9 +5,12 @@
   "proxy": "http://localhost:3000",
   "dependencies": {
     "@auth0/auth0-react": "^1.6.0",
+<<<<<<< HEAD
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@fortawesome/fontawesome-free": "^5.15.3",
+=======
+>>>>>>> be516719f79b0846c4f4bb506996b3a9cab5c391
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",

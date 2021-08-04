@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     },
     chip: {
         margin: 5,
-        backgroundColor: '#43C0F6',
+        backgroundColor: '#EF6C00',
         color: '#fff'
     },
 

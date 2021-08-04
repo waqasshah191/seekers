@@ -69,7 +69,7 @@ const useStyles = makeStyles({
     },
 
     link: {
-        fontSize: 16,
+        fontSize: 19,
         display: 'block',
         textDecoration: 'none',
         color: '#000',
@@ -100,20 +100,20 @@ const useStyles = makeStyles({
 
     bannerContent: {
         position: 'absolute',
-        left: '3%',
-        width: 300
+        left: '2%',
+        width: 400
     },
 
     bannerTitle: {
         fontSize: 40,
-        marginBottom: 96,
+        marginBottom: 56,
 
 
     },
 
     bannerDesc: {
-        fontSize: 17,
-        textAlign: 'center'
+        fontSize: 20,
+        textAlign: 'left'
     },
 
     contentContainer: {
