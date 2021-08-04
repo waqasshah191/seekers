@@ -37,6 +37,5 @@ const customStyles = {
       ...styles,
       color: 'rgba(255, 80, 86)',
     }),
-}
-
-export default customStyles
+  }
+  export default customStyles

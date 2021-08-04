@@ -37,15 +37,16 @@ const SearchBox = () => {
         e.preventDefault();
         //        history.push(`/search?skill=${skill}&postalCode=${postCode}`)
         // history.push(`/search?adSubCategoryPostalCode/${skill}&${postCode}`)
-        if (postCode.trim().length < 1 ) {
-            history.push(`/search?adSubCategory/${skill}`)    
+        if (postCode.trim().length < 1) {
+            history.push(`/search?adSubCategory/${skill}`)
         }
-        else if (skill.trim().length < 1 ) {
+        else if (skill.trim().length < 1) {
             history.push(`/search?postalCode/${postCode}`)
         }
         else {
-            history.push(`/search?adSubCategoryPostalCode/${skill}&${postCode}`)            
+            history.push(`/search?adSubCategoryPostalCode/${skill}&${postCode}`)
         }
+
     }
 
     return (

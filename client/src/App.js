@@ -11,6 +11,10 @@ import Search from './components/search/Search';
 import Profile from './components/profile/Profile';
 import BecomePro from './components/become-pro/BecomePro';
 import CreateAds from './components/create-ads/CreateAds';
+import HelpCenter from './components/help-center/HelpCenter';
+import About from './components/about/About';
+import Contact from './components/contact/Contact';
+import TermsPrivacy from './components/terms-privacy/TermsPrivacy';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -69,6 +73,22 @@ const App = () => {
                 <CreateAds />
               </Route>
 
+              <Route path='/help-center'>
+                <HelpCenter />
+              </Route>
+
+              <Route path='/about'>
+                <About />
+              </Route>
+
+              <Route path='/contact'>
+                <Contact />
+              </Route>
+
+              <Route path='/terms-privacy'>
+                <TermsPrivacy />
+              </Route>
+              
             </Switch>
             <Footer />
           </>
