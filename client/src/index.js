@@ -22,22 +22,12 @@ const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 // );
 
 ReactDOM.render(
-<<<<<<< HEAD
   <Router>
     <Auth0ProviderWithHistory>
       <App />
     </Auth0ProviderWithHistory>
   </Router>,
   document.getElementById("root")
-=======
-  <Auth0Provider
-    domain={domain}
-    clientId={clientId}
-    redirectUri={window.location.origin}>
-    <App />
-  </Auth0Provider>,
-  document.getElementById('root')
->>>>>>> be516719f79b0846c4f4bb506996b3a9cab5c391
 );
 
 export default Auth0ProviderWithHistory;
