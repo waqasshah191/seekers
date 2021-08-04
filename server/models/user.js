@@ -11,8 +11,7 @@ const userSchema = new Schema({
     postalCode: String,    
     emailAddress:{
         type: String,
-        required: true,
-        unique: true
+      
         // trim:true
     },
     detailInformation: String,

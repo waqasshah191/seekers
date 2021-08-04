@@ -2,17 +2,25 @@ import React from 'react'
 import {makeStyles} from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
-import {CardHeader, IconButton, Button, Container, Typography, CardContent, CardActions, Link} from '@material-ui/core'
+import {CardHeader, IconButton, Button, Container, Typography, CardContent, CardActions, Link, Chip} from '@material-ui/core'
 import Avatar from '@material-ui/core/Avatar'
 import RoomIcon from '@material-ui/icons/Room'
 import Rating from '@material-ui/lab/Rating'
 import {Twitter, Facebook, Instagram, Edit, Delete, Save} from '@material-ui/icons'
 import SearchBar from '../searchinprofile/Searchskills'
+import Propic from './../images/Susan.jpg'
+import Background from './../images/Picture3.jpg'
 
 const useStyles = makeStyles({
+  root:{
+    
+    backgroundImage: `url(${Background})`,
+    backgroundSize: 'cover',
+    backgroundAttachment: 'fixed'
+  },
 
   grid1:{
-      marginTop: 20,
+      marginTop: 0,
       display: 'flex',
       justifyContent:'center',
       alignItems:'center'
@@ -26,6 +34,12 @@ const useStyles = makeStyles({
     padding: 10,
     
   },
+  chip1:{
+
+    color:'#ffffff',
+    backgroundColor: '#8a2be2' 
+  },
+
   card2:{
     elevation: 2,
     backgroundColor: '#eee8aa',
@@ -69,20 +83,20 @@ const useStyles = makeStyles({
   }
 })
 
-export default function Profile() {
+export default function UserProfile() {
   
   const classes = useStyles()
 
  console.log (`styles: ${JSON.stringify(classes)}`);
 
  return (
-    <Container justify='center'>
+    <Container justify='center'className={classes.root}>
       <Grid container spacing={1} className={classes.grid1}>
         <Grid item xs={12} alignItems='center'>
           <Card className={classes.card1}>
             <CardHeader
               avatar={
-              <Avatar className={classes.bigAvatar}>
+              <Avatar className={classes.bigAvatar} img src={Propic}> 
               </Avatar>
               }
               action={
@@ -97,26 +111,25 @@ export default function Profile() {
                  Connect
                 </Button>
                </div>
-               <IconButton marginRight='auto'><Edit/></IconButton>
-               <IconButton marginRight='auto'><Delete/></IconButton>
               </div>
               }
               
               title={
-                <Typography variant='h5'>Name</Typography>
+                <Typography variant='h5'> Susan Keller</Typography>
               }        
                 
               subheader={
               <div>
-                <IconButton>
+                <IconButton size='small'>
                 <RoomIcon/>
-                  address
+                45 Bridleridge Ln SW, AB, T2Y0E4
                 </IconButton> <br/>
                 <Rating name="half-rating" defaultValue={2.5} precision={0.5} /> 
                 <IconButton size='small'>
-                  45 Reviews
-                </IconButton>
-                <SearchBar/> 
+                  8 Reviews
+                </IconButton> <br/> <br/>
+                <Chip label="Drawing class" className={classes.chip1}/> 
+                <Chip label="Math Tutor" className={classes.chip1}/>
                             
               </div>
               }          
@@ -136,7 +149,9 @@ export default function Profile() {
             <CardContent>
               <h3>About Me</h3>  
               <Container alignItems='center'>
-              <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '10vh' }} />
+              <Typography component="div" style={{ backgroundColor: '#fcf3cf', height: '10vh'}}> 
+               Hi, I am consultant with expertise in academia. I like to teach and guide students. I enjoy sketching and painting and have been an expert with years of practice.
+              </Typography>
               </Container>
             </CardContent>
           </Card>
@@ -144,11 +159,17 @@ export default function Profile() {
         <Grid item xs={12}>
           <Card className={classes.card2}>
             <CardContent>
-              <h3>Post Ad</h3>  
+              <h3>Ads List</h3>  
               <Container alignItems='center'>
-              <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '10vh' }} />
+              <Typography component="div" border={2} style={{ backgroundColor: '#fcf3cf', height: '10vh' }}>
+                Hello everyone, here is a tutor doctor to help with math, with tricks and logics. Message me for details about availability and rates.
+              </Typography>
               </Container> <br/>
-              <h3>Ads List</h3>
+              <Container alignItems='center'>
+              <Typography component="div" style={{ backgroundColor: '#fcf3cf', height: '10vh' }}>
+                Hi, offering drawing classes as well as example paintings for sale. Lowest rates guaranteed.Message me for details.
+              </Typography>
+              </Container> <br/>
             </CardContent>              
           </Card>
         </Grid>
@@ -164,9 +185,6 @@ export default function Profile() {
         </Grid>
         <Grid item xs={12}>
           <Card className={classes.card4} alignItems='center' justifyContent='center'>
-          <Button variant="contained" color="primary" startIcon={<Save/>}>
-           Save
-          </Button>
           </Card>
         </Grid>
      

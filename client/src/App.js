@@ -8,6 +8,8 @@ import OrderTable from './components/orders/OrderTable';
 import Search from './components/search/Search';
 
 import Profile from './components/profile/Profile';
+import CreateProfile from './components/profile/ProUserinfo'
+import CreateRegProfile from './components/profile/RegUserinfo'
 import LoginButton from './components/login/LoginButton';
 import LogoutButton from './components/logout/LogoutButton';
 
@@ -29,12 +31,12 @@ const App = () => {
           <Route exact path='/search'>
             <Search />
           </Route>
-          <Route path='/orders'>
-            <OrderTable />
+          <Route exact path='/profile/ProUserinfo'>
+            <CreateProfile/>
           </Route>
 
-          <Route path='/profile'>
-            <Profile />
+          <Route exact path='/profile/RegUserinfo'>
+            <CreateRegProfile/>
           </Route>
 
         </Switch>
