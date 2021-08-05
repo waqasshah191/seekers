@@ -1,10 +1,17 @@
 import React from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 import useStyles from './Styles.js';
 
 const Footer = () => {
     const styles = useStyles();
+    const { loginWithRedirect } = useAuth0();
+
+    const handleBecomePro = () => {
+        localStorage.setItem('_redirect', '/become-pro');
+        loginWithRedirect();
+    }
     return (
         <div className={styles.footerContainer}>
             <Container className={styles.footer}>
@@ -16,10 +23,10 @@ const Footer = () => {
                         <a href="/" className={styles.link}>How Pippsy works</a>
                     </li>
                     <li>
-                        <a href="/" className={styles.link}>Become a pro</a>
+                        <span className={styles.link} onClick={handleBecomePro}>Become a pro</span>
                     </li>
                     <li>
-                        <a href="/" className={styles.link}>Invite a Friend</a>
+                        <Link to="/invite-friend" className={styles.link}>Invite a Friend</Link>
                     </li>
                 </ul>
                 <ul className={styles.column}>

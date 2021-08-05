@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { Container, TextField, Button } from '@material-ui/core';
 import { Alert} from '@material-ui/lab';
 import useStyles from './Styles.js';
@@ -7,24 +8,20 @@ import ContactImage from '../images/background.png';
 const Contact = () => {
     const [alertMessage, setAlertMessage] = useState('');
     const [email, setEmail] = useState('');
+    const [isSubmitted, setIsSubmitted] = useState(false);
     const [message, setMessage] = useState('');
+    const [state, handleSubmit] = useForm("xbjqzpga");
     const styles = useStyles();
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        setTimeout(() => {
+    useEffect(() => {
+        if (state.succeeded && isSubmitted) {
             setEmail('');
             setMessage('');
 
             setAlertMessage('Message sent successfully!');
-            
-            setTimeout(() => {
-                setAlertMessage('');
-            }, 5000);
-        }, 1000);
-    }
-
-    console.log('alertMessage', alertMessage)
+            setIsSubmitted(false);
+        }
+    }, [state]);
 
     return (
         <div className="search">
@@ -44,8 +41,16 @@ const Contact = () => {
                         <p className={styles.contentText}>
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                         </p>
-
-                        <form onSubmit={handleSubmit}>
+                        <ValidationError 
+                            prefix="Message" 
+                            field="message"
+                            errors={state.errors}
+                        />
+                        <form onSubmit={e => {
+                            setAlertMessage('');
+                            setIsSubmitted(true);
+                            handleSubmit(e);
+                        }}>
                             <TextField
                                 id="outlined-full-width"
                                 label="Email"
@@ -53,6 +58,8 @@ const Contact = () => {
                                 value={email}
                                 placeholder="Enter Your Email"
                                 fullWidth
+                                name="email"
+                                type="email"
                                 margin="normal"
                                 onChange={(e) => setEmail(e.target.value)}
                                 variant="outlined"
@@ -69,6 +76,7 @@ const Contact = () => {
                                 placeholder="Enter Your Message"
                                 fullWidth
                                 multiline
+                                name="message"
                                 rows={5}
                                 margin="normal"
                                 onChange={(e) => setMessage(e.target.value)}
@@ -78,7 +86,16 @@ const Contact = () => {
                                 }}
                             />
 
-                            <Button type="submit" variant="contained" color="primary" size="large" className={styles.button}>Submit</Button>
+                            <Button
+                                disabled={isSubmitted}
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                className={styles.button}
+                            >
+                                Submit
+                                </Button>
                         </form>
 
                     </div>
