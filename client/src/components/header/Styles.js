@@ -18,12 +18,14 @@ const useStyles = makeStyles({
     },
     headerContainer: {
         borderBottom: '1px solid #999',
-        paddingBlock: 16
+        paddingBlock: 16,
+        backgroundColor: 'rgb(242,238,226)',
+        elevation: 3
     },
     header: {
         display: 'flex !important',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between',  
     },
 
     logo: {

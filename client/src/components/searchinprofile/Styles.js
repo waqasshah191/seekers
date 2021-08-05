@@ -1,4 +1,7 @@
-const customStyles = {
+
+
+
+ const customStyles = {
     control: (base, state) => ({
       ...base,
       fontFamily: 'Times New Roman',
@@ -9,7 +12,7 @@ const customStyles = {
       borderRadius: 0,
       borderBottom: 'solid 1px',
     }),
-
+  
     option: (styles, { isFocused }) => {
       return {
         ...styles,
@@ -19,20 +22,20 @@ const customStyles = {
         lineHeight: 2,
       }
     },
-
+  
     input: styles => ({
       ...styles,
       color: 'black',
       fontFamily: 'Times New Roman, Times, Serif',
     }),
-
+  
     menu: styles => ({
       ...styles,
       marginTop: 0,
       boxShadow: 'none',
       borderRadius: 0,
     }),
-
+  
     singleValue: styles => ({
       ...styles,
       color: 'rgba(255, 80, 86)',

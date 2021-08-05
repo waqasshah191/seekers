@@ -19,6 +19,7 @@ const userSchema = new Schema({
         // unique: true
         // trim:true
     },
+    imageUrl: String,
     detailInformation: String,
     skills:[{ 
         category: String,

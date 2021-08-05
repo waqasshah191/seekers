@@ -39,6 +39,7 @@ const OrderStatusForm = (props) => {
                 console.log('We had an error.  it was: ', errorMessage)
                 setCreateError(errorMessage)
             }
+            
             else {
                 setCreateError(undefined)
             }
