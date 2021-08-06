@@ -105,7 +105,7 @@ const CreateAds = () => {
             fetch('/user', {
                 method: 'PUT',
                 body: JSON.stringify({
-                    emailAddress: res.name,
+                    email: res.name,
                     isProUser: true,
                     category: skillForm.category,
                     subCategory: skillForm.subcategory,

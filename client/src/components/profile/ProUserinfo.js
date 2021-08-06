@@ -21,7 +21,7 @@ const CreateProfile = (props) => {
     let [city, setCity] = useState("")
     let [province, setProvince] = useState("")
     let [postalCode, setPostalCode] = useState("")
-    let [emailAddress, setEmailAddress] = useState("")    
+    let [email, setemail] = useState("")    
     let [detailInformation, setDetailInformation] = useState("")
     let [socialMedia, setSocialMedia] = useState([])
     let [skill, setSkill] = useState([])
@@ -42,7 +42,7 @@ const CreateProfile = (props) => {
             city,
             province,
             postalCode,
-            emailAddress,
+            email,
             detailInformation,
             socialMedia,
             skill,
