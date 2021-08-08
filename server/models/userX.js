@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const userXSchema = new Schema({
     firstName: String,
     lastName: String,
-    emailAddress:{
+    email:{
         type: String,
         required: true,
         unique: true,

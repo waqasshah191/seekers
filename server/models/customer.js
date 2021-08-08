@@ -25,7 +25,7 @@ const customerSchema = new Schema({
       lastName: String
     },
   ],
-  emailAddress: String,
+  email: String,
   gstRate: Number,
   pstRate: Number,
   active: Boolean,
