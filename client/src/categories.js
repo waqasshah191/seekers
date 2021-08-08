@@ -1,19 +1,19 @@
 export default [
     {
         id: 1,
-        title: 'Arts & Entertainment',
+        title: 'Art & Entertainment',
         subcategories: [
             {
+                id: 1,
+                title: 'Piano lessons'
+            },
+            {
                 id: 2,
-                title: 'Piano Lesson'
+                title: 'Salsa dance lessons'
             },
             {
                 id: 3,
-                title: 'Salsa dance'
-            },
-            {
-                id: 4,
-                title: 'Drawing class'
+                title: 'Drawing lessons'
             },
         ]
     },
@@ -22,34 +22,34 @@ export default [
         title: 'Business & Finance',
         subcategories: [
             {
+                id: 1,
+                title: 'Accounting services'
+            },
+            {
                 id: 2,
-                title: 'Accounting service'
+                title: 'Tax preparation services'
             },
             {
                 id: 3,
-                title: 'Tax preparation'
-            },
-            {
-                id: 4,
-                title: 'Financial planning'
+                title: 'Financial planning services'
             },
         ]
     },
     {
         id: 3,
-        title: 'General services',
+        title: 'General Services',
         subcategories: [
             {
+                id: 1,
+                title: 'Home cleaning services'
+            },
+            {
                 id: 2,
-                title: 'Home Cleaning'
+                title: 'Yard services'
             },
             {
                 id: 3,
-                title: 'Lawn mowing'
-            },
-            {
-                id: 4,
-                title: 'Baking'
+                title: 'Baking services'
             },
         ]
     },
@@ -58,16 +58,16 @@ export default [
         title: 'Education & Tutors',
         subcategories: [
             {
-                id: 2,
-                title: 'Math tutor'
+                id: 1,
+                title: 'Math tutoring'
             },
             {
-                id: 3,
+                id: 2,
                 title: 'Driving lessons'
             },
             {
-                id: 4,
-                title: 'ESL (English As Second Language'
+                id: 3,
+                title: 'ESL (English as Second Language)'
             },
         ]
     },
@@ -76,34 +76,34 @@ export default [
         title: 'Trade & Maintenance',
         subcategories: [
             {
+                id: 1,
+                title: 'Plumbing services'
+            },
+            {
                 id: 2,
-                title: 'Plumbing'
+                title: 'Landscaping services'
             },
             {
                 id: 3,
-                title: 'Sewing services'
-            },
-            {
-                id: 4,
                 title: 'Electrical services'
             },
         ]
     },
     {
         id: 6,
-        title: 'Trade & Transport & Moving',
+        title: 'Transport & Moving',
         subcategories: [
             {
-                id: 2,
+                id: 1,
                 title: 'Moving services'
             },
             {
-                id: 3,
-                title: 'Furniture Transport'
+                id: 2,
+                title: 'Furniture transporting services'
             },
             {
-                id: 4,
-                title: 'Towing service'
+                id: 3,
+                title: 'Towing services'
             },
         ]
     },
@@ -112,16 +112,16 @@ export default [
         title: 'IT & Programming',
         subcategories: [
             {
+                id: 1,
+                title: 'Website design services'
+            },
+            {
                 id: 2,
-                title: 'Website design'
+                title: 'Computer & laptop repair services'
             },
             {
                 id: 3,
-                title: 'Computer & Laptop repair'
-            },
-            {
-                id: 4,
-                title: 'Programming'
+                title: 'Programming services'
             },
         ]
     },
@@ -130,15 +130,15 @@ export default [
         title: 'Craft',
         subcategories: [
             {
+                id: 1,
+                title: 'Custom painting services'
+            },
+            {
                 id: 2,
-                title: 'Custom painting'
+                title: 'Ring resizing services'
             },
             {
                 id: 3,
-                title: 'Ring resizing'
-            },
-            {
-                id: 4,
                 title: 'Embroidery services'
             },
         ]
@@ -148,34 +148,34 @@ export default [
         title: 'Sport & Fitness',
         subcategories: [
             {
-                id: 2,
+                id: 1,
                 title: 'Personal training'
             },
             {
-                id: 3,
-                title: 'Nutrition consulting '
+                id: 2,
+                title: 'Nutrition consulting'
             },
             {
-                id: 4,
+                id: 3,
                 title: 'Skate training'
             },
         ]
     },
     {
         id: 10,
-        title: 'Legals',
+        title: 'Legal',
         subcategories: [
             {
-                id: 2,
+                id: 1,
                 title: 'Legal document preparation'
             },
             {
-                id: 3,
-                title: 'Immigration consultant'
+                id: 2,
+                title: 'Immigration consulting services'
             },
             {
-                id: 4,
-                title: 'Will & services'
+                id: 3,
+                title: 'Will preparation services'
             },
         ]
     },

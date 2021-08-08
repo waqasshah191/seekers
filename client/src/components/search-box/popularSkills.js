@@ -1,17 +1,17 @@
 export default [
     {
         id: 1,
-        slug: 'Piano classes',
-        title: 'Piano classes',
+        slug: 'Piano lessons',
+        title: 'Piano lessons',
     },
     {
         id: 2,
-        slug: 'Drawing classes',
-        title: 'Drawing classes',
+        slug: 'Drawing lessons',
+        title: 'Drawing lessons',
     },
     {
         id: 3,
-        slug: 'Custom Paintings',
-        title: 'Custom Paintings'
+        slug: 'Custom painting services',
+        title: 'Custom painting services'
     },
 ]
