@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "610ad211c86c625dc9f48910"
+  },
+  "user": {
+    "$oid": "60e382b06ae728f7efb06546"
+  },
+  "favorite": [
+    {
+      "$oid": "60fa4684b6cb7d6944dcc8bb"
+    },
+    {
+      "$oid": "60fa4264b6cb7d6944da007e"
+    }
+  ]
+}]

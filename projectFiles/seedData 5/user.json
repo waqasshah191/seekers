@@ -7,7 +7,7 @@
   "address": "65 Nolanshire Cres NW,",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T3R 0J4",
+  "postalCode": "T3R0J4",
   "longitude": "-114.164893",
   "latitude": "51.173922",
   "email": "arnold.walker9512@hotmail.com",
@@ -15,28 +15,22 @@
   "detailInformation": "Master plumber currently working at Pete the Plumber",
   "skills": [
     {
-      "category": "Trades & Maintenance",
-      "subCategory": "Landscaping"
+      "category": "Trade & Maintenance",
+      "subCategory": "Landscaping services"
     },
     {
-      "category": "Trades & Maintenance",
-      "subCategory": "Plumbing"
+      "category": "Craft",
+      "subCategory": "Custom painting services"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/arnold.walker.9832"
-    },
-    {
-      "socialMediaName": "linkedin",
-      "socialMediaLink": "linkedin.com/in/arnold-walker-a374b13"
-    }
+  "socialMediaUrl": [
+    "http://facebook.com",
+    "http://linkedin.com"
   ],
   "ad": [
     {
-      "category": "Crafts",
-      "subCategory": "Custom Paintings",
+      "category": "Craft",
+      "subCategory": "Custom painting services",
       "adTitle": "Offering house painting services",
       "adDescription": "I am offering my services as a house custom painter. I have helped individuals and families with painting jobs for over 3 years now.",
       "rating": [
@@ -66,7 +60,7 @@
   "address": "157 Rundleson Way NE,",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T1Y 4A4",
+  "postalCode": "T1Y4A4",
   "longitude": "-113.974326",
   "latitude": "51.079916",
   "email": "cidney555wardrick@gmail.com",
@@ -74,37 +68,31 @@
   "detailInformation": "RCAF Air Reserve.  Currently working in the air force as an HR administrator.",
   "skills": [
     {
-      "category": "Arts & Entertainment",
-      "subCategory": "Salsa dance"
+      "category": "Art & Entertainment",
+      "subCategory": "Salsa dance lessons"
     },
     {
-      "category": "Sports",
-      "subCategory": "Swimming lessons"
+      "category": "Sport & Fitness",
+      "subCategory": "Skate training"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/cidney.wardrick.2739"
-    },
-    {
-      "socialMediaName": "linkedin",
-      "socialMediaLink": "linkedin.com/in/cidney-wardrick-j740g63"
-    }
+  "socialMediaUrl": [
+    "http://facebook.com",
+    "http://linkedin.com"
   ],
   "ad": [
     {
       "category": "Sports",
-      "subCategory": "Swimming lessons",
-      "adTitle": "Swimming lessons in NE Calgary",
-      "adDescription": "I am offering swimming lessons anywhere in the NE Calgary. I have been giving swimming lessons to childen age from 5 to 10.",
+      "subCategory": "Skate training",
+      "adTitle": "Skate training in NE Calgary",
+      "adDescription": "I am offering skate training anywhere in the NE Calgary. I have been giving skating lessons to childen age from 5 to 10.",
       "rating": [],
       "dateAdded": "2021-07-15T16:21:29.544Z",
       "active": true
     },
     {
-      "category": "Arts & Entertainment",
-      "subCategory": "Salsa dance",
+      "category": "Art & Entertainment",
+      "subCategory": "Salsa dance lessons",
       "adTitle": "Salsa dance lessons, very reasonable rates.",
       "adDescription": "I teach salsa dance from beginner to intermediate levels.  Contact me for questions",
       "rating": [
@@ -139,7 +127,7 @@
   "address": "39 Somercrest Circle SW,",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T2Y 3H1",
+  "postalCode": "T2Y3H1",
   "longitude": "-114.080775",
   "latitude": "50.902142",
   "email": "mark.halm@hotmail.com",
@@ -147,32 +135,30 @@
   "detailInformation": "Mechanical engineer with over 8 years of experience in Oil and Gas industry",
   "skills": [
     {
-      "category": "Arts & Entertainment",
-      "subCategory": "Piano classes"
+      "category": "Art & Entertainment",
+      "subCategory": "Piano lessons"
     },
     {
-      "category": "General Services",
-      "subCategory": "Baking"
+      "category": "Art & Entertainment",
+      "subCategory": "Drawing lessons"
     },
     {
-      "category": "Crafts",
-      "subCategory": "Custom Paintings"
+      "category": "Craft",
+      "subCategory": "Custom painting services"
+    },
+    {
+      "category": "Art & Entertainment",
+      "subCategory": "Salsa dance lessons"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/rick.shaw.3950"
-    },
-    {
-      "socialMediaName": "linkedin",
-      "socialMediaLink": "linkedin.com/in/mark-halm-c810t29"
-    }
+  "socialMediaUrl": [
+    "http://facebook.com",
+    "http://linkedin.com"
   ],
   "ad": [
     {
-      "category": "Arts & Entertainment",
-      "subCategory": "Piano classes",
+      "category": "Art & Entertainment",
+      "subCategory": "Piano lessons",
       "adTitle": "Piano lessons in SW Calgary",
       "adDescription": "I am offering Piano lessons in the community of Somerset in the SW Calgary. I have over 20 years of training in both Suzuki and Royal Conservatory. I also have over 10 years of experience teaching piano to students aged 4 - 55 years. Currently booking lessons for September.",
       "rating": [
@@ -193,12 +179,12 @@
           "dateAdded": "2021-07-11T09:29:51.421Z"
         }
       ],
-      "dateAdded": "2021-07-01T09:18:41.544Z",
+      "dateAdded": "2021-07-10T09:18:41.544Z",
       "active": true
     },
     {
-      "category": "Arts & Entertainment",
-      "subCategory": "Drawing classes",
+      "category": "Art & Entertainment",
+      "subCategory": "Drawing lessons",
       "adTitle": "Free hand drawing lessons in Calgary",
       "adDescription": "I am offering Drawing lessons in the community of Somerset in the SW Calgary.  I specialize in teaching age group of 5 to 8 years old",
       "rating": [
@@ -208,10 +194,28 @@
           },
           "ratingScore": 4,
           "userFeedback": "Good beginner drawing teacher.",
-          "dateAdded": "2021-07-02T06:12:41.544Z"
+          "dateAdded": "2021-07-13T06:12:41.544Z"
         }
       ],
-      "dateAdded": "2021-07-01T09:18:41.544Z",
+      "dateAdded": "2021-07-10T09:18:41.544Z",
+      "active": true
+    },
+    {
+      "category": "Art & Entertainment",
+      "subCategory": "Salsa dance lessons",
+      "adTitle": "I teach salsa dance, young and old.",
+      "adDescription": "I teach salsa danceing to  beginners.  Let me know if you have question.",
+      "rating": [
+        {
+          "user": {
+            "$oid": "60e382b06ae728f7efb06546"
+          },
+          "ratingScore": 4,
+          "userFeedback": "Good salsa dance instructor.",
+          "dateAdded": "2021-07-12T19:42:41.421Z"
+        }
+      ],
+      "dateAdded": "2021-07-06T07:39:21.144Z",
       "active": true
     }
   ],
@@ -228,7 +232,7 @@
   "address": "167 Hawkview Manor Cir NW,",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T3G 2Z8",
+  "postalCode": "T3G2Z8",
   "longitude": "-114.170136",
   "latitude": "51.126576",
   "email": "janewilliams6521@telus.net",
@@ -236,24 +240,21 @@
   "detailInformation": "Senior civil engineer experienced in the building and planning of infrastructure projects like roads, bridges, etc.",
   "skills": [
     {
-      "category": "Sports",
+      "category": "Sport & Fitness",
       "subCategory": "Badminton"
     },
     {
-      "category": "Education & Training",
-      "subCategory": "Math Tutor"
+      "category": "Trade & Maintenance",
+      "subCategory": "Plumbing services"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/jane.williams.8273"
-    }
+  "socialMediaUrl": [
+    "http://facebook.com"
   ],
   "ad": [
     {
-      "category": "Trades & Maintenance",
-      "subCategory": "Plumbing",
+      "category": "Trade & Maintenance",
+      "subCategory": "Plumbing services",
       "adTitle": "Looking for a plumbing in Calgary?",
       "adDescription": "I am professional plumber with over 10 years of experience. Let me know if you need my services.",
       "rating": [
@@ -283,7 +284,7 @@
   "address": "45 Bridleridge Ln SW,",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T2Y 0E4",
+  "postalCode": "T2Y0E4",
   "longitude": "-114.113511",
   "latitude": "50.900846",
   "email": "susankeller652@yahoo.com",
@@ -292,23 +293,20 @@
   "skills": [
     {
       "category": "General Services",
-      "subCategory": "Baking"
+      "subCategory": "Baking services"
     },
     {
-      "category": "Arts & Entertainment",
-      "subCategory": "Drawing classes"
+      "category": "Art & Entertainment",
+      "subCategory": "Drawing lessons"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "linkedin",
-      "socialMediaLink": "linkedin.com/in/susan-keller-d612r26"
-    }
+  "socialMediaUrl": [
+    "http://linkedin.com"
   ],
   "ad": [
     {
-      "category": "Arts & Entertainment",
-      "subCategory": "Drawing classes",
+      "category": "Art & Entertainment",
+      "subCategory": "Drawing lessons",
       "adTitle": "Cartoons drawing lessons in SW Calgary",
       "adDescription": "I am offering drawing lessons in the community of Bridlewood in the SW Calgary. I have over 10 years of experience in teaching beginner artists.",
       "rating": [
@@ -346,7 +344,7 @@
   "address": "6 Bridlecrest Gardens SW,",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T2Y 4Y4",
+  "postalCode": "T2Y4Y4",
   "longitude": "-114.122167",
   "latitude": "50.905278",
   "email": "edward.colins651@gmail.com",
@@ -359,18 +357,11 @@
     },
     {
       "category": "Transport & Moving",
-      "subCategory": "Towing service"
+      "subCategory": "Towing services"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/edward.colins.1450"
-    },
-    {
-      "socialMediaName": "linkedin",
-      "socialMediaLink": "linkedin.com/in/edward-colins-w242r72"
-    }
+  "socialMediaUrl": [
+    "http://facebook.com"
   ],
   "ad": [
     {
@@ -413,7 +404,7 @@
   "address": "2404 40 St SE,",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T2B 1C2",
+  "postalCode": "T2B1C2",
   "longitude": "-113.97539702006789",
   "latitude": "51.03301521272595",
   "email": "ramsey.brown2637@gmail.com",
@@ -422,27 +413,21 @@
   "skills": [
     {
       "category": "IT & Programming",
-      "subCategory": "Web Programmers"
+      "subCategory": "Website design services"
     },
     {
       "category": "IT & Programming",
-      "subCategory": "Website Designer"
+      "subCategory": "Programming services"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/ramsey.brown.6384"
-    },
-    {
-      "socialMediaName": "linkedin",
-      "socialMediaLink": "linkedin.com/in/ramsey-brown-e928l88"
-    }
+  "socialMediaUrl": [
+    "http://facebook.com",
+    "http://linkedin.com"
   ],
   "ad": [
     {
       "category": "IT & Programming",
-      "subCategory": "Web Programmers",
+      "subCategory": "Website design services",
       "adTitle": "Need a website for you small business?  Contact me.",
       "adDescription": "I can create a professional website for your small business complete with e-commerce functionality and a lot more. I have helped business small to medium with their website needs.",
       "rating": [
@@ -472,7 +457,7 @@
   "address": "4811 Marchand Crescent NE,",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T2A 2X3",
+  "postalCode": "T2A2X3",
   "longitude": "-113.96307800868269",
   "latitude": "51.05444102251823",
   "email": "mars78.brent23@yahoo.ca",
@@ -480,24 +465,18 @@
   "detailInformation": "I am working as consultant in a law firm in downtown Calgary.  I have been working at the same company for over 4 years.",
   "skills": [
     {
-      "category": "Legals",
-      "subCategory": "Legal Document Preparation"
+      "category": "Legal",
+      "subCategory": "Legal document preparation"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/mars.brent.2322"
-    },
-    {
-      "socialMediaName": "linkedin",
-      "socialMediaLink": "linkedin.com/in/mars-brent-x82938"
-    }
+  "socialMediaUrl": [
+    "http://facebook.com",
+    "http://linkedin.com"
   ],
   "ad": [
     {
-      "category": "Legals",
-      "subCategory": "Legal Document Preparation",
+      "category": "Legal",
+      "subCategory": "Legal document preparation",
       "adTitle": "I can help with legal documents",
       "adDescription": "I am offering any legal documents help.  I have been doing this for more than 2 year.  Contact me if you have questions.",
       "rating": [],
@@ -518,7 +497,7 @@
   "address": "614 40 St NE",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T2A 2M6",
+  "postalCode": "T2A2M6",
   "longitude": "-113.97490763400667",
   "latitude": "51.05537398977366",
   "email": "miriam.alder321@telus.ca",
@@ -527,19 +506,16 @@
   "skills": [
     {
       "category": "General Services",
-      "subCategory": "Baking"
+      "subCategory": "Baking services"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/miriam.alder.2652"
-    }
+  "socialMediaUrl": [
+    "http://facebook.com"
   ],
   "ad": [
     {
       "category": "General Services",
-      "subCategory": "Baking",
+      "subCategory": "Baking services",
       "adTitle": "I am a very good baker.",
       "adDescription": "I am offering my baking skills.  I can bake basically anything that you can think of.  Try me!.",
       "rating": [],
@@ -560,7 +536,7 @@
   "address": "76 Douglas Ridge Green SE,",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T2Z 2T2",
+  "postalCode": "T2Z2T2",
   "longitude": "-113.9803657623965",
   "latitude": "50.93817374486603",
   "email": "pablo.cuneta@redend.com",
@@ -568,20 +544,17 @@
   "detailInformation": "I own a convinient store in SE end of the city.  I have great interest in salsa dance.",
   "skills": [
     {
-      "category": "Arts & Entertainment",
-      "subCategory": "Salsa dance"
+      "category": "Art & Entertainment",
+      "subCategory": "Salsa dance lessons"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/pablo.cuneta.1201"
-    }
+  "socialMediaUrl": [
+    "http://facebook.com"
   ],
   "ad": [
     {
-      "category": "Arts & Entertainment",
-      "subCategory": "Salsa dance",
+      "category": "Art & Entertainment",
+      "subCategory": "Salsa dance lessons",
       "adTitle": "I can teach you salsa dance.",
       "adDescription": "I have been teaching salsa dance privately for more than 2 years.  Contact me if you feel like dancing salsa!",
       "rating": [
@@ -611,7 +584,7 @@
   "address": "36 Douglas Glen Heights SE,",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T2Z 3T5",
+  "postalCode": "T2Z3T5",
   "longitude": "-114.01230861706925",
   "latitude": "50.95690305223802",
   "email": "rasmus.grenburn21234@netscape.co",
@@ -620,19 +593,16 @@
   "skills": [
     {
       "category": "Business & Finance",
-      "subCategory": "Tax preparation"
+      "subCategory": "Tax preparation services"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/rasmus.grenburn.7726"
-    }
+  "socialMediaUrl": [
+    "http://linkedin.com"
   ],
   "ad": [
     {
       "category": "Business & Finance",
-      "subCategory": "Tax preparation",
+      "subCategory": "Tax preparation services",
       "adTitle": "I can do your personal taxes for cheap!!!",
       "adDescription": "I have been helping people with their personal taxes for more then 3 year now.  Contact me if you need my services.",
       "rating": [],
@@ -653,7 +623,7 @@
   "address": "2200 Sirocco Dr SW,",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T3H 2T9",
+  "postalCode": "T3H2T9",
   "longitude": "-114.17450281575906",
   "latitude": "51.031282065871636",
   "email": "roland888.yan@rogers.ca",
@@ -661,22 +631,19 @@
   "detailInformation": "I am massage therapist and have been doing this for over 8 years.  I enjoy playing badminton and wanted to teach it to people.",
   "skills": [
     {
-      "category": "Sports",
-      "subCategory": "Badminton"
+      "category": "Sport & Fitness",
+      "subCategory": "Personal training"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/roland.yan.6251"
-    }
+  "socialMediaUrl": [
+    "http://facebook.com"
   ],
   "ad": [
     {
-      "category": "Sports",
-      "subCategory": "Badminton",
-      "adTitle": "I love playing badminton and I can teach you to love it too!",
-      "adDescription": "I am offering badminton lessons to any age group.  I have taught a lot of people and you can be one of them!",
+      "category": "Sport & Fitness",
+      "subCategory": "Personal training",
+      "adTitle": "I love physical training and I can teach you to love it too!",
+      "adDescription": "I am offering personal traning to any age group.  I have taught a lot of people and you can be one of them!",
       "rating": [],
       "dateAdded": "2021-06-29T02:49:21.144Z",
       "active": true
@@ -695,7 +662,7 @@
   "address": "95 Westridge Crescent SW,",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T3H 5C9",
+  "postalCode": "T3H5C9",
   "longitude": "-114.19792942172865",
   "latitude": "51.05941842650334",
   "email": "rose.pippert322@shaw.ca",
@@ -703,20 +670,17 @@
   "detailInformation": "I am currently working as a bank teller at a TD Canada trust in town.  I am interested in tutoring math to students in elementary to high school.",
   "skills": [
     {
-      "category": "Education & Training",
-      "subCategory": "Math Tutor"
+      "category": "Education & Tutors",
+      "subCategory": "Math tutoring"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/rose.pippert.5527"
-    }
+  "socialMediaUrl": [
+    "http://facebook.com"
   ],
   "ad": [
     {
-      "category": "Education & Training",
-      "subCategory": "Math Tutor",
+      "category": "Education & Tutors",
+      "subCategory": "Math tutoring",
       "adTitle": "Need a math tutor?  Call me!",
       "adDescription": "I can tutor students in elementary to high school.  I can meet you at a library or online.",
       "rating": [],
@@ -737,7 +701,7 @@
   "address": "4615 82 St NW, ",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T3B 2P8",
+  "postalCode": "T3B2P8",
   "longitude": "-114.20691162940446",
   "latitude": "51.09270610091962",
   "email": "ernie.mackay9992@shaw.ca",
@@ -745,20 +709,17 @@
   "detailInformation": "I work in construction business for a big firm in Calgary.  I can help people with their landscaping needs.",
   "skills": [
     {
-      "category": "Trades & Maintenance",
-      "subCategory": "Landscaping"
+      "category": "Trade & Maintenance",
+      "subCategory": "Landscaping services"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/ernie.mackay.2782"
-    }
+  "socialMediaUrl": [
+    "http://linkedin.com"
   ],
   "ad": [
     {
-      "category": "Trades & Maintenance",
-      "subCategory": "Landscaping",
+      "category": "Trade & Maintenance",
+      "subCategory": "Landscaping services",
       "adTitle": "I can do your landscaping needs so you don't have to!",
       "adDescription": "I can do all sorts work in your ward.  Name it, I can do it!",
       "rating": [
@@ -788,7 +749,7 @@
   "address": "24 Silver Mead Bay NW,",
   "city": "Calgary",
   "province": "Alberta",
-  "postalCode": "T3B 3W6",
+  "postalCode": "T3B3W6",
   "longitude": "-114.19432807443559",
   "latitude": "51.107090071257474",
   "email": "jean.daulton@bell.com",
@@ -796,20 +757,17 @@
   "detailInformation": "I am homemaker.  I am very passionate with my interest in piano",
   "skills": [
     {
-      "category": "Arts & Entertainment",
-      "subCategory": "Piano classes"
+      "category": "Art & Entertainment",
+      "subCategory": "Piano lessons"
     }
   ],
-  "socialMedia": [
-    {
-      "socialMediaName": "facebook",
-      "socialMediaLink": "/jean.daulton.6221"
-    }
+  "socialMediaUrl": [
+    "http://facebook.com"
   ],
   "ad": [
     {
-      "category": "Arts & Entertainment",
-      "subCategory": "Piano classes",
+      "category": "Art & Entertainment",
+      "subCategory": "Piano lessons",
       "adTitle": "Piano lessons at your convenience.",
       "adDescription": "I am offering my knowledge of piano skills.  I am very passionate about teaching piano playing to all levels.",
       "rating": [],
@@ -821,4 +779,32 @@
   "isProUser": true,
   "dateRegisteredAsPro": "2021-06-08T12:13:01.104Z",
   "dateRegistered": "2021-06-06T18:21:21.104Z"
+},{
+  "_id": {
+    "$oid": "610c4e5b2019fd001391ccca"
+  },
+  "tenant": "dev-btnfbb6g",
+  "connection": "MongoDB",
+  "email": "edmonton@gmail.com",
+  "password": "$2b$10$FqaNkvAPR8rK8zNi1PC14ul/3SrrqHGfhhCaF/EmITLERsyE427Ce",
+  "debug": true,
+  "email_verified": false
+},{
+  "_id": {
+    "$oid": "610db59ca1ffe940a818e201"
+  },
+  "isProUser": true,
+  "skills": [
+    {
+      "_id": {
+        "$oid": "610db59ca1ffe940a818e202"
+      },
+      "category": "2"
+    }
+  ],
+  "postalCode": "T3H3S7",
+  "socialMedia": [],
+  "ad": [],
+  "__v": 0,
+  "email": "Ray Taghavi"
 }]
