@@ -7,8 +7,8 @@ import Footer from './components/footer/Footer';
 import Home from './components/home/Home';
 import OrderTable from './components/orders/OrderTable';
 import Search from './components/search/Search';
+
 import Profile from './components/profile/Profile';
-import CreateProfile from './components/profile/ProUserinfo'
 import BecomePro from './components/become-pro/BecomePro';
 import CreateAds from './components/create-ads/CreateAds';
 import HelpCenter from './components/help-center/HelpCenter';
@@ -16,6 +16,8 @@ import About from './components/about/About';
 import Contact from './components/contact/Contact';
 import TermsPrivacy from './components/terms-privacy/TermsPrivacy';
 import InviteFriend from './components/invite-friend/InviteFriend';
+import Team from './components/team/Team';
+import Favorite from './components/favorite/Favorite';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -68,12 +70,8 @@ const App = () => {
                 <OrderTable />
               </Route>
 
-              <Route exact path='/profile/Profile'>
+              <Route path='/profile'>
                 <Profile />
-              </Route>
-
-              <Route exact path='/profile/ProUserinfo'>
-                <CreateProfile/>
               </Route>
 
               <Route path='/become-pro'>
@@ -82,6 +80,10 @@ const App = () => {
 
               <Route path='/create-ads'>
                 <CreateAds />
+              </Route>
+
+              <Route path='/favorite-pro'>
+                <Favorite />
               </Route>
 
               <Route path='/help-center'>
@@ -102,6 +104,10 @@ const App = () => {
 
               <Route path='/invite-friend'>
                 <InviteFriend />
+              </Route>
+
+              <Route path='/team'>
+                <Team />
               </Route>
               
             </Switch>
