@@ -1,31 +1,94 @@
 var express = require('express');
 var router = express.Router();
 const favorite = require('../models/favorite');
+const user = require('../models/user');
+
+//Get average rating and review count for all users
+async function getRatingData() {
+  let data = await user.aggregate([
+    {
+        "$unwind": "$ad"
+    },
+    {
+        "$unwind": "$ad.rating"
+    },
+    {
+        "$group": {
+            "_id": "$_id",
+            "avgRatingScore": { "$avg": "$ad.rating.ratingScore" },
+            "countRating" : { "$sum" : 1 }
+        }
+    }
+  ])
+
+  return data;
+}
 
 /* List all favorite */
 router.get('/', async (req, res) => {
+    let data = await favorite.find({}).populate("user", {firstName:1, lastName:1}).populate("favorite", {firstName:1, lastName:1, skills:{category:1, subCategory:1}});
+    // let data = await favorite.find({}).populate("user", {firstName:1, lastName:1}).populate("favorite", {firstName:1, lastName:1, skills:{category:1, subCategory:1}, ad:{rating:{ratingScore:1}}}     
 
-  let data = await favorite.find({}).populate("user", {firstName:1, lastName:1}).populate("favorite", {firstName:1, lastName:1});
+    //Get users ratings
+    let userRating = await getRatingData();
+
+    for(let i=0; i<data.length; i++) {
+
+      let fav = data[i].favorite;
+
+      for(let j=0; j<fav.length; j++) {
+
+          console.log("fav = ", j, fav[j]._id )
+          const index = userRating.findIndex(el => el["_id"].toString() === fav[j]._id.toString());
+          const { avgRatingScore } = index !== -1 ? userRating[index] : {};
+          const { countRating } = index !== -1 ? userRating[index] : {};
+
+          let newFav = [...fav];
+
+          newFav[j] = {...newFav[j]._doc, avgRatingScore: avgRatingScore, countRating: countRating}
+
+          fav[j] = newFav[j];
+      }
+    }
+
+    console.info(`Records retrieved from mongoose:`, data?.length)
+    console.log('data returned =', data)
+    res.send(data);
+  
+  });
+  
+
+/* List favorite by ID. */
+router.get('/:id', async function(req, res) {
+
+  let data = await favorite.find({user: req.params.id}).populate("user", {firstName:1, lastName:1}).populate("favorite", {firstName:1, lastName:1, skills:{category:1, subCategory:1}});
+  // let data = await favorite.find({}).populate("user", {firstName:1, lastName:1}).populate("favorite", {firstName:1, lastName:1, skills:{category:1, subCategory:1}, ad:{rating:{ratingScore:1}}}     
+
+  //Get users ratings
+  let userRating = await getRatingData();
+
+  for(let i=0; i<data.length; i++) {
+
+    let fav = data[i].favorite;
+
+    for(let j=0; j<fav.length; j++) {
+
+        console.log("fav = ", j, fav[j]._id )
+        const index = userRating.findIndex(el => el["_id"].toString() === fav[j]._id.toString());
+        const { avgRatingScore } = index !== -1 ? userRating[index] : {};
+        const { countRating } = index !== -1 ? userRating[index] : {};
+
+        let newFav = [...fav];
+
+        newFav[j] = {...newFav[j]._doc, avgRatingScore: avgRatingScore, countRating: countRating}
+
+        fav[j] = newFav[j];
+    }
+  }
 
   console.info(`Records retrieved from mongoose:`, data?.length)
   console.log('data returned =', data)
   res.send(data);
-
-});
-
-/* List favorite by ID. */
-router.get('/:id', async function(req, res) {
-  
-  try {
-    const data = await favorite.findOne({_id: req.params.id}).populate("user", {firstName:1, lastName:1}).populate("favorite", {firstName:1, lastName:1});
-    console.info(`Found favorite:`, data)
-    res.send(data);
-  } catch (error) {
-    console.log(error)
-    res.sendStatus(500)
-  }
-
-});
 
 /* Create a favorite */
 router.post('/', async (req, res) => {
