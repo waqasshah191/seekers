@@ -170,6 +170,7 @@ $ npm install uuid
 $ npm install @fortawesome/fontawesome-svg-core  @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
 $ npm install @material-ui/lab
 $ npm install react-select
+$ npm install @emotion/styled
 
 npm install multer-gridfs-storage --save
 npm install gridfs-stream --save

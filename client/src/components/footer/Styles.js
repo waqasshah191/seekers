@@ -25,6 +25,7 @@ const useStyles = makeStyles({
         textDecoration: 'none',
         color: '#000',
         padding: 10,
+        cursor: 'pointer',
     },
 
     headTitle: {

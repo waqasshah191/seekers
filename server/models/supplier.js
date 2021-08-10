@@ -21,7 +21,7 @@ const supplierSchema = new Schema({
     firstName: String,
     lastName: String
   },],
-  emailAddress: String,
+  email: String,
   active: Boolean,
   dateAdded: Date,
   lastUpdateDate: Date

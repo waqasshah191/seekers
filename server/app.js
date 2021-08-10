@@ -15,6 +15,7 @@ var order = require('./routes/order');
 var home = require('./routes/home');
 
 var user = require('./routes/user');
+var favorite = require('./routes/favorite');
 var upload = require('./routes/upload');
 var longLat = require('./routes/longLat');
 
@@ -36,6 +37,7 @@ app.use('/supplier',supplier);
 app.use('/userX',userX);
 
 app.use('/user', user);
+app.use('/favorite', favorite);
 app.use('/upload', upload);
 app.use('/longLat', longLat);
 

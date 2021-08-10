@@ -13,7 +13,7 @@ const userSchema = new Schema({
     longitude: String,
     latitude: String,    
 
-    emailAddress:{
+    email:{
         type: String
         // required: true,
         // unique: true

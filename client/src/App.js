@@ -15,6 +15,7 @@ import HelpCenter from './components/help-center/HelpCenter';
 import About from './components/about/About';
 import Contact from './components/contact/Contact';
 import TermsPrivacy from './components/terms-privacy/TermsPrivacy';
+import InviteFriend from './components/invite-friend/InviteFriend';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -25,7 +26,13 @@ const App = () => {
 
   useEffect(() => {
     const redirectUri = localStorage.getItem('_redirect');
+    console.log('redirectUri', redirectUri)
     if (!redirectUri) {
+      setLoading(false);
+    } else {
+      const redirectUri = localStorage.getItem('_redirect');
+      localStorage.removeItem('_redirect')
+      setRedirect(redirectUri);
       setLoading(false);
     }
   }, []);
@@ -91,6 +98,10 @@ const App = () => {
 
               <Route path='/terms-privacy'>
                 <TermsPrivacy />
+              </Route>
+
+              <Route path='/invite-friend'>
+                <InviteFriend />
               </Route>
               
             </Switch>
