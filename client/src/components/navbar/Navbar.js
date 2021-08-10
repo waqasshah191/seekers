@@ -18,13 +18,6 @@ const Navbar = () => {
             class_name:'nav-text'
         },
         {
-            title:'Orders',
-            path:'/orders',
-            icon: <RiIcons.RiFileList3Fill />,
-            class_name:'nav-text'
-        },
-
-        {
             title:'Profile',
             path:'/profile',
             icon: <RiIcons.RiFileList3Fill />,

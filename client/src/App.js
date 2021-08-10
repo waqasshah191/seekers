@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Home from './components/home/Home';
-import OrderTable from './components/orders/OrderTable';
 import Search from './components/search/Search';
 
 import Profile from './components/profile/Profile';
@@ -66,10 +65,6 @@ const App = () => {
               <Route exact path='/search'>
                 <Search />
               </Route>
-              <Route path='/orders'>
-                <OrderTable />
-              </Route>
-
               <Route path='/profile'>
                 <Profile />
               </Route>

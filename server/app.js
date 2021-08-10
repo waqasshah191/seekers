@@ -6,12 +6,6 @@ var logger = require('morgan');
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
-var product = require('./routes/product');
-var customer = require('./routes/customer');
-var supplier = require('./routes/supplier');
-var userX = require('./routes/userX');
-var orderStatus = require('./routes/orderStatus');
-var order = require('./routes/order');
 var home = require('./routes/home');
 
 var user = require('./routes/user');
@@ -31,18 +25,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/product', product);
-app.use('/customer',customer);
-app.use('/supplier',supplier);
-app.use('/userX',userX);
-
 app.use('/user', user);
 app.use('/favorite', favorite);
 app.use('/upload', upload);
 app.use('/longLat', longLat);
 
-app.use('/orderStatus',orderStatus);
-app.use('/order', order);
 app.use('/home',home);
 
 // app.use('/', indexRouter);
