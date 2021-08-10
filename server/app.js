@@ -6,8 +6,6 @@ var logger = require('morgan');
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
-var home = require('./routes/home');
-
 var user = require('./routes/user');
 var favorite = require('./routes/favorite');
 var upload = require('./routes/upload');
@@ -29,8 +27,6 @@ app.use('/user', user);
 app.use('/favorite', favorite);
 app.use('/upload', upload);
 app.use('/longLat', longLat);
-
-app.use('/home',home);
 
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
