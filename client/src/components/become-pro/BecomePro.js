@@ -115,7 +115,7 @@ const BecomePro = () => {
             fetch('/user', {
                 method: 'POST',
                 body: JSON.stringify({
-                    emailAddress: res.name,
+                    email: res.name,
                     isProUser: true,
                     skills: skillForms,
                     postalCode: postCode

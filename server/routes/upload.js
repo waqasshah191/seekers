@@ -18,7 +18,9 @@ conn.once("open", function () {
 
 //This will return back the url that will be used in saving in the user record
 //Postman: http://localhost:3000/upload/ then select Body, in KEY,  select File in dropdown.  In Value, click Select Files, then select your file
-router.post("/", upload.single("file"), async (req, res) => {
+//router.post("/", upload.single("file"), async (req, res) => {
+router.post("/", upload.single("file"), (req, res) => {
+
     if (req.file === undefined) {
         return res.send("you must select a file.");
     }
@@ -29,7 +31,7 @@ router.post("/", upload.single("file"), async (req, res) => {
 
     console.log("imageUrl = ", imageUrl);
 
-    return res.send(imageUrl);
+    return res.send({imageUrl});
 });
 
 //Postman: http://localhost:3000/upload/file/1627524785396-any-name-7l961jY.png

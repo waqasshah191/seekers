@@ -552,6 +552,23 @@ router.put('/:id', async (req, res) => {
     }
 })
 
+//Update a user by id (via Patch)
+router.patch('/:id', async (req, res) => {
+    let userToUpdate = req.body;
+
+     console.log("req.body = ", req.body);
+
+    try {
+        let data = await user.findByIdAndUpdate(req.params.id, {$set: userToUpdate}, {upsert: true, new:true});
+        console.log('updated user:', data);
+        res.send(data);
+    } catch (error) {
+        console.log(error)
+        res.sendStatus(500)
+    }
+})
+
+
 //delete a user by id
 router.delete('/:id', async (req, res) => {
     try {
