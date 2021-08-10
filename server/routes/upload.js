@@ -29,7 +29,7 @@ router.post("/", upload.single("file"), async (req, res) => {
 
     console.log("imageUrl = ", imageUrl);
 
-    return res.send(imageUrl);
+    return res.send({imageUrl});
 });
 
 //Postman: http://localhost:3000/upload/file/1627524785396-any-name-7l961jY.png
