@@ -90,6 +90,8 @@ router.get('/:id', async function(req, res) {
   console.log('data returned =', data)
   res.send(data);
 
+});
+
 /* Create a favorite */
 router.post('/', async (req, res) => {
 
