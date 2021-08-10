@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Alert} from '@material-ui/lab';
 import { StarRounded } from '@material-ui/icons';
 import useStyles from './Styles';
 import SearchBox from '../search-box/SearchBox';
@@ -11,8 +12,9 @@ import { DateDiff } from '../../dateUtils';
 const SearchItem = ({ item }) => {
     const classes = useStyles();
 
-    const date = item.ad.dateAdded.split('T')[0];
-    const timeString = item.ad.dateAdded.split('T')[1];
+    const ad = (Array.isArray(item.ad) && item.ad.length > 0) ? item.ad[0] : item.ad;
+    const date = ad?.dateAdded.split('T')[0];
+    const timeString = ad?.dateAdded.split('T')[1];
 
     const time = timeString.split('.')[0];
     const createDate = new Date(date + ' ' + time);
@@ -85,68 +87,72 @@ const SearchList = ({ data = [] }) => {
 }
 
 const Search = () => {
+    const [notFound, setNotFound] = useState(false);
     const [data, setData] = useState([]);
     const styles = useStyles();
     const location = useLocation();
 
-    //fetch data and set rows
-    const getUser = async () => {
-
-        const queryArr = location.search ? location.search.substring(1, location.search.length) : [];
-        console.log('getUser queryArr', queryArr)
-
-        let res = await fetch(`/user/${queryArr}`)
-            .then(async res => {
-                const result = await res.json();
-
-                console.log("!!!!result = ", result)
-
-                setData(result);
-            })
-    }
-
     useEffect(() => {
-        //        const queryArr = location.search ? location.search.substr(1).split('&') : [];
-        //        const queryArr = location.search ? location.search.substr(1).split('/') : [];
+        (async () => {
+            setNotFound(false);
 
-        //const queryArr = location.search ? location.search.substring(1, location.search.length) : [];
+            // get data query from url and convert to object
+            const queryArr = location.search ? location.search.substr(1).split('&') : [];
+            let query = {};
+            if (queryArr.length > 0) {
+                queryArr.forEach(q => {
+                    const key = q.split('=')[0];
+                    const value = q.split('=')[1];
+                    query[key] = value;
+                })
+            }
 
-        getUser();
-
-        /*
-                console.log('queryArr', queryArr)
-                // let query = {};
-                // if (queryArr.length > 0) {
-                //     queryArr.forEach(q => {
-                //         const key = q.split('=')[0];
-                //         const value = q.split('=')[1];
-                //         query[key] = value;
-                //     })
-                // }
-                //console.log('query', query)
-                console.log('location.search', location.search.substring(1, location.search.length ))
-        
-        //        fetch(`http://localhost:3000/customer${location.search}`)
-                  fetch(`http://localhost:3000/user/${queryArr}`)
-        //            fetch(`/user/${queryArr}`)
-        
-        
-                    .then(async res => {
-                        const result = await res.json();
+            // convert query object to string
+            const route = Object.keys(query).reduce((acc, key) => {
+                const val = query[key];
+                return `${acc}${key}/${val}/`; 
+            }, '');
+            if (query?.PostalCode && query?.adSubCategory) {
+                // call api with considering query
+                fetch(`/user/skillPostalCode/${query?.adSubCategory}&${query?.PostalCode}`).then(async res => {
+                    const result = await res.json();
+                    if (Array.isArray(result)) {
+                        // set response data to local state 
                         setData(result);
-                    })
-        */
-
+                    } else {
+                        setNotFound(true);
+                    }
+                })
+            } else {
+                // call api with considering query
+                fetch(`/user/${route}`).then(async res => {
+                    const result = await res.json();
+                    if (Array.isArray(result)) {
+                        // set response data to local state 
+                        setData(result);
+                    } else {
+                        setNotFound(true);
+                    }
+                })
+            }
+            
+        })()
     }, [location]);
 
     return (
         <div className="search">
             <SearchBox />
             <Container className={styles.container}>
-                <SearchList data={data} />
-                <div className={styles.map}>
-                    <Map data={data} />
-                </div>
+                {notFound ? (
+                    <Alert severity="warning" style={{ width: '100%'}}>No Match Found!!!</Alert>
+                ) : (
+                    <>
+                        <SearchList data={data} />
+                        <div className={styles.map}>
+                            <Map data={data} />
+                        </div>
+                    </>
+                )}
             </Container>
         </div>
     );

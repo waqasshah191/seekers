@@ -25,7 +25,7 @@ const SearchBox = () => {
             })
         }
         setSkill(query?.skill || '');
-        setPostCode(query?.code || '');
+        setPostCode(query?.postalCode || '');
 
         console.log("skill = ", skill);
         console.log("postCode = ", postCode);
@@ -38,13 +38,13 @@ const SearchBox = () => {
         //        history.push(`/search?skill=${skill}&postalCode=${postCode}`)
         // history.push(`/search?adSubCategoryPostalCode/${skill}&${postCode}`)
         if (postCode.trim().length < 1) {
-            history.push(`/search?adSubCategory/${skill}`)
+            history.push(`/search?adSubCategory=${skill}`)
         }
         else if (skill.trim().length < 1) {
-            history.push(`/search?postalCode/${postCode}`)
+            history.push(`/search?postalCode=${postCode}`)
         }
         else {
-            history.push(`/search?adSubCategoryPostalCode/${skill}&${postCode}`)
+            history.push(`/search?adSubCategory=${skill}&PostalCode=${postCode}`)
         }
 
     }
@@ -94,7 +94,7 @@ const SearchBox = () => {
 
                             // href={`/search?category=${item.slug}`}
                             // href={`/search?skill/${item.slug}`}
-                            href={`/search?adSubCategory/${item.slug}`}
+                            href={`/search?adSubCategory=${item.slug}`}
 
                             size="small"
                             label={item.title}
