@@ -1,22 +1,22 @@
 import React, {useState, useEffect} from 'react'
-import {makeStyles} from '@material-ui/core/styles'
 import useStyles from './Styles'
-import {Input, TextField} from '@material-ui/core'
+import {TextField} from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
-import {CardHeader, IconButton, Button, Container, Typography, CardContent, CardActions, Link} from '@material-ui/core'
+import {CardHeader, IconButton, Button, Container, CardContent, CardActions, ListItemText} from '@material-ui/core'
 import Avatar from '@material-ui/core/Avatar'
 import RoomIcon from '@material-ui/icons/Room'
 import Rating from '@material-ui/lab/Rating'
 import {Twitter, Facebook, Instagram, Edit, Delete, Save, PostAdd} from '@material-ui/icons'
 import SearchBar from '../searchinprofile/Searchskills'
+import PhotoDialog from './Avatardialog'
+import Map from '../Map'
 //import { useAuth0 } from '@auth0/auth0-react'
 
 
 const CreateProfile = (props) => {
     let [firstName, setFirstName] = useState("")
-    let [lastName, setLastName] = useState("") 
-    let [imageUrl, setImageUrl] =useState("")   
+    let [lastName, setLastName] = useState("")   
     let [address, setAddress] = useState("")
     let [city, setCity] = useState("")
     let [province, setProvince] = useState("")
@@ -27,8 +27,11 @@ const CreateProfile = (props) => {
     let [skill, setSkill] = useState([])
     let [ad, setAd] = useState([])
     let [createError, setCreateError] = useState("")
+    let [imgUrl, setImgUrl] =useState("")
+    let [selectedFile, setSelectedFile] = useState()
+    let [adlist, setAdlist]= useState ([])
     
-
+    console.log("this is the url",imgUrl)
     const classes= useStyles()
    
 
@@ -37,7 +40,7 @@ const CreateProfile = (props) => {
         let profileToCreate = {
             firstName,
             lastName,
-            imageUrl,
+            imgUrl,
             address,
             city,
             province,
@@ -82,6 +85,20 @@ const CreateProfile = (props) => {
 const onClickAdd = ()=>{
     onCreateClicked();
 }
+const handlePost = () => {
+  const newad= adlist.concat([ad])
+  setAdlist(newad)
+} 
+
+async function getLongLat() { 
+  let getResponse = await fetch(`/longLat/${postalCode}`);
+  let data = await getResponse.json();
+  console.log("this is long lat", data)
+  return data;     
+ }
+ useEffect( () => {
+  getLongLat()
+}, [])
 
 const onInputChange=(event, setFunction) =>{
     setFunction(event.target.value)
@@ -96,8 +113,9 @@ let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 
           <Card className={classes.card1}>
             <CardHeader
               avatar={
-              <Avatar className={classes.bigAvatar} style={{ position: "relative", top: "-20px" }}>
-              </Avatar>
+              <div>
+                <PhotoDialog/>               
+              </div>
               }
               action={
               <div>
@@ -130,7 +148,7 @@ let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 
                 
               subheader={
               <div>
-                <IconButton><RoomIcon/></IconButton> 
+                <IconButton><RoomIcon onClick={getLongLat}/></IconButton> 
                 <TextField 
                 id="standard-basic" 
                 label="address"
@@ -230,10 +248,15 @@ let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 
               onChange={(event) => onInputChange(event,setAd)}
               style={{ backgroundColor: '#fcf3cf'}}/>
               </Container> <br/>
-              <Button variant="contained" color="secondary" startIcon={<PostAdd/>}>
+              <Button variant="contained" color="secondary" startIcon={<PostAdd/>} style={{ position: "relative", left: "500px" }} onClick={handlePost}>
                 POST AD
               </Button><br/>
               <h3>Ads List</h3>
+              <ListItemText style={{ position: "relative", left: "40px" }}>
+                {adlist.map((item) =>(
+                  <li>{item}</li>
+                ))}
+              </ListItemText>
             </CardContent> 
                          
           </Card>
@@ -250,7 +273,7 @@ let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 
         </Grid>
         <Grid item xs={12}>
           <Card className={classes.card4} alignItems='center' justifyContent='center'>
-          <Button variant="contained" color="primary" startIcon={<Save/>} disabled={createProfileStatusDataInvalid} onClick={onClickAdd}>
+          <Button variant="contained" color="primary" startIcon={<Save/>} disabled={createProfileStatusDataInvalid} style={{ position: "relative", left: "300px" }}  onClick={onClickAdd}>
            Save
           </Button>
           </Card>
