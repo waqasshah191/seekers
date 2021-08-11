@@ -18,6 +18,7 @@ import TermsPrivacy from './components/terms-privacy/TermsPrivacy';
 import InviteFriend from './components/invite-friend/InviteFriend';
 import Team from './components/team/Team';
 import Favorite from './components/favorite/Favorite';
+import Messages from './components/messages/components/Messages';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -108,6 +109,10 @@ const App = () => {
 
               <Route path='/team'>
                 <Team />
+              </Route>
+
+              <Route path='/messages'>
+                <Messages />
               </Route>
               
             </Switch>
