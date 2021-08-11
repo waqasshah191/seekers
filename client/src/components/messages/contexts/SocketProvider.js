@@ -13,7 +13,7 @@ export function SocketProvider({ id, children }) {
   useEffect(() => {
     console.log('send message')
     const newSocket = io(
-      'http://localhost:5000',
+      'http://pippsy-chatio-test.herokuapp.com/',
       { query: { id } }
     )
     setSocket(newSocket)
