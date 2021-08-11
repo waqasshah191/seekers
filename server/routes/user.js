@@ -2,6 +2,22 @@ const express = require('express');
 const router = express.Router();
 const user = require('../models/user');
 
+router.get('/emailToId/:email', async (req, res) => {
+
+    try {
+        console.log('email = ', req.params.email);
+        let data = await user.findOne({ email: req.params.email }).select({"_id": 1});
+        
+        res.send(data);
+    
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }    
+
+
+})
+
 //List all users
 router.get('/', async (req, res) => {
     let data1 = await user.find({}).lean().populate("ad.rating.user", { firstName: 1, lastName: 1 }, {});
@@ -556,10 +572,13 @@ router.put('/:id', async (req, res) => {
 router.patch('/:id', async (req, res) => {
     let userToUpdate = req.body;
 
-     console.log("req.body = ", req.body);
+    console.log("req.params.id = ", req.params.id);
+    console.log("req.body = ", req.body);
+    console.log("userToUpdate = ", userToUpdate);
 
     try {
-        let data = await user.findByIdAndUpdate(req.params.id, {$set: userToUpdate}, {upsert: true, new:true});
+        let data = await user.findByIdAndUpdate({_id: req.params.id}, {$set: userToUpdate}, {upsert: true, new: true});
+        //let data = await user.findByIdAndUpdate({_id: req.params.id}, userToUpdate);
         console.log('updated user:', data);
         res.send(data);
     } catch (error) {

@@ -26,7 +26,7 @@ async function getRatingData() {
 
 /* List all favorite */
 router.get('/', async (req, res) => {
-    let data = await favorite.find({}).populate("user", {firstName:1, lastName:1}).populate("favorite", {firstName:1, lastName:1, skills:{category:1, subCategory:1}});
+    let data = await favorite.find({}).populate("user", {firstName:1, lastName:1, imageUrl:1}).populate("favorite", {firstName:1, lastName:1, imageUrl:1, skills:{category:1, subCategory:1}});
     // let data = await favorite.find({}).populate("user", {firstName:1, lastName:1}).populate("favorite", {firstName:1, lastName:1, skills:{category:1, subCategory:1}, ad:{rating:{ratingScore:1}}}     
 
     //Get users ratings
@@ -57,11 +57,10 @@ router.get('/', async (req, res) => {
   
   });
   
-
 /* List favorite by ID. */
 router.get('/:id', async function(req, res) {
 
-  let data = await favorite.find({user: req.params.id}).populate("user", {firstName:1, lastName:1}).populate("favorite", {firstName:1, lastName:1, skills:{category:1, subCategory:1}});
+  let data = await favorite.find({user: req.params.id}).populate("user", {firstName:1, lastName:1, imageUrl:1}).populate("favorite", {firstName:1, lastName:1, imageUrl:1, skills:{category:1, subCategory:1}});
   // let data = await favorite.find({}).populate("user", {firstName:1, lastName:1}).populate("favorite", {firstName:1, lastName:1, skills:{category:1, subCategory:1}, ad:{rating:{ratingScore:1}}}     
 
   //Get users ratings
