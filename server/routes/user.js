@@ -456,6 +456,11 @@ router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res)
             {
                 "$match": { "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }
             },
+            {
+                "$addFields": {
+                    fromMain: 1
+                }
+            }
         ])
        
         console.log("subCategory + postalCode, data1.length = ", data1.length);
