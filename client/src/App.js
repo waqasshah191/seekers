@@ -17,6 +17,7 @@ import TermsPrivacy from './components/terms-privacy/TermsPrivacy';
 import InviteFriend from './components/invite-friend/InviteFriend';
 import Team from './components/team/Team';
 import Favorite from './components/favorite/Favorite';
+import CreateProfile from './components/profile/ProUserinfo';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -65,8 +66,8 @@ const App = () => {
               <Route exact path='/search'>
                 <Search />
               </Route>
-              <Route path='/profile'>
-                <Profile />
+              <Route exact path='/profile/ProUserinfo'>
+                <CreateProfile />
               </Route>
 
               <Route path='/become-pro'>

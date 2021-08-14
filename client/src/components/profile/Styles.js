@@ -55,10 +55,12 @@ const useStyles = makeStyles({
       paddingBlock: 7,
       paddingInline: 30,
       display: 'block',
-      minWidth: 'auto',
-      "& span": {
-          marginLeft: 0,
-      }
+      spacing: 1
+    },
+    chip: {
+      margin: 5,
+      backgroundColor: '#EF6C00',
+      color: '#fff'
     }
   })
   export default useStyles
