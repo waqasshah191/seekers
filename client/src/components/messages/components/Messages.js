@@ -5,8 +5,14 @@ import Dashboard from './Dashboard'
 import { ContactsProvider } from '../contexts/ContactsProvider'
 import { ConversationsProvider } from '../contexts/ConversationsProvider';
 import { SocketProvider } from '../contexts/SocketProvider';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react"
+import { Loading } from '../..';
+
+
 
 function Messages() {
+  const { user } = useAuth0();
+  const { name, picture, email } = user;
   const [id, setId] = useLocalStorage('id')
 
   const dashboard = (
@@ -24,4 +30,8 @@ function Messages() {
   )
 }
 
-export default Messages;
+// export default Messages;
+
+export default withAuthenticationRequired(Messages, {
+  onRedirecting: () => <Loading />,
+});
