@@ -1,122 +1,122 @@
 [
     {
-    "Category": "Arts and Entertainment"
+    "Category": "Art & Entertainment"
     },
     {
-    "Category":"Piano Lesson"
-    },
-    {
-    "Category": "Salsa dance"
-    },
-    {
-    "Category":"Drawing class"
-    },
+        "Category":"Piano lessons"
+        },
+        {
+        "Category": "Salsa dance lessons"
+        },
+        {
+        "Category":"Drawing lessons"
+        },
     {
     "Category": "Business & Finance"
     },
+        {
+        "Category":"Accounting services"
+        },
+        {
+        "Category": "Tax preparation services"
+        },
+        {
+        "Category":"Financial planning services"
+        },
     {
-    "Category":"Accounting service"
+    "Category": "General Services"
     },
-    {
-    "Category": "Tax preparation"
-    },
-    {
-    "Category":"Financial planning"
-    },
-    {
-    "Category": "General services"
-    },
-    {
-    "Category":"Home Cleaning"
-    },
-    {
-    "Category":"Lawn mowing"
-    },
-    {
-    "Category":"Baking"
-    },
+        {
+        "Category":"Home cleaning services"
+        },
+        {
+        "Category":"Yard services"
+        },
+        {
+        "Category":"Baking services"
+        },
     {
     "Category": "Education & Tutors"
     },
-    {
-    "Category":"Math tutor"
-    },
-    {
-    "Category": "Driving lessons"
-    },
-    {
-    "Category":"ESL (English As Second Language)"
-    },
+        {
+        "Category":"Math tutoring"
+        },
+        {
+        "Category": "Driving lessons"
+        },
+        {
+        "Category":"ESL (English as Second Language)"
+        },
     {
     "Category": "Trade & Maintenance"
     },
+        {
+        "Category": "Plumbing services"
+        },
+        {
+        "Category": "Landscaping services"
+        },
+        {
+        "Category": "Electrical services"
+        },
     {
-    "Category": "Plumbing"
+    "Category": "Transport & Moving"
     },
     {
-    "Category": "Sewing services"
-    },
-    {
-    "Category": "Electrical services"
-    },
-    {
-    "Category": "Trade & Transport & Moving"
-    },
-    {
-    "Category": "Moving services"
-    },
-    {
-    "Category": "Furniture Transport"
-    },
-    {
+        "Category": "Moving services"
+        },
+        {
+        "Category": "Furniture transporting services"
+        },
+        {
         "Category": "Towing service"
         },
+    {
+    "Category": "IT & Programming"
+    },
         {
-        "Category": "IT & Programming"
+        "Category": "Website design services"
         },
         {
-        "Category": "Website design"
+        "Category": "Computer & laptop repair services"
         },
         {
-        "Category": "Computer & Laptop repair"
+        "Category": "Programming services"
+        },
+    {
+    "Category": "Craft"
+    },
+        {
+        "Category": "Custom painting services"
         },
         {
-            "Category": "Programming"
-            },
-            {
-            "Category": "Craft"
-            },
-            {
-            "Category": "Custom painting"
-            },
-            {
-            "Category": "Ring resizing"
-            },
-            {
-            "Category": "Embroidery services"
-            },
-            {
-                "Category": "Sport & Fitness"
-                },
-                {
-                "Category": "Personal training"
-                },
-                {
-                "Category": "Nutrition consulting"
-                },
-                {
-                "Category": "Skate training"
-                },
-                {
-                    "Category": "Legals"
-                    },
-                    {
-                    "Category": "Legal document preparation"
-                    },
-                    {
-                    "Category": "Immigration consultant"
-                    },
-                    {
-                    "Category": "Will & services"
-                    }
+        "Category": "Ring resizing services"
+        },
+        {
+        "Category": "Embroidery services"
+        },
+    {
+    "Category": "Sport & Fitness"
+    },
+        {
+        "Category": "Personal training"
+        },
+        {
+        "Category": "Nutrition consulting"
+        },
+        {
+        "Category": "Skate training"
+        },
+    {
+    "Category": "Legal"
+    },
+        {
+        "Category": "Legal document preparation"
+        },
+        {
+        "Category": "Immigration consulting services"
+        },
+        {
+        "Category": "Will preparation services"
+        }
 ]

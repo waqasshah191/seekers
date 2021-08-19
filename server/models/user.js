@@ -26,9 +26,15 @@ const userSchema = new Schema({
         subCategory: String
     },],
 
-    socialMediaUrl:[{ 
-        type: String
-    },],
+    // socialMediaUrl:[{ 
+    //     type: String
+    // },],
+
+    socialMediaUrl : {    
+        twitter: String,
+        facebook: String,
+        instagram: String
+    },
 
     ad:[{ 
         category: String,

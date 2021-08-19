@@ -18,6 +18,8 @@ import Favorite from './components/favorite/Favorite';
 import AppProvider from './context/AppProvider';
 import CreateProfile from './components/profile/ProUserinfo';
 import ProfilePro from './components/profile-pro/ProfilePro';
+import Messages from './components/messages/components/Messages';
+
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
@@ -107,6 +109,10 @@ const App = () => {
 
               <Route path='/team'>
                 <Team />
+              </Route>
+
+              <Route path='/messages'>
+                <Messages />
               </Route>
               
             </Switch>

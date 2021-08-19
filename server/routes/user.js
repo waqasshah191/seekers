@@ -49,6 +49,11 @@ router.get('/', async (req, res) => {
         };
     });
 
+    //sort based on record came from number of reviews then average rating score
+    data3.sort((a, b) => {
+        return b.countRating - a.countRating || b.avgRatingScore - a.avgRatingScore
+    })
+
     console.info('Records retrieved from mongoose:', data1?.length);
     res.send(data3);
 })
@@ -89,7 +94,76 @@ router.get('/:id', async (req, res) => {
             };
         });
 
+        //sort based on record came from number of reviews then average rating score
+        data3.sort((a, b) => {
+            return b.countRating - a.countRating || b.avgRatingScore - a.avgRatingScore
+        })
+
         console.info('Found the user:', data3);
+        res.send(data3);
+
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+})
+
+//Find users by ad.category
+//To use in Postman:  http://localhost:3000/user/adCategory/art
+router.get('/adCategory/:category', async (req, res) => {
+
+    try {
+        console.log('Ad Category = ', req.params.category);
+
+        let data1 = await user.aggregate([
+            {
+                "$match": { "ad.category": {$regex: req.params.category, $options : 'i'} }
+            },
+            {
+                "$unwind": "$ad"
+            },
+            {
+                "$match": { "ad.category": {$regex: req.params.category, $options : 'i'} }
+            },
+        ])
+
+        //get data of aggregated average rating of all reviews per user
+        //let data = await user.find({"ad.subCategory": new RegExp(req.params.subCategory), postalCode: new RegExp(req.params.postalCode) });
+        let data2 = await user.aggregate([
+            {
+                "$unwind": "$ad"
+            },
+            {
+                "$unwind": "$ad.rating"
+            },
+            {
+                "$group": {
+                    "_id": "$_id",
+                    "avgRatingScore": { "$avg": "$ad.rating.ratingScore" },
+                    "countRating" : { "$sum" : 1 }
+                }
+            }
+        ])
+
+        //conbine data from data 1 and data 2
+        let data3 = data1.map(obj => {
+            const index = data2.findIndex(el => el["_id"].toString() === obj["_id"].toString());
+            const { avgRatingScore } = index !== -1 ? data2[index] : {};
+            const { countRating } = index !== -1 ? data2[index] : {};
+            return {
+                ...obj,
+                avgRatingScore,
+                countRating
+            };
+        });
+
+        //sort based on record came from number of reviews then average rating score
+        data3.sort((a, b) => {
+            return b.countRating - a.countRating || b.avgRatingScore - a.avgRatingScore
+        })        
+
+        console.info('Found the users with ad category :', data3);
+
         res.send(data3);
 
     } catch (error) {
@@ -147,6 +221,11 @@ async function adSubCategorySearch(subCategory) {
             };
         });
 
+        //sort based on record came from number of reviews then average rating score
+        data3.sort((a, b) => {
+            return b.countRating - a.countRating || b.avgRatingScore - a.avgRatingScore
+        })
+
         console.info('Found the users with subCategory :', data3);
 
         return data3;
@@ -157,7 +236,6 @@ async function adSubCategorySearch(subCategory) {
     }    
 
 }
-
 
 //Find users by ad.subCategory
 //To use in Postman:  http://localhost:3000/user/adSubCategory/Drawing classes
@@ -272,7 +350,12 @@ async function postalCodeSearch(postalCode) {
         //return no match message if no criteria match was found
         if (data3.length === 0) {
             data3 = {"result": "No match found."}
-       }
+        }
+
+        //sort based on record came from number of reviews then average rating score
+        data3.sort((a, b) => {
+            return b.countRating - a.countRating || b.avgRatingScore - a.avgRatingScore
+        })
 
         console.info('Found the users with postal code:', data3);
 
@@ -373,6 +456,11 @@ router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res)
             {
                 "$match": { "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }
             },
+            {
+                "$addFields": {
+                    fromMain: 1
+                }
+            }
         ])
        
         console.log("subCategory + postalCode, data1.length = ", data1.length);
@@ -479,6 +567,12 @@ router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res)
         }
 
         console.log("dataFinal.length = ", dataFinal.length);
+
+        //sort based on record came from main query, number of reviews then average rating score
+        dataFinal.sort((a, b) => {
+            return a.fromMain - b.fromMain || b.countRating - a.countRating || b.avgRatingScore - a.avgRatingScore
+        })
+
 
         console.info('Found the users with ad.subCategory and postal code:', dataFinal);
         res.send(dataFinal);
