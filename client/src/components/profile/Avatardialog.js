@@ -3,9 +3,11 @@ import {Dialog,DialogContent, IconButton, Avatar} from '@material-ui/core';
 import { AddAPhoto } from '@material-ui/icons';
 import useStyles from './Styles'
 
-export default function PhotoDialog() {
+export default function PhotoDialog(props) {
   const [open, setOpen] = React.useState(false);
-  const [imgUrl, setImgUrl] =useState("");
+  //const [imgUrl, setImgUrl] =useState("");
+  const imgUrl=props.imgUrl;
+  const setImgUrl= props.setImgUrl;
   const [selectedFile, setSelectedFile] = useState();
 
   const classes= useStyles()
@@ -43,8 +45,9 @@ export default function PhotoDialog() {
   return (
     <div>
       <Avatar className={classes.bigAvatar} style={{ position: "relative", top: "-20px" }} src={imgUrl}>
+      
       </Avatar> 
-      <IconButton style={{ position: "relative", top:"-15px", left: "35px" }} onClick={handleClickOpen}>
+      <IconButton style={{ position: "relative", top:"-15px", left: "60px" }} onClick={handleClickOpen}>
       <AddAPhoto />
       </IconButton>
       <Dialog

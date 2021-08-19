@@ -1,18 +1,18 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import useStyles from './Styles'
 import {TextField} from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 import {CardHeader, IconButton, Button, Container, CardContent, CardActions, ListItemText, Link, Chip} from '@material-ui/core'
-import Avatar from '@material-ui/core/Avatar'
-import RoomIcon from '@material-ui/icons/Room'
 import Rating from '@material-ui/lab/Rating'
-import {Twitter, Facebook, Instagram, Edit, Delete, Save, PostAdd} from '@material-ui/icons'
-import SkillBar from '../searchinprofile/Skillbar'
+import {Twitter, Facebook, Instagram, Edit, Delete, Save, PostAdd, Close, Room} from '@material-ui/icons'
+import SearchBar from '../searchinprofile/Searchskills'
 import PhotoDialog from './Avatardialog'
-import MapDialog from './Mapdialog'
-import CreateAdDialog from './CreateadDialog'
-import SkillBarDialog from './Skillbardialog'
+import AdForm from './AdForm'
+import { AppContext } from '../context/AppProvider'
+import { Loading } from "../index"
+import { withAuthenticationRequired } from "@auth0/auth0-react"
+
 
 
 //import { useAuth0 } from '@auth0/auth0-react'
@@ -25,23 +25,49 @@ const CreateProfile = (props) => {
     let [city, setCity] = useState("")
     let [province, setProvince] = useState("")
     let [postalCode, setPostalCode] = useState("")
-    let [email, setemail] = useState("")    
+    let [email, setEmail] = useState("")    
     let [detailInformation, setDetailInformation] = useState("")
-    let [socialMedia, setSocialMedia] = useState([])
-    let [skill, setSkill] = useState([])
-    let [ad, setAd] = useState([])
+    let [socialMediaUrl, setSocialMediaUrl] = useState({ twitter: '', facebook: '', instagram:''})
+    let [skillForms, setSkillForms] = useState([])
+    let [ad, setAd] = useState([{ adTitle: '', adDescription: '' }])
     let [createError, setCreateError] = useState("")
     let [imgUrl, setImgUrl] =useState("")
-    let [adlist, setAdlist]= useState ([])
-    let [data, setData]= useState ("")
+    let [loading, setLoading] =useState (true)
+    let [submitLoading, setSubmitLoading] = useState(false)
+    
     
     
    
     console.log("this is the url",imgUrl)
     const classes= useStyles()
-   
+
+    const { userId: id, user: data, onUser } = useContext(AppContext)
+
+    useEffect(() => {
+      if (id) {
+        setLoading(true);
+        fetch(`/user/${id}`).then(async res => {
+          const response = await res.json();
+            const userRes = response[0];
+            onUser(userRes);
+            setFirstName(userRes?.firstName);
+            setLastName(userRes?.lastName);
+            setPostalCode(userRes?.postalCode);
+            setCity(userRes?.city);
+            setDetailInformation(userRes?.detailInformation)
+            setSkillForms(userRes?.skills || []);
+            setAd(userRes?.ad || [{ adTitle: '', adDescription: '' }]);
+            const updateSocial = {...socialMediaUrl};
+            (userRes?.socialMedia || []).forEach(i => {
+              updateSocial[i.socialMediaName] = i.socialMediaLink;
+            });
+            setSocialMediaUrl(updateSocial);
+        }).finally(() => setLoading(false));
+      }
+    }, [id]);
 
     async function onCreateClicked() {
+        setSubmitLoading(true);
         let currentDate = new Date();
         let profileToCreate = {
             firstName,
@@ -53,8 +79,8 @@ const CreateProfile = (props) => {
             postalCode,
             email,
             detailInformation,
-            socialMedia,
-            skill,
+            socialMediaUrl,
+            skillForms,
             ad,
             password: null,
             dataRegisteredAsPro: null,            
@@ -62,15 +88,32 @@ const CreateProfile = (props) => {
            
         }
         console.log('Creating new profile with', profileToCreate)
+
+        fetch(`/user/${id}`, {
+          method: 'PUT',      
+          body: JSON.stringify(profileToCreate),
+          headers: {
+              'Content-Type': 'application/json',
+          }
+        }).then(async res => {
+          const result = await res.json();
+        }).finally(() => setSubmitLoading(false));
+    }
     
-    try{
-        let createResponse = await fetch ('/user', {
+    /*try{
+        let createResponse = await fetch ('/user/', {
             method: 'POST',
             headers:{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify(profileToCreate)
         })
+        if (createResponse.status === 200) {
+          props.onCreateProfileClick("Success");
+          setSkillForms([]);
+          setAd([{ adTitle: '', adDescription: '' }]);
+          setSocialMediaUrl({ twitter: '', facebook: '', instagram:''});
+      }
         console.log('Create response is', createResponse)
         if (createResponse.status !== 200) {
             let errorMessage = await createResponse.text()
@@ -85,35 +128,63 @@ const CreateProfile = (props) => {
         // the server cannot be reached
         console.error('Fetch failed to reach the server.')
     }
-    }    
+    }  */  
 
 //This is the event triggered by the onClick button on the form
 const onClickAdd = ()=>{
     onCreateClicked();
 }
-const handleAdlist = () => {
+/*const handleAdlist = () => {
   const newad= adlist.concat([ad])
   setAdlist(newad)
-} 
-async function getUserSkills(id) {
+} */
+/*async function getUserSkills(id) {
   let getResponse = await fetch(`/userSkill/${id}`);
  let data = await getResponse.json();
  console.log("selected skills",data)
- setSkill (data);     
+ setSkillForms (data);     
+}*/
+/*const handleSocialChange = (key, value) => {
+  const updateSocial = {...socialMediaUrl};
+  updateSocial[key] = value;
+  setSocialMediaUrl(updateSocial);
+}*/
+const handleSocialMediaChange = (e) => {
+  setSocialMediaUrl({
+    ...socialMediaUrl,
+    [e.target.name]: e.target.value
+  });
+}
+const handleSkillForms = ({ selectedOption: options }) => {
+  const results = options.map(opt => ({ category: opt.value, subCategory: opt.value }))
+  setSkillForms(results);
+}
+const handleAddAd = () => {
+  const updateAdForms = [...ad];
+  updateAdForms.push({ adTitle: '', adDescription: '' , subCategory: null, category: null});
+  setAd(updateAdForms);
+}
+const handleRemoveAd = (index) => {
+    const updateAdForms = [...ad];
+    updateAdForms.splice(index, 1);
+    setAd(updateAdForms);
 }
 
-async function getLongLat() { 
+const handleChangeAd = (key, value, index) => {
+  const updateAdForms = [...ad];
+  updateAdForms[index][key] = value;
+  setAd(updateAdForms);
+}
+/*async function getLongLat() { 
   let getResponse = await fetch(`/longLat/${postalCode}`);
   let data = await getResponse.json();
   console.log("this is long lat", data)
   setData (data);     
-}
- useEffect( () => {
-  getLongLat()
-}, [])
+}*/
 
 
 const onInputChange=(event, setFunction) =>{
+    console.log('Value', event.target.value)
     setFunction(event.target.value)
 }
 let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 0)
@@ -123,26 +194,17 @@ let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 
     <Container justify='center'>
       <Grid container spacing={1} className={classes.grid1}>
         <Grid item xs={12} alignItems='center'>
-          <Card className={classes.card1}>
+          <Card className={classes.card1} style={{ position: "relative", justify: 'center' }}>
             <CardHeader
               avatar={
               <div>
-                <PhotoDialog onChange={(event) => onInputChange(event,setImgUrl)}/>               
+                <PhotoDialog imgUrl={imgUrl} setImgUrl={setImgUrl}/>               
               </div>
               }
               action={
               <div>
                <div> 
-                <IconButton marginRight='auto'><Edit/></IconButton>
                 <IconButton marginRight='auto'><Delete/></IconButton>
-                <Button className={classes.button} variant='contained' color='secondary'> 
-                 Message 
-                </Button> 
-               </div> <br/>
-               <div>
-                <Button className={classes.button} variant='contained' color='primary'>
-                 Favs
-                </Button>
                </div>               
               </div>
               }
@@ -151,34 +213,31 @@ let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 
                <div>   
                 <TextField 
                 id="standard-basic" 
-                label="Name" 
+                label="Firstname" 
                 required
                 inputProps={{style: {fontSize: 25}}}
                 value={firstName} 
                 onChange={(event) => onInputChange(event,setFirstName)}/>
+
+                <TextField 
+                id="standard-basic" 
+                label="Lastname" 
+                inputProps={{style: {fontSize: 25}}}
+                value={lastName} 
+                onChange={(event) => onInputChange(event,setLastName)}/>
                </div>
               }        
                 
               subheader={
-              <div>
-                <Button><MapDialog/></Button> 
-                <TextField 
-                id="standard-basic" 
-                label="address"
-                value = {address}
-                onChange={(event) => onInputChange(event,setAddress)}/>
+              <div> 
+                <IconButton><Room/></IconButton>     
                 <TextField 
                 id="standard-basic" 
                 label="city"
                 TextField style ={{width: '20%'}}
                 value = {city}
                 onChange={(event) => onInputChange(event,setCity)}/>
-                <TextField 
-                id="standard-basic" 
-                label="province"
-                TextField style ={{width: '40%'}}
-                value = {province}
-                onChange={(event) => onInputChange(event,setProvince)}/>
+                
                 <TextField 
                 id="standard-basic" 
                 label="postalcode"
@@ -186,60 +245,57 @@ let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 
                 value = {postalCode}
                 onChange={(event) => onInputChange(event,setPostalCode)}/>
                 <br/> <br/>
-                <Rating name="half-rating" defaultValue={2.5} precision={0.5} /> 
-                <IconButton size='small'>
-                  45 Reviews
-                </IconButton> <br/>
-                <SkillBarDialog onChange={(event) => onInputChange(event,setSkill)}/>
-                <div>
-                  {skill.map(item => (
-                    <Chip
-                    key={item.id}
-                    variant="contained"
-                    size="small"
-                    label={item.title}
-                    color="#43C0F6"
-                    className={classes.chip}
-                    />
-                  ))}
-                </div>
-                
-                            
+
+                <SearchBar 
+                    isMulti
+                    closeMenuOnSelect={false}
+                    initialValue={skillForms.map(s => ({ label: s.subCategory, value: s.subCategory }))}
+                    onChange={handleSkillForms}
+                />                    
               </div>
               }          
                 
             />
-            <CardActions style={{ position: "relative", top: "-20px" }}>
+            <CardActions style={{ position: "relative", top: "-10px", left:"150px"}}>
               
                 <Twitter fontSize='large'style={{color: '#1da1f2'}} />
                 <TextField 
-                {...socialMedia}
+                {...socialMediaUrl}
                 id="standard-basic" 
                 label="twitter link"
                 name='twitter'
                 inputProps={{style: {fontSize: 16}}}
-                value={socialMedia.name} 
-                onChange={(event) => onInputChange(event,setSocialMedia)}/>
+                value={socialMediaUrl.twitter} 
+                onChange={handleSocialMediaChange}
+                InputLabelProps={{
+                  shrink: !!socialMediaUrl?.twitter,}}
+                />
               
                 <Facebook fontSize='large' style={{color: '#1877f2'}}/>
                 <TextField 
-                {...socialMedia}
+                {...socialMediaUrl}
                 id="standard-basic" 
                 label="fb link"
-                name='fb' 
+                name='facebook' 
                 inputProps={{style: {fontSize: 16}}}
-                value={socialMedia.name} 
-                onChange={(event) => onInputChange(event,setSocialMedia)}/>
+                value={socialMediaUrl.facebook} 
+                onChange={handleSocialMediaChange}
+                InputLabelProps={{
+                  shrink: !!socialMediaUrl?.facebook,}}
+                />
               
                 <Instagram fontSize='large' style={{color: '#e4405f'}}/>
                 <TextField 
-                {...setSocialMedia}
+                {...setSocialMediaUrl}
                 id="standard-basic" 
                 label="insta link"
                 name='instagram' 
                 inputProps={{style: {fontSize: 16}}}
-                value={socialMedia.name} 
-                onChange={(event) => onInputChange(event,setSocialMedia)}/>
+                value={socialMediaUrl.instagram} 
+                onChange={handleSocialMediaChange}
+                InputLabelProps={{
+                  shrink: !!socialMediaUrl?.instagram,}}
+                />
             </CardActions>
             <CardContent style={{ position: "relative", top: "-20px" }}>
               <h3>About Me</h3> <br/> 
@@ -261,14 +317,29 @@ let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 
         <Grid item xs={12}>
           <Card className={classes.card2}>
             <CardContent>
-              <h3> Ads</h3>  
-              <CreateAdDialog onChange={(event) => onInputChange(event,setAd)}/>
               <h3>Ads List</h3>
-              <ListItemText style={{ position: "relative", left: "40px" }}>
-                {adlist.map((item) =>(
-                  <li>{item}</li>
-                ))}
-              </ListItemText>
+              <div>
+                  {ad.map((s, index) => (
+                      <div key={index} >
+                          {index > 0 && (
+                              <div onClick={() => handleRemoveAd(index)}>
+                                  <Close />
+                              </div>
+                          )}
+                          <AdForm 
+                              value={s}
+                              skills={skillForms}
+                              onChangeTitle={value => handleChangeAd('adTitle', value, index)}
+                              onChangeDescription={value => handleChangeAd('adDescription', value, index)}
+                              onChangeSkill={value => {
+                                handleChangeAd('subCategory', value, index);
+                                handleChangeAd('category', value, index)
+                              }}
+                          />
+                      </div>
+                  ))}
+              </div>
+              <div onClick={handleAddAd}>+ Add more ads</div>
             </CardContent> 
                          
           </Card>
@@ -285,8 +356,8 @@ let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 
         </Grid>
         <Grid item xs={12}>
           <Card className={classes.card4} alignItems='center' justifyContent='center'>
-          <Button variant="contained" color="primary" startIcon={<Save/>} disabled={createProfileStatusDataInvalid} style={{ position: "relative", left: "300px" }}  onClick={onClickAdd}>
-           Save
+          <Button type="submit" variant="contained" color={submitLoading ? 'secondary' : 'primary'} className={classes.button} disabled={createProfileStatusDataInvalid} style={{ position: "relative", left: "450px" }}  onClick={onClickAdd}>
+          {submitLoading ? 'Saving...': 'Save Changes'}
           </Button>
           </Card>
         </Grid>
@@ -296,4 +367,4 @@ let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 
     </Container>   
   )
 }
-export default CreateProfile
+export default withAuthenticationRequired(CreateProfile)

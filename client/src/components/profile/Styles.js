@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     card1:{
       elevation: 2,
       backgroundColor: '#ffdd99',
-      maxWidth: 700,
+      maxWidth: 1200,
       height:'auto',
       padding: 10,
       paddingBottom:0
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     card2:{
       elevation: 2,
       backgroundColor: '#eee8aa',
-      maxWidth: 700,
+      maxWidth: 1200,
       height:'auto',
       padding: 10
   
@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     card3:{
       elevation: 2,
       backgroundColor: '#dde0a9',
-      maxWidth: 700,
+      maxWidth: 1200,
       height:'auto',
       padding: 10
   
@@ -39,15 +39,25 @@ const useStyles = makeStyles({
       display:'flex',
       elevation: 2,
       backgroundColor: '#e8e8d6',
-      maxWidth: 700,
+      maxWidth: 1200,
       height:'auto',
       padding: 10
   
     },
     bigAvatar: {
-          width: 120,
-          height: 120,
-          margin: 5
+          width: 150,
+          height: 150,
+          margin: 10
+    },
+    adItem: {
+      borderBottom: '1px solid #ddd',
+      padding: 12,
+      '&:last-child': {
+          borderBottom: 'none'
+      },
+    },
+    input: {
+      marginRight: 8,
     },
     button: {
       fontSize: 17,
@@ -56,6 +66,19 @@ const useStyles = makeStyles({
       paddingInline: 30,
       display: 'block',
       spacing: 1
+    },
+    input: {
+      backgroundColor: '#fff',
+      borderRadius: 10,
+      overflow: 'hidden',
+      boxShadow: '0 0 3px 1px rgba(0, 0, 0, 0.1)',
+      border: '1px solid #999',
+      margin: 8
+    },
+    title: {
+      fontSize: 25,
+      fontWeight: 'bold',
+      marginBottom: 20,
     },
     chip: {
       margin: 5,

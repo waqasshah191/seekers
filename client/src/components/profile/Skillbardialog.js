@@ -44,7 +44,7 @@ export default function SkillBarDialog() {
         >
           <DialogContent>
           <SkillBar onChangeCategory={value => handleChangeCategory(value)}
-         onChangeSubCategory={value => handleChangeSubCategory(value)}/>
+           onChangeSubCategory={value => handleChangeSubCategory(value)}/>
           </DialogContent>
           <DialogActions>
           <Button onClick={handleClose} color="primary">

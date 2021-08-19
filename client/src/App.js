@@ -6,8 +6,6 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Home from './components/home/Home';
 import Search from './components/search/Search';
-
-import Profile from './components/profile/Profile';
 import BecomePro from './components/become-pro/BecomePro';
 import CreateAds from './components/create-ads/CreateAds';
 import HelpCenter from './components/help-center/HelpCenter';
@@ -17,8 +15,9 @@ import TermsPrivacy from './components/terms-privacy/TermsPrivacy';
 import InviteFriend from './components/invite-friend/InviteFriend';
 import Team from './components/team/Team';
 import Favorite from './components/favorite/Favorite';
+import AppProvider from './context/AppProvider';
 import CreateProfile from './components/profile/ProUserinfo';
-
+import ProfilePro from './components/profile-pro/ProfilePro';
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
@@ -53,7 +52,8 @@ const App = () => {
       redirectUri={window.location.origin}
       onRedirectCallback={handleRedirect}
     >
-      <Router>
+      <AppProvider>
+        <Router>
         {redirect && <Redirect to={redirect} />}
         {!loading && (
           <>
@@ -66,10 +66,13 @@ const App = () => {
               <Route exact path='/search'>
                 <Search />
               </Route>
-              <Route exact path='/profile/ProUserinfo'>
+              
+              <Route path='/profile/:id'>
+                  <ProfilePro />
+              </Route>
+              <Route path='/profile/'>
                 <CreateProfile />
               </Route>
-
               <Route path='/become-pro'>
                 <BecomePro />
               </Route>
@@ -110,7 +113,8 @@ const App = () => {
             <Footer />
           </>
         )}
-      </Router>
+        </Router>
+    </AppProvider>
     </Auth0Provider>
   );
 };
