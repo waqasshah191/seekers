@@ -9,7 +9,7 @@ import {Twitter, Facebook, Instagram, Edit, Delete, Save, PostAdd, Close, Room} 
 import SearchBar from '../searchinprofile/Searchskills'
 import PhotoDialog from './Avatardialog'
 import AdForm from './AdForm'
-import { AppContext } from '../context/AppProvider'
+import { AppContext } from './../../context/AppProvider'
 import { Loading } from "../index"
 import { withAuthenticationRequired } from "@auth0/auth0-react"
 
@@ -25,20 +25,20 @@ const CreateProfile = (props) => {
     let [city, setCity] = useState("")
     let [province, setProvince] = useState("")
     let [postalCode, setPostalCode] = useState("")
-    let [email, setEmail] = useState("")    
+    //let [email, setEmail] = useState("")    
     let [detailInformation, setDetailInformation] = useState("")
     let [socialMediaUrl, setSocialMediaUrl] = useState({ twitter: '', facebook: '', instagram:''})
-    let [skillForms, setSkillForms] = useState([])
+    let [skills, setSkills] = useState([])
     let [ad, setAd] = useState([{ adTitle: '', adDescription: '' }])
     let [createError, setCreateError] = useState("")
-    let [imgUrl, setImgUrl] =useState("")
+    let [imageUrl, setImageUrl] =useState("")
     let [loading, setLoading] =useState (true)
     let [submitLoading, setSubmitLoading] = useState(false)
     
     
     
    
-    console.log("this is the url",imgUrl)
+    console.log("this is the url",imageUrl)
     const classes= useStyles()
 
     const { userId: id, user: data, onUser } = useContext(AppContext)
@@ -54,8 +54,9 @@ const CreateProfile = (props) => {
             setLastName(userRes?.lastName);
             setPostalCode(userRes?.postalCode);
             setCity(userRes?.city);
-            setDetailInformation(userRes?.detailInformation)
-            setSkillForms(userRes?.skills || []);
+            setDetailInformation(userRes?.detailInformation);
+            setImageUrl(userRes?.imageUrl);
+            setSkills(userRes?.skills || []);
             setAd(userRes?.ad || [{ adTitle: '', adDescription: '' }]);
             const updateSocial = {...socialMediaUrl};
             (userRes?.socialMedia || []).forEach(i => {
@@ -72,17 +73,18 @@ const CreateProfile = (props) => {
         let profileToCreate = {
             firstName,
             lastName,
-            imgUrl,
+            imageUrl,
             address,
             city,
             province,
             postalCode,
-            email,
+            email:data.email,
             detailInformation,
             socialMediaUrl,
-            skillForms,
+            skills,
             ad,
             password: null,
+            isProUser: true,
             dataRegisteredAsPro: null,            
             dateRegistered : currentDate,
            
@@ -157,7 +159,7 @@ const handleSocialMediaChange = (e) => {
 }
 const handleSkillForms = ({ selectedOption: options }) => {
   const results = options.map(opt => ({ category: opt.value, subCategory: opt.value }))
-  setSkillForms(results);
+  setSkills(results);
 }
 const handleAddAd = () => {
   const updateAdForms = [...ad];
@@ -198,7 +200,7 @@ let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 
             <CardHeader
               avatar={
               <div>
-                <PhotoDialog imgUrl={imgUrl} setImgUrl={setImgUrl}/>               
+                <PhotoDialog imageUrl={imageUrl} setImageUrl={setImageUrl}/>               
               </div>
               }
               action={
@@ -249,14 +251,14 @@ let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 
                 <SearchBar 
                     isMulti
                     closeMenuOnSelect={false}
-                    initialValue={skillForms.map(s => ({ label: s.subCategory, value: s.subCategory }))}
+                    initialValue={skills.map(s => ({ label: s.subCategory, value: s.subCategory }))}
                     onChange={handleSkillForms}
                 />                    
               </div>
               }          
                 
             />
-            <CardActions style={{ position: "relative", top: "-10px", left:"150px"}}>
+            <CardActions style={{ position: "relative", top: "-10px", left:"180px"}}>
               
                 <Twitter fontSize='large'style={{color: '#1da1f2'}} />
                 <TextField 
@@ -328,7 +330,7 @@ let createProfileStatusDataInvalid = !firstName || (firstName.trim().length === 
                           )}
                           <AdForm 
                               value={s}
-                              skills={skillForms}
+                              skills={skills}
                               onChangeTitle={value => handleChangeAd('adTitle', value, index)}
                               onChangeDescription={value => handleChangeAd('adDescription', value, index)}
                               onChangeSkill={value => {

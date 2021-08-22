@@ -4,9 +4,9 @@ import useStyles from './Styles.js';
 import SearchBar from '../searchinprofile/Searchskills.js';
 
 const AdForm = ({ value, onChangeTitle, onChangeDescription, onChangeSkill, skills = [] }) => {
-    const classes = useStyles();
+    const styles = useStyles();
     return (
-        <div className={classes.adItem}>
+        <div className={styles.adItem}>
             <SearchBar
                 initialValue={value ? { label: value.subCategory, value: value.subCategory } : undefined}
                 options={skills.map(s => ({ label: s.subCategory, value: s.subCategory }))}
@@ -19,10 +19,9 @@ const AdForm = ({ value, onChangeTitle, onChangeDescription, onChangeSkill, skil
                 value={value?.adTitle}
                 size='small'
                 fullWidth
-                className={classes.input}
+                className={styles.input}
                 onChange={(e) => onChangeTitle(e.target.value)}
                 variant="outlined"
-                style={{ backgroundColor: '#f6f4d4'}}
                 InputLabelProps={{
                     shrink: !!value?.adTitle,
                 }}
@@ -36,10 +35,9 @@ const AdForm = ({ value, onChangeTitle, onChangeDescription, onChangeSkill, skil
                 multiline
                 rows={4}
                 fullWidth
-                className={classes.input}
+                className={styles.input}
                 onChange={(e) => onChangeDescription(e.target.value)}
                 variant="outlined"
-                style={{ backgroundColor: '#f6f4d4'}}
                 InputLabelProps={{
                     shrink: !!value?.adDescription,
                 }}

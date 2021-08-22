@@ -1,14 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Container, Menu, MenuItem } from '@material-ui/core';
 import useStyles from './Styles.js';
 import LogoImage from './../images/Logo.png'
+import { AppContext } from '../../context/AppProvider.js';
 
 const Header = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const { user, onUserId, onUser } = useContext(AppContext);
     const styles = useStyles();
-    const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+    const history = useHistory();
+    const { isAuthenticated, loginWithRedirect, logout, user: _user} = useAuth0();
+
+    const getUser = (userId) => {
+        fetch(`/user/${userId}`).then(async res => {
+            const response = await res.json();
+            onUser(response[0]);
+        });
+    }
+
+    useEffect(() => {
+        if (isAuthenticated && _user) {
+            const { email } = _user;
+            fetch(`/user/emailToId/${email}`).then(async res => {
+                const response = await res.text();
+                if (response) {
+                    const userId = JSON.parse(response)._id;
+                    onUserId(userId);
+                    getUser(userId);
+                } else {
+                    history.push('/sign-up');
+                }
+            })
+        }
+    }, [isAuthenticated, _user]);
 
     const handleBecomePro = () => {
         localStorage.setItem('_redirect', '/become-pro');
@@ -41,8 +67,8 @@ const Header = () => {
                     {isAuthenticated ? (
                         <>
                             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                                {user?.name}
-                                <img src={user?.picture} className={styles.userImage} alt={user?.nickname} />
+                                {user ? `${user.firstName} ${user.lastName}`: _user?.name}
+                                <img src={_user?.picture} className={styles.userImage} alt={_user?.nickname} />
                             </Button>
                             <Menu
                                 id="simple-menu"

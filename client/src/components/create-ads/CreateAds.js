@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
 import { FormControl, TextField, InputLabel, MenuItem, Select, Button } from '@material-ui/core';
 import useStyles from './Styles';
 import categoriesData from '../../categories';
@@ -80,6 +82,8 @@ const CreateAds = () => {
     const [skillForm, setSkillForm] = useState({ category: null, subcategory: null});
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const { getIdTokenClaims } = useAuth0();
+    const history = useHistory();
 
     const styles = useStyles();
     const handleChangeCategory = value => {
@@ -97,22 +101,35 @@ const CreateAds = () => {
 
 
     const handleSubmit = () => {
+        getIdTokenClaims().then(res => {
             fetch('/user', {
                 method: 'PUT',
                 body: JSON.stringify({
+                    email: res.name,
                     isProUser: true,
                     category: skillForm.category,
                     subCategory: skillForm.subcategory,
                     adDescription: description,
                     adTitle: title,
                 }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer '+ res.__raw
+                }
+            }).then(async res => {
+                const result = await res.json();
+                if (result) {
+                    history.push('/profile')
+                }
             })
+        })
     }
 
     return (
         <div className={styles.auth}>   
             <div className={styles.authBox}>
-                <h1 className={styles.title}>Create New Ad</h1>
+                <h1 className={styles.title}>Earn money your way</h1>
+                <p className={styles.description}>See how much you can make on Pippsy</p>
                 <TextField
                     id="outlined-full-width"
                     label="Ad Title"
@@ -139,7 +156,7 @@ const CreateAds = () => {
                     label="Description"
                     className={styles.input}
                     value={description}
-                    placeholder=""
+                    placeholder="eg. T3C B5Y"
                     fullWidth
                     multiline
                     margin="normal"
@@ -150,7 +167,7 @@ const CreateAds = () => {
                     }}
                 />
 
-                <Button variant="contained" className={styles.button} onClick={handleSubmit}>Create Ad</Button>
+                <Button variant="contained" className={styles.button} onClick={handleSubmit}>Get Started</Button>
             </div>
         </div>
     )

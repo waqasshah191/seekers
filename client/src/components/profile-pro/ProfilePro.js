@@ -76,7 +76,7 @@ return loading ? <Loading /> : data ? (
               // }
               avatar={
                 // data.imageUrl
-                <Avatar src={AvatarImg} className={styles.avatar} alt={data.firstName} />
+                <Avatar src={data.imageUrl} className={styles.avatar} alt={data.firstName} />
               }
               action={userId && (
                 <div>
@@ -97,24 +97,24 @@ return loading ? <Loading /> : data ? (
               )}
 
               title={
-                <Typography variant='h5'>{data.firstName} {data.lastName}</Typography>
+                <Typography variant='h5'style={{position:'relative', left:'50px' }}>{data.firstName} {data.lastName}</Typography>
               }
 
               subheader={
                 <div>
-                  <div className={styles.address}>
-                    <RoomIcon />
+                  <div style={{position:'relative', left:'50px' }} className={styles.address}>
+                    <RoomIcon/>
                     {data?.city} {data?.postalCode}
                   </div>
                   <br />
-                  <div className={styles.flex}>
+                  <div style={{position:'relative', left:'50px' }} className={styles.flex}>
                     <Rating name="half-rating" readOnly defaultValue={data.avgRatingScore} precision={0.5} />
                     <span className={styles.reviews}>
                       {data.countRating} Reviews
                     </span>
                   </div>
                   <br />
-                  <div className={styles.flex}>
+                  <div style={{position:'relative', left:'50px' }} className={styles.flex}>
                     {data.skills.map(skill => (
                       <Chip
                         key={skill.id}
@@ -136,20 +136,20 @@ return loading ? <Loading /> : data ? (
 
             />
             <CardActions>
-              <Link href='https://twitter.com'>
-                <Twitter fontSize='large' style={{ color: '#1da1f2' }} />
+              <Link href={data.socialMediaUrl.twitter}>
+                <Twitter fontSize='large' style={{ color: '#1da1f2', position:'relative', left :'30px' }} />
               </Link>
-              <Link href='https://www.facebook.com'>
-                <Facebook fontSize='large' style={{ color: '#1877f2' }} />
+              <Link href={data.socialMediaUrl.facebook}>
+                <Facebook fontSize='large' style={{ color: '#1877f2', position:'relative', left :'30px' }} />
               </Link>
-              <Link href='https://www.instagram.com'>
-                <Instagram fontSize='large' style={{ color: '#e4405f' }} />
+              <Link href={data.socialMediaUrl.instagram}>
+                <Instagram fontSize='large' style={{ color: '#e4405f', position:'relative', left :'30px' }} />
               </Link>
             </CardActions>
             <CardContent>
-              <h3 className={styles.label}>About Me</h3>
+              <h3 style={{position:'relative', left:'30px' }} className={styles.label}>About Me</h3>
             
-              <Typography component="div" className={styles.text}>
+              <Typography component="div" style={{position:'relative', left:'30px' }}className={styles.text}>
                 {data?.detailInformation}
               </Typography>
             </CardContent>

@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     button: {
         width: '100%',
         fontWeight: 'bold',
@@ -15,6 +15,18 @@ const useStyles = makeStyles({
         "& span": {
             marginLeft: 0,
         }
+    },
+    formControl: {
+        marginBlock: theme.spacing(1),
+        width: '100%',
+    },
+    input: {
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        overflow: 'hidden',
+        boxShadow: '0 0 3px 1px rgba(0, 0, 0, 0.1)',
+        border: '1px solid #999',
+        margin: 8
     },
     facebookImage: {
         width: 12,
@@ -85,6 +97,6 @@ const useStyles = makeStyles({
         display: 'block',
         color: '#333',
     }
-});
+}));
 
 export default useStyles;
