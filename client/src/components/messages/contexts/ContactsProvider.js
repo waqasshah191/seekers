@@ -18,7 +18,7 @@ export function ContactsProvider({ children }) {
 
     // let prevContacts = [...contacts];
     let prevContacts = [];
-    let userEmail = '';
+    let userId = '';
     let userFirstName = '';
     let userLastName = '';
     let userName = '';
@@ -26,12 +26,12 @@ export function ContactsProvider({ children }) {
     console.log("users = ", users);
 
     for(let j=0; j<users.length; j++) {
-      userEmail = users[j].email;
+      userId = users[j]._id;
       userFirstName = users[j].firstName;
       userLastName = users[j].lastName;
       userName = userLastName ? userFirstName + ' ' + userLastName : userFirstName;
   
-      prevContacts.push({id: userEmail, name: userName})
+      prevContacts.push({id: userId, name: userName})
     }
   
     console.log("prevContacts = ", prevContacts)
