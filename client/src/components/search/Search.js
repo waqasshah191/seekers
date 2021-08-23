@@ -12,22 +12,27 @@ import { DateDiff } from '../../dateUtils';
 const SearchItem = ({ item }) => {
     const classes = useStyles();
 
+    let weekTime = null;
+
     const ad = (Array.isArray(item.ad) && item.ad.length > 0) ? item.ad[0] : item.ad;
-    const date = ad?.dateAdded.split('T')[0];
-    const timeString = ad?.dateAdded.split('T')[1];
-
-    const time = timeString.split('.')[0];
-    const createDate = new Date(date + ' ' + time);
-    const today = new Date();
-
-    const weekTime = DateDiff.inWeeks(createDate, today);
+    if (ad?.dateAdded) {
+        const date = ad?.dateAdded.split('T')[0];
+        const timeString = ad?.dateAdded.split('T')[1];
+    
+        const time = timeString.split('.')[0];
+        const createDate = new Date(date + ' ' + time);
+        const today = new Date();
+    
+        weekTime = DateDiff.inWeeks(createDate, today);
+    }
+    
 
     return (
         <>
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
                     <Link to={`/profile/${item._id}`} className={classes.link}>
-                        <Avatar className={classes.avatar} alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                        <Avatar className={classes.avatar} alt="Remy Sharp" src={item.imageUrl} />
                     </Link>
                 </ListItemAvatar>
                 <ListItemText
@@ -66,7 +71,9 @@ const SearchItem = ({ item }) => {
                 />
                 < div className={classes.information} >
                     <Button className={classes.button} variant="contained" color="secondary">Message</Button>
-                    <span className={classes.date}>{weekTime} {weekTime > 1 ? 'Weeks' : 'Week'} Ago</span>
+                    {weekTime && (
+                        <span className={classes.date}>{weekTime} {weekTime > 1 ? 'Weeks' : 'Week'} Ago</span>
+                    )}
                 </div >
             </ListItem >
             <Divider variant="inset" component="li" />
