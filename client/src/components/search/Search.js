@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Rating from '@material-ui/lab/Rating';
-import { Alert} from '@material-ui/lab';
+import { Alert } from '@material-ui/lab';
 import useStyles from './Styles';
 import SearchBox from '../search-box/SearchBox';
 import { List, ListItem, Divider, ListItemText, ListItemAvatar, Avatar, Typography, Container, Button } from '@material-ui/core';
@@ -18,21 +18,21 @@ const SearchItem = ({ item }) => {
     if (ad?.dateAdded) {
         const date = ad?.dateAdded.split('T')[0];
         const timeString = ad?.dateAdded.split('T')[1];
-    
+
         const time = timeString.split('.')[0];
         const createDate = new Date(date + ' ' + time);
         const today = new Date();
-    
+
         weekTime = DateDiff.inWeeks(createDate, today);
     }
-    
+
 
     return (
         <>
             <ListItem alignItems="flex-start">
                 <ListItemAvatar className={classes.avatarContainer}>
                     <Link to={`/profile/${item._id}`} className={classes.link}>
-                        <Avatar className={classes.avatar} alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                        <Avatar className={classes.avatar} alt="Remy Sharp" src={item.imageUrl} />
                     </Link>
                     <Rating size="small" name="half-rating" readOnly defaultValue={item.avgRatingScore} precision={0.5} />
                     <span className={classes.reviews}>{item.countRating || 0} reviews</span>
@@ -120,7 +120,7 @@ const Search = () => {
             // convert query object to string
             const route = Object.keys(query).reduce((acc, key) => {
                 const val = query[key];
-                return `${acc}${key}/${val}/`; 
+                return `${acc}${key}/${val}/`;
             }, '');
             if (query?.PostalCode && query?.adSubCategory) {
                 // call api with considering query
@@ -145,7 +145,7 @@ const Search = () => {
                     }
                 })
             }
-            
+
         })()
     }, [location]);
 
@@ -154,7 +154,7 @@ const Search = () => {
             <SearchBox />
             <Container className={styles.container}>
                 {notFound ? (
-                    <Alert severity="warning" style={{ width: '100%'}}>No Match Found!!!</Alert>
+                    <Alert severity="warning" style={{ width: '100%' }}>No Match Found!!!</Alert>
                 ) : (
                     <>
                         <SearchList data={data} />

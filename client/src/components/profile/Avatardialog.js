@@ -3,9 +3,11 @@ import {Dialog,DialogContent, IconButton, Avatar} from '@material-ui/core';
 import { AddAPhoto } from '@material-ui/icons';
 import useStyles from './Styles'
 
-export default function PhotoDialog() {
+export default function PhotoDialog(props) {
   const [open, setOpen] = React.useState(false);
-  const [imgUrl, setImgUrl] =useState("");
+  //const [imgUrl, setImgUrl] =useState("");
+  const imageUrl=props.imageUrl;
+  const setImageUrl= props.setImageUrl;
   const [selectedFile, setSelectedFile] = useState();
 
   const classes= useStyles()
@@ -35,16 +37,16 @@ export default function PhotoDialog() {
     )
     .then(res => res.json())
     .then(data => {console.log("this is the url", data); return data})
-    .then(data => setImgUrl(data.imageUrl))
+    .then(data => setImageUrl(data.imageUrl))
     .catch(err => console.error("caught error", err))
-    console.log("2 - imgUrl = ", imgUrl);
+    console.log("2 - imgUrl = ", imageUrl);
   };
 
   return (
     <div>
-      <Avatar className={classes.bigAvatar} style={{ position: "relative", top: "-20px" }} src={imgUrl}>
+      <Avatar className={classes.bigAvatar} style={{ position: "relative", top: "-20px" }} src={imageUrl}>
       </Avatar> 
-      <IconButton style={{ position: "relative", top:"-15px", left: "35px" }} onClick={handleClickOpen}>
+      <IconButton style={{ position: "relative", top:"-10px", left: "50px" }} onClick={handleClickOpen}>
       <AddAPhoto />
       </IconButton>
       <Dialog

@@ -26,16 +26,22 @@ const userSchema = new Schema({
         subCategory: String
     },],
 
-    socialMedia:[{ 
-        socialMediaName: String,
-        socialMediaLink: String
-    },],
+    // socialMediaUrl:[{ 
+    //     type: String
+    // },],
+
+    socialMediaUrl : {    
+        twitter: String,
+        facebook: String,
+        instagram: String
+    },
 
     ad:[{ 
         category: String,
         subCategory: String,
         adTitle: String,
         adDescription: String,
+        imageUrl: String,        
         rating: [{
                 user: {
                     type: mongoose.Schema.Types.ObjectId,
@@ -45,6 +51,8 @@ const userSchema = new Schema({
                 userFeedback: String,
                 dateAdded: Date
             },],
+        dateAdded: Date,
+        active: Boolean
     },],
 
     password: String,

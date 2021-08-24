@@ -49,18 +49,18 @@ export default function OpenConversation() {
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         <TextField
-            fullWidth
-            placeholder="Type a message..."
-            id="message"
-            required
-            margin="normal"
-            value={text}
-            className={styles.input}
-            onChange={(e) => setText(e.target.value)}
-            variant="outlined"
-            InputLabelProps={{
-                shrink: !!text,
-            }}
+          fullWidth
+          placeholder="Type a message..."
+          id="message"
+          required
+          margin="normal"
+          value={text}
+          className={styles.input}
+          onChange={(e) => setText(e.target.value)}
+          variant="outlined"
+          InputLabelProps={{
+            shrink: !!text,
+          }}
         />
         <Button type="submit" className={styles.button} variant="contained" color="secondary">
           Send
@@ -82,6 +82,6 @@ export default function OpenConversation() {
           </InputGroup>
         </Form.Group>
       </Form> */}
-    </div>
+    </div >
   )
 }

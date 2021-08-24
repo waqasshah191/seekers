@@ -11,7 +11,7 @@ const AdForm = ({ value, onChangeAvatar, onChangeTitle, onChangeDescription, onC
                 initialValue={value ? { label: value.subCategory, value: value.subCategory } : undefined}
                 options={skills.map(s => ({ label: s.subCategory, value: s.subCategory }))}
                 onChange={({ selectedOption }) => onChangeSkill(selectedOption.value)}
-            />  
+            />
             <TextField
                 type="file"
                 placeholder="Ad Image"
@@ -26,7 +26,7 @@ const AdForm = ({ value, onChangeAvatar, onChangeTitle, onChangeDescription, onC
                 InputLabelProps={{
                     shrink: true,
                 }}
-            />          
+            />
             <TextField
                 placeholder="Ad Title"
                 id="title"

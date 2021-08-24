@@ -9,7 +9,7 @@ export const AppContext = createContext({
 const AppProvider = ({ children }) => {
     const [userId, setUserId] = useState(null);
     const [user, setUser] = useState(null);
-    const [favorites, setFavorites] = useState([]);    
+    const [favorites, setFavorites] = useState([]);
     return (
         <AppContext.Provider
             value={{

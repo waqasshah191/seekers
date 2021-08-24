@@ -20,14 +20,14 @@ const ReviewItem = ({ item }) => {
     }
     return (
         <li className={styles.reviewItem}>
-        <div className={styles.reviewHead}>
-            <h3 className={styles.reviewName}>{item.adTitle}</h3>
-            <Rating name="half-rating" readOnly defaultValue={item.avgRatingScore} precision={0.5} />
-        </div>
-        <p className={styles.reviewBody}>{item.adDescription}</p>
-        {weekTime && (
-            <span className={styles.date}>{weekTime} {weekTime > 1 ? 'Weeks' : 'Week'} Ago</span>
-        )}
+            <div className={styles.reviewHead}>
+                <h3 className={styles.reviewName}>{item.adTitle}</h3>
+                <Rating name="half-rating" readOnly defaultValue={item.avgRatingScore} precision={0.5} />
+            </div>
+            <p className={styles.reviewBody}>{item.adDescription}</p>
+            {weekTime && (
+                <span className={styles.date}>{weekTime} {weekTime > 1 ? 'Weeks' : 'Week'} Ago</span>
+            )}
         </li>
     )
 }

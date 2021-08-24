@@ -11,7 +11,7 @@ const Header = () => {
     const { user, onUserId, onUser, onFavorites } = useContext(AppContext);
     const styles = useStyles();
     const history = useHistory();
-    const { isAuthenticated, loginWithRedirect, logout, user: _user} = useAuth0();
+    const { isAuthenticated, loginWithRedirect, logout, user: _user } = useAuth0();
 
     const getUser = (userId) => {
         fetch(`/user/${userId}`).then(async res => {
@@ -72,7 +72,7 @@ const Header = () => {
                     {isAuthenticated ? (
                         <>
                             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                                {(user?.firstName || user?.lastName) ? `${user.firstName} ${user.lastName}`: _user?.name}
+                                {(user?.firstName || user?.lastName) ? `${user.firstName} ${user.lastName}` : _user?.name}
                                 <img src={_user?.picture} className={styles.userImage} alt={_user?.nickname} />
                             </Button>
                             <Menu

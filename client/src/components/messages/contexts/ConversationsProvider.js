@@ -82,7 +82,7 @@ export function ConversationsProvider({ id, children }) {
       const fromMe = id === message.sender
       return { ...message, senderName: name, fromMe }
     })
-    
+
     const selected = index === selectedConversationIndex
     return { ...conversation, messages, recipients, selected }
   })
