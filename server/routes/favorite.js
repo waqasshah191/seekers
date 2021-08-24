@@ -136,7 +136,6 @@ router.put('/:id', async function(req, res) {
 
 /* Delete a favorite by ID. */
 router.delete("/:id", async (req, res) => {
-
   try {
     const data = await favorite.findByIdAndDelete(req.params.id);
 

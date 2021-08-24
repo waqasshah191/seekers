@@ -3,19 +3,14 @@ const router = express.Router();
 const user = require('../models/user');
 
 router.get('/emailToId/:email', async (req, res) => {
-
     try {
-        console.log('email = ', req.params.email);
         let data = await user.findOne({ email: req.params.email }).select({"_id": 1});
-        
+
         res.send(data);
-    
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
-    }    
-
-
+    }
 })
 
 //List all users
@@ -492,6 +487,20 @@ router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res)
     }
 })
 
+//Find skills by user id
+//To use in Postman: http://localhost:3000/user/userSkill/60e37fbf04423c24912344f2
+router.get('/userSkill/:id', async (req, res) => {
+    try {
+        console.log('id = ', req.params.id);
+        let data = await user.findOne({ _id: req.params.id }).select({"skills.category": 1, "skills.subCategory": 1});
+        
+        res.send(data);
+    
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+})
 
 //Find users by skill
 //To use in Postman:  http://localhost:3000/user/skill/dish

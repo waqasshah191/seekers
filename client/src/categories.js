@@ -1,36 +1,49 @@
-export default [
+const data = [
     {
         id: 1,
+        slug: 'art',
         title: 'Art & Entertainment',
         subcategories: [
             {
                 id: 1,
+                slug: 'piano',
                 title: 'Piano lessons'
             },
             {
                 id: 2,
+                slug: 'salsa',
                 title: 'Salsa dance lessons'
             },
             {
                 id: 3,
+                slug: 'drawing',
                 title: 'Drawing lessons'
+            },
+            {
+                id: 3,
+                slug: 'painting',
+                title: 'Custom Paintings'
             },
         ]
     },
     {
         id: 2,
         title: 'Business & Finance',
+        slug: 'business',
         subcategories: [
             {
                 id: 1,
+                slug: 'accounting',
                 title: 'Accounting services'
             },
             {
                 id: 2,
+                slug: 'tax',
                 title: 'Tax preparation services'
             },
             {
                 id: 3,
+                slug: 'financial',
                 title: 'Financial planning services'
             },
         ]
@@ -180,3 +193,5 @@ export default [
         ]
     },
 ]
+
+export default data;

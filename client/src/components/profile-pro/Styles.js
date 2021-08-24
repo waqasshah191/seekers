@@ -11,13 +11,11 @@ const useStyles = makeStyles((theme) => ({
         paddingInline: 30,
         display: 'block',
         minWidth: 'auto',
-        marginBlock: 16,
+        marginBottom: 16,
+        marginInline: 'auto',
         "& span": {
             marginLeft: 0,
         }
-    },
-    input: {
-        marginRight: 8,
     },
     container: {
         paddingBlock: 16,
@@ -32,11 +30,6 @@ const useStyles = makeStyles((theme) => ({
     flex: {
         display: 'flex',
         alignItems: 'center',
-    },
-    socials: {
-        display: 'flex',
-        alignItems: 'center',
-        paddingInline: 16,
     },
     reviews: {
         fontWeight: 'bold',
@@ -66,6 +59,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#eee',
     },
     adItem: {
+        display: 'flex',
+        alignItems: 'start',
         borderBottom: '1px solid #ddd',
         padding: 12,
         '&:last-child': {

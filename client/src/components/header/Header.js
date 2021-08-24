@@ -1,14 +1,44 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Container, Menu, MenuItem } from '@material-ui/core';
 import useStyles from './Styles.js';
 import LogoImage from './../images/Logo.png'
+import { AppContext } from '../../context/AppProvider.js';
 
 const Header = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const { user, onUserId, onUser, onFavorites } = useContext(AppContext);
     const styles = useStyles();
-    const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+    const history = useHistory();
+    const { isAuthenticated, loginWithRedirect, logout, user: _user} = useAuth0();
+
+    const getUser = (userId) => {
+        fetch(`/user/${userId}`).then(async res => {
+            const response = await res.json();
+            onUser(response[0]);
+        });
+    }
+
+    useEffect(() => {
+        if (isAuthenticated && _user) {
+            const { email } = _user;
+            fetch(`/user/emailToId/${email}`).then(async res => {
+                const response = await res.text();
+                if (response) {
+                    const userId = JSON.parse(response)._id;
+                    onUserId(userId);
+                    getUser(userId);
+                    fetch(`/favorite/${userId}`).then(async resFav => {
+                        const responseFav = await resFav.json();
+                        onFavorites(responseFav);
+                    });
+                } else {
+                    history.push('/sign-up');
+                }
+            })
+        }
+    }, [isAuthenticated, _user]);
 
     const handleBecomePro = () => {
         localStorage.setItem('_redirect', '/become-pro');
@@ -25,10 +55,11 @@ const Header = () => {
 
     const handleLogout = () => {
         handleClose();
+        localStorage.removeItem('whatsapp-clone-id');
+        localStorage.removeItem('whatsapp-clone-contacts');
+        localStorage.removeItem('whatsapp-clone-conversations');
         logout('/');
     }
-
-    console.log('user', user)
 
     return (
         <div className={styles.headerContainer}>
@@ -41,8 +72,8 @@ const Header = () => {
                     {isAuthenticated ? (
                         <>
                             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                                {user?.name}
-                                <img src={user?.picture} className={styles.userImage} alt={user?.nickname} />
+                                {(user?.firstName || user?.lastName) ? `${user.firstName} ${user.lastName}`: _user?.name}
+                                <img src={_user?.picture} className={styles.userImage} alt={_user?.nickname} />
                             </Button>
                             <Menu
                                 id="simple-menu"
@@ -64,7 +95,7 @@ const Header = () => {
                                     <Link className={styles.menuLink} to="/profile">My Profile</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-                                    <Link className={styles.menuLink} to="/message">Messages</Link>
+                                    <Link className={styles.menuLink} to="/messages">Messages</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
                                     <Link className={styles.menuLink} to="/favorite-pro">Favorite Pro</Link>

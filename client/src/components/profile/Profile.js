@@ -1,227 +1,368 @@
-import React from 'react'
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react"
-import { Loading } from "../index"
-import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
-import Card from '@material-ui/core/Card'
-import { CardHeader, IconButton, Button, Container, Typography, CardContent, CardActions, Link } from '@material-ui/core'
-import Avatar from '@material-ui/core/Avatar'
-import RoomIcon from '@material-ui/icons/Room'
-import Rating from '@material-ui/lab/Rating'
-import { Twitter, Facebook, Instagram, Edit, Delete, Save } from '@material-ui/icons'
-import SearchBar from '../searchinprofile/Searchskills'
+import React, { useContext, useEffect, useState } from 'react'
+import { withAuthenticationRequired } from "@auth0/auth0-react"
+import { Loading } from "../index";
+import { TextField, Grid, Card, CardHeader, Avatar, Button, Container, CardContent, CardActions, Link } from '@material-ui/core';
+import { Close, Room as RoomIcon } from '@material-ui/icons'
+import SearchBar from '../searchinprofile/Searchskills';
+import useStyles from './Styles.js';
+import AvatarImg from '../images/Mark1.jpg';
+import { AppContext } from '../../context/AppProvider';
+import AdForm from './AdForm';
+import { faLessThanEqual } from '@fortawesome/free-solid-svg-icons';
 
-const useStyles = makeStyles({
-
-  grid1: {
-    marginTop: 20,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-
-  },
-  card1: {
-    elevation: 2,
-    backgroundColor: '#ffdd99',
-    maxWidth: 700,
-    height: 'auto',
-    padding: 10,
-
-  },
-  card2: {
-    elevation: 2,
-    backgroundColor: '#eee8aa',
-    maxWidth: 700,
-    height: 'auto',
-    padding: 10
-
-  },
-  card3: {
-    elevation: 2,
-    backgroundColor: '#dde0a9',
-    maxWidth: 700,
-    height: 'auto',
-    padding: 10
-
-  },
-  card4: {
-    display: 'flex',
-    elevation: 2,
-    backgroundColor: '#e8e8d6',
-    maxWidth: 700,
-    height: 'auto',
-    padding: 10
-
-  },
-  bigAvatar: {
-    width: 100,
-    height: 100,
-    margin: 5
-  },
-  button: {
-    fontSize: 17,
-    borderRadius: 25,
-    paddingBlock: 7,
-    paddingInline: 30,
-    display: 'block',
-    minWidth: 'auto',
-    "& span": {
-      marginLeft: 0,
-    }
-  }
-})
-
-// const Profile = () => {
-//   const { user } = useAuth0();
-//   const { name, picture, email } = user;
-
-//   return (
-//     <div>
-//       <div className="row align-items-center profile-header">
-//         <div className="col-md-2 mb-3">
-//           <img
-//             src={picture}
-//             alt="Profile"
-//             className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
-//           />
-//         </div>
-//         <div className="col-md text-center text-md-left">
-//           <h2>{name}</h2>
-//           <p className="lead text-muted">{email}</p>
-//         </div>
-//       </div>
-//       <div className="row">
-//         <pre className="col-12 text-light bg-dark p-4">
-//           {JSON.stringify(user, null, 2)}
-//         </pre>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default withAuthenticationRequired(Profile, {
-//   onRedirecting: () => <Loading />,
-// });
 
 const Profile = () => {
-  const { user } = useAuth0();
-  const { name, picture, email } = user;
+  const [avatar, setAvatar] = useState(null);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [skillForms, setSkillForms] = useState([]);
+  const [adForms, setAdForms] = useState([{ adTitle: '', adDescription: '' }]);
+  const [postCode, setPostCode] = useState('');
+  const [city, setCity] = useState('');
+  const [about, setAbout] = useState('');
+  const [social, setSocial] = useState({ facebook: '', linkedIn: '', twitter: ''});
+  const [loading, setLoading] = useState(true);
+  const [submitLoading, setSubmitLoading] = useState(false);
 
-  const classes = useStyles()
+  const { userId: id, user: data, onUser } = useContext(AppContext);
 
-  const handleBookmark = () => {
-    //  Need an api to bookmark current profile
+  useEffect(() => {
+    if (id) {
+      setLoading(true);
+      fetch(`/user/${id}`).then(async res => {
+        const response = await res.json();
+          const userRes = response[0];
+          onUser(userRes);
+          setFirstName(userRes?.firstName);
+          setLastName(userRes?.lastName);
+          setPostCode(userRes?.postalCode);
+          setCity(userRes?.city);
+          setAbout(userRes?.detailInformation)
+          setSkillForms(userRes?.skills || []);
+          setAdForms(userRes?.ad || [{ adTitle: '', adDescription: '' }]);
+          const updateSocial = {...social};
+          (userRes?.socialMedia || []).forEach(i => {
+            updateSocial[i.socialMediaName] = i.socialMediaLink;
+          });
+          setSocial(updateSocial);
+      }).finally(() => setLoading(false));
+    }
+  }, [id]);
+
+  console.log('avatar', avatar)
+
+  const styles = useStyles();
+  // console.log('data', data);
+
+  const handleSkillForms = ({ selectedOption: options }) => {
+    const results = options.map(opt => ({ category: opt.value, subCategory: opt.value }))
+    setSkillForms(results);
   }
 
-  return (
+  const handleAddAd = () => {
+    const updateAdForms = [...adForms];
+    updateAdForms.push({ adTitle: '', adDescription: '' , subCategory: null, category: null});
+    setAdForms(updateAdForms);
+  }
+  const handleRemoveAd = (index) => {
+      const updateAdForms = [...adForms];
+      updateAdForms.splice(index, 1);
+      setAdForms(updateAdForms);
+  }
+
+  const handleChangeAd = (key, value, index) => {
+    const updateAdForms = [...adForms];
+    updateAdForms[index][key] = value;
+    setAdForms(updateAdForms);
+  }
+
+  const handleSocialChange = (key, value) => {
+    const updateSocial = {...social};
+    updateSocial[key] = value;
+    setSocial(updateSocial);
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    setSubmitLoading(true);
+
+    let imgData = null;
+
+    if(avatar) {
+      const formData = new FormData();
+      formData.append('file', avatar);
+
+      const res = await fetch(`/upload`, {
+        method: 'POST',      
+        body: formData
+      });
+      imgData = await res.json();
+    }
+
+    const adsBody = [...adForms];
+    for (let i = 0; i < adForms.length ; i++) {
+      const item = adForms[i];
+      if (item.adImage) {
+        const formData = new FormData();
+        formData.append('file', item.adImage);
+
+        const res = await fetch(`/upload`, {
+          method: 'POST',      
+          body: formData
+        });
+        const imgAdData = await res.json();
+        adsBody[i].imageUrl = imgAdData.imageUrl;
+      }
+      delete adsBody[i].adImage
+    }
+    
+    const body = {
+      firstName,
+      lastName,
+      email: data.email,
+      imageUrl: imgData ? imgData.imageUrl : undefined,
+      isProUser: true,
+      city,
+      detailInformation: about,
+      postCode,
+      skills: skillForms,
+      socialMedia: Object.keys(social).map(key => ({ socialMediaName: key, socialMediaLink: social[key] })),
+      postalCode: postCode,
+      ad: adsBody,
+    }
+    fetch(`/user/${id}`, {
+      method: 'PUT',      
+      body: JSON.stringify(body),
+      headers: {
+          'Content-Type': 'application/json',
+      }
+    }).then(async res => {
+      const result = await res.json();
+    }).finally(() => setSubmitLoading(false));
+  }
+
+  return loading ? <Loading /> : data ? (
     <Container justify='center'>
-      <Grid container spacing={1} className={classes.grid1}>
+      <form onSubmit={handleSubmit}>
+      <Grid container spacing={1} className={styles.container}>
         <Grid item xs={12} alignItems='center'>
-          <Card className={classes.card1}>
+          <Card className={styles.profileCard}>
             <CardHeader
+              // avatar={
+              //   <Avatar src={picture} className={styles.bigAvatar} alt={name} />
+              // }
               avatar={
-                <Avatar src={picture} className={classes.bigAvatar} alt={name} />
-              }
-              action={
-                <div>
-                  <div>
-                    <Button className={classes.button} variant='contained' color='secondary'>
-                      Message
-                    </Button>
-                  </div> <br />
-                  <div>
-                    <Button
-                      className={classes.button}
-                      variant='contained'
-                      color='primary'
-                      onClick={handleBookmark}
-                    >
-                      Bookmark
-                    </Button>
-                  </div>
-                  <IconButton marginRight='auto'>
-                    <Edit />
-                  </IconButton>
-                  <IconButton marginRight='auto'>
-                    <Delete />
-                  </IconButton>
-                </div>
-              }
+                // data.imageUrl
+                <Avatar src={data.imageUrl ? data.imageUrl : AvatarImg} className={styles.avatar} alt={data.firstName} />
+              }            
 
               title={
-                <Typography variant='h5'>{name}</Typography>
+                <>
+                  <TextField
+                    type="file"
+                    placeholder="Select Avatar"
+                    label="Avatar"
+                    id="avatar"
+                    margin="normal"
+                    size='small'
+                    className={styles.input}
+                    onChange={(e) => setAvatar(e.target.files[0])}
+                    variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                  />
+                  <div className={styles.flex}>
+                    <TextField
+                      placeholder="First Name"
+                      id="firstName"
+                      margin="normal"
+                      value={firstName}
+                      size='small'
+                      className={styles.input}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      variant="outlined"
+                      InputLabelProps={{
+                          shrink: !!firstName,
+                      }}
+                    />
+                    <TextField
+                      size='small'
+                      placeholder="Last Name"
+                      id="lastName"
+                      margin="normal"
+                      value={lastName}
+                      className={styles.input}
+                      onChange={(e) => setLastName(e.target.value)}
+                      variant="outlined"
+                      InputLabelProps={{
+                          shrink: !!lastName,
+                      }}
+                    />
+                  </div>
+                </>
               }
 
               subheader={
                 <div>
-                  <IconButton>
+                  <div className={styles.address}>
                     <RoomIcon />
-                    address
-                  </IconButton> <br />
-                  <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
-                  <IconButton size='small'>
-                    45 Reviews
-                  </IconButton>
-                  <SearchBar />
-
+                    <div className={styles.flex}>
+                      <TextField
+                        id="outlined-full-width"
+                        label="City"
+                        size="small"
+                        className={styles.input}
+                        value={city}
+                        placeholder="eg. Calgary"
+                        fullWidth
+                        margin="normal"
+                        onChange={(e) => setCity(e.target.value)}
+                        variant="outlined"
+                        InputLabelProps={{
+                            shrink: !!city,
+                        }}
+                      />
+                      <TextField
+                        size="small"
+                        id="outlined-full-width"
+                        label="Postal Code"
+                        className={styles.input}
+                        value={postCode}
+                        placeholder="eg. T3C B5Y"
+                        fullWidth
+                        margin="normal"
+                        onChange={(e) => setPostCode(e.target.value)}
+                        variant="outlined"
+                        InputLabelProps={{
+                            shrink: !!postCode,
+                        }}
+                      />
+                  </div>
+                  </div>
+                  <br />
+                  <SearchBar
+                    isMulti
+                    closeMenuOnSelect={false}
+                    initialValue={skillForms.map(s => ({ label: s.subCategory, value: s.subCategory }))}
+                    onChange={handleSkillForms}
+                  />
                 </div>
               }
 
             />
-            <CardActions>
-              <Link href='https://twitter.com'>
-                <Twitter fontSize='large' style={{ color: '#1da1f2' }} />
-              </Link>
-              <Link href='https://www.facebook.com'>
-                <Facebook fontSize='large' style={{ color: '#1877f2' }} />
-              </Link>
-              <Link href='https://www.instagram.com'>
-                <Instagram fontSize='large' style={{ color: '#e4405f' }} />
-              </Link>
-            </CardActions>
+            <div className={styles.socials}>
+                <TextField
+                  id="outlined-full-width"
+                  label="Facebook"
+                  size="small"
+                  className={styles.input}
+                  value={social?.facebook}
+                  placeholder="Facebook Url"
+                  fullWidth
+                  margin="normal"
+                  onChange={(e) => handleSocialChange('facebook', e.target.value)}
+                  variant="outlined"
+                  InputLabelProps={{
+                      shrink: !!social?.facebook,
+                  }}
+                />
+                <TextField
+                  id="outlined-full-width"
+                  label="LinkedIn"
+                  size="small"
+                  className={styles.input}
+                  value={social?.twitter}
+                  placeholder="LinkedIn Url"
+                  fullWidth
+                  margin="normal"
+                  onChange={(e) => handleSocialChange('twitter', e.target.value)}
+                  variant="outlined"
+                  InputLabelProps={{
+                      shrink: !!social?.twitter,
+                  }}
+                />
+                <TextField
+                  id="outlined-full-width"
+                  label="Twitter"
+                  size="small"
+                  className={styles.input}
+                  value={social?.linkedIn}
+                  placeholder="Twitter Url"
+                  fullWidth
+                  margin="normal"
+                  onChange={(e) => handleSocialChange('linkedIn', e.target.value)}
+                  variant="outlined"
+                  InputLabelProps={{
+                      shrink: !!social?.linkedIn,
+                  }}
+                />
+            </div>
             <CardContent>
-              <h3>About Me</h3>
-              <Container alignItems='center'>
-                <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '10vh' }} />
-              </Container>
+              <h3 className={styles.label}>About Me</h3>
+          
+              <TextField
+                size="small"
+                id="outlined-full-width"
+                label="About Me"
+                className={styles.input}
+                value={about}
+                placeholder="Somthing about me...."
+                fullWidth
+                multiline
+                rows={5}
+                margin="normal"
+                onChange={(e) => setAbout(e.target.value)}
+                variant="outlined"
+                InputLabelProps={{
+                    shrink: !!about,
+                }}
+              />
+              {/* detailInformation */}
             </CardContent>
           </Card>
         </Grid>
         <Grid item xs={12}>
-          <Card className={classes.card2}>
+          <Card className={styles.listContainer}>
             <CardContent>
-              <h3>Post Ad</h3>
-              <Container alignItems='center'>
-                <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '10vh' }} />
-              </Container> <br />
-              <h3>Ads List</h3>
+              <h3 className={styles.label}>Ads List</h3>
+              <div>
+                  {adForms.map((s, index) => (
+                      <div key={index} className={styles.adsForm} >
+                          {index > 0 && (
+                              <div className={styles.close} onClick={() => handleRemoveAd(index)}>
+                                  <Close />
+                              </div>
+                          )}
+                          <AdForm
+                              value={s}
+                              skills={skillForms}
+                              onChangeTitle={value => handleChangeAd('adTitle', value, index)}
+                              onChangeDescription={value => handleChangeAd('adDescription', value, index)}
+                              onChangeSkill={value => {
+                                handleChangeAd('subCategory', value, index);
+                                handleChangeAd('category', value, index)
+                              }}
+                              onChangeAvatar={file => handleChangeAd('adImage', file, index)}
+                          />
+                      </div>
+                  ))}
+              </div>
+              <div className={styles.more} onClick={handleAddAd}>+ Add more ads</div>
+
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12}>
-          <Card className={classes.card3}>
-            <CardContent>
-              <h3>Reviews</h3>
-              <Container alignItems='center'>
-                <IconButton size='small'> Read More</IconButton>
-              </Container>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12}>
-          <Card className={classes.card4} alignItems='center' justifyContent='center'>
-            <Button variant="contained" color="primary" startIcon={<Save />}>
-              Save
-            </Button>
-          </Card>
-        </Grid>
+      
+        <Button type="submit" variant="contained" color={submitLoading ? 'secondary' : 'primary'} className={styles.button}>
+          {submitLoading ? 'Saving...': 'Save Changes'}
+        </Button>
 
       </Grid>
-
+      </form>
     </Container>
-
-
-  )
+  ) : null;
 }
 
 export default withAuthenticationRequired(Profile, {
