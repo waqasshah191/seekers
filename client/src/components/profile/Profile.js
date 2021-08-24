@@ -259,28 +259,13 @@ const Profile = () => {
                   size="small"
                   className={styles.input}
                   value={social?.facebook}
-                  placeholder="Facebook Url"
+                  placeholder="https://www.facebook.com/"
                   fullWidth
                   margin="normal"
                   onChange={(e) => handleSocialChange('facebook', e.target.value)}
                   variant="outlined"
                   InputLabelProps={{
-                    shrink: !!social?.facebook,
-                  }}
-                />
-                <TextField
-                  id="outlined-full-width"
-                  label="LinkedIn"
-                  size="small"
-                  className={styles.input}
-                  value={social?.twitter}
-                  placeholder="LinkedIn Url"
-                  fullWidth
-                  margin="normal"
-                  onChange={(e) => handleSocialChange('twitter', e.target.value)}
-                  variant="outlined"
-                  InputLabelProps={{
-                    shrink: !!social?.twitter,
+                    shrink: true,
                   }}
                 />
                 <TextField
@@ -288,14 +273,29 @@ const Profile = () => {
                   label="Twitter"
                   size="small"
                   className={styles.input}
+                  value={social?.twitter}
+                  placeholder="https://twitter.com/"
+                  fullWidth
+                  margin="normal"
+                  onChange={(e) => handleSocialChange('twitter', e.target.value)}
+                  variant="outlined"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <TextField
+                  id="outlined-full-width"
+                  label="LinkedIn"
+                  size="small"
+                  className={styles.input}
                   value={social?.linkedIn}
-                  placeholder="Twitter Url"
+                  placeholder="https://www.linkedin.com/"
                   fullWidth
                   margin="normal"
                   onChange={(e) => handleSocialChange('linkedIn', e.target.value)}
                   variant="outlined"
                   InputLabelProps={{
-                    shrink: !!social?.linkedIn,
+                    shrink: true,
                   }}
                 />
               </div>

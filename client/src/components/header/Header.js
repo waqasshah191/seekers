@@ -73,7 +73,7 @@ const Header = () => {
                         <>
                             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                                 {(user?.firstName || user?.lastName) ? `${user.firstName} ${user.lastName}` : _user?.name}
-                                <img src={_user?.picture} className={styles.userImage} alt={_user?.nickname} />
+                                <img src={user?.imageUrl ? user.imageUrl : _user?.picture} className={styles.userImage} alt={_user?.nickname} />
                             </Button>
                             <Menu
                                 id="simple-menu"

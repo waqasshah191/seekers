@@ -7,46 +7,43 @@ import { useConversations } from './messages/contexts/ConversationsProvider';
 
 
 const useStyles = makeStyles({
-    button: {
-        fontSize: 17,
-        borderRadius: 25,
-        paddingBlock: 7,
-        paddingInline: 30,
-        display: 'block',
-        minWidth: 'auto',
-        marginBottom: 16,
-        marginInline: 'auto',
-        "& span": {
-            marginLeft: 0,
-        }
-    },
+  button: {
+    fontSize: 17,
+    borderRadius: 25,
+    paddingBlock: 7,
+    paddingInline: 30,
+    display: 'block',
+    minWidth: 'auto',
+    marginBottom: 16,
+    marginInline: 'auto',
+    "& span": {
+      marginLeft: 0,
+    }
+  },
 });
 
 const MessageButton = ({ id, data }) => {
-    const { createContact, contacts } = useContacts();
-    const { createConversation, conversations } = useConversations()
-    const styles = useStyles();
-    const history = useHistory();
-    const handleCreateMessage = () => {
-        const contact = contacts.find(i => i.id === id);
-        const conversation = conversations.find(i => i.recipients.length > 0 && i.recipients[0].id === id);
-        if (!contact) {
-          createContact(id, `${data.firstName} ${data.lastName}`);
-        }
-    
-        if (!conversation) {
-          createConversation([id])
-        }
-        
-        setTimeout(() => {
-          history.push('/messages');
-        }, 500);
-      }
-    return (
-        <Button className={styles.button} onClick={handleCreateMessage} variant='contained' color='secondary'>
-            Message
-        </Button>
-    )
+  const { contacts = [] } = useContacts();
+  const { createConversation, conversations } = useConversations()
+  const styles = useStyles();
+  const history = useHistory();
+  const handleCreateMessage = () => {
+    const conversation = conversations.find(i => i.recipients.length > 0 && i.recipients[0].id === id);
+
+
+    if (!conversation) {
+      createConversation([id])
+    }
+
+    setTimeout(() => {
+      history.push('/messages');
+    }, 500);
+  }
+  return (
+    <Button className={styles.button} onClick={handleCreateMessage} variant='contained' color='secondary'>
+      Message
+    </Button>
+  )
 }
 
 export default MessageButton;

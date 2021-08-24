@@ -156,15 +156,15 @@ const ProfilePro = () => {
 
             />
             <CardActions>
-              <Link href={data.socialMediaUrl.twitter}>
+              <a href={data.socialMediaUrl.twitter}>
                 <Twitter fontSize='large' style={{ color: '#1da1f2', position: 'relative', left: '30px' }} />
-              </Link>
-              <Link href={data.socialMediaUrl.facebook}>
+              </a>
+              <a href={data.socialMediaUrl.facebook}>
                 <Facebook fontSize='large' style={{ color: '#1877f2', position: 'relative', left: '30px' }} />
-              </Link>
-              <Link href={data.socialMediaUrl.instagram}>
+              </a>
+              <a href={data.socialMediaUrl.instagram}>
                 <Instagram fontSize='large' style={{ color: '#e4405f', position: 'relative', left: '30px' }} />
-              </Link>
+              </a>
             </CardActions>
             <CardContent>
               <h3 style={{ position: 'relative', left: '30px' }} className={styles.label}>About Me</h3>
