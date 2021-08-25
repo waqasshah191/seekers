@@ -2,7 +2,7 @@ import React from 'react';
 import { ExpandMore, Help } from '@material-ui/icons';
 import { Container, Typography, Button } from '@material-ui/core';
 import useStyles from './Styles.js';
-import InviteFriendImage from '../images/background.png';
+import InviteFriendImage from '../images/invitefriend.jpg';
 
 const InviteFriend = () => {
     const styles = useStyles();
@@ -13,7 +13,8 @@ const InviteFriend = () => {
                     <div className={styles.content}>
                         <h1>Invite Friend</h1>
                         <p className={styles.contentText}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                           Spread the word using the links below!!! <br/>
+                           Introduce this novel website to your friends and help them to make opportunities for themselves as well as find services they require at their convenience. 
                         </p>
                         <div>
                             <Button

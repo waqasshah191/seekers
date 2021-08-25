@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'pointer',
     },
     teamImage: {
-        width: '100%'
+        width: '200px',
+        height: '230px',
     },
     teamName: {
         fontSize: 28,

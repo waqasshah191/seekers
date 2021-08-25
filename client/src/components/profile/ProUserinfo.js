@@ -13,8 +13,6 @@ import { AppContext } from './../../context/AppProvider'
 import { Loading } from "../index"
 import { withAuthenticationRequired } from "@auth0/auth0-react"
 
-
-
 //import { useAuth0 } from '@auth0/auth0-react'
 
 

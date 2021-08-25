@@ -2,7 +2,7 @@ import React from 'react';
 import { ExpandMore, Help } from '@material-ui/icons';
 import { Container, Typography } from '@material-ui/core';
 import useStyles from './Styles.js';
-import AboutImage from '../images/background.png';
+import AboutImage from '../images/About us.png';
 
 const About = () => {
     const styles = useStyles();
@@ -13,7 +13,7 @@ const About = () => {
                     <div className={styles.content}>
                         <h1>About Us</h1>
                         <p className={styles.contentText}>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        We are a team of four members launching our product "Pippsy" in August 2021. Pippsy is a social utility platform that helps individuals to monetize their side skills. In this dynamic world, people can't rely on one job. During the current pandemic, we have seen the unemployment rates soaring like anything. Not only this, there is a huge population in Canada who rely on careers at Walmart, Safeway etc and are looking for opportunities where they can make money for their side skills such as providing Paino or driving lessons. During a brainstorming session, our team thought of this problem and have shaped Pippsy with affordable and effective features where people can advertise their skills as well as find services they need.
                         </p>
                     </div>
                     <div className={styles.imageWrapper}>

@@ -3,7 +3,7 @@ import { useForm, ValidationError } from '@formspree/react';
 import { Container, TextField, Button } from '@material-ui/core';
 import { Alert} from '@material-ui/lab';
 import useStyles from './Styles.js';
-import ContactImage from '../images/background.png';
+import ContactImage from '../images/Picture3.jpg';
 
 const Contact = () => {
     const [alertMessage, setAlertMessage] = useState('');
@@ -39,7 +39,8 @@ const Contact = () => {
                         
                         <h1>Contact Us</h1>
                         <p className={styles.contentText}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            How can we help??? <br/>
+                            Ask your questions, provide comments or share your views down below and we will reply within 24 hrs.
                         </p>
                         <ValidationError 
                             prefix="Message" 
