@@ -16,7 +16,7 @@ const HomeCategories = () => {
 
                         {/* <a href={`/search?category=${category.id}`} className={styles.link}>{category.title}</a> */}
                         {/* <a href={`/search?skill/${category.id}`} className={styles.link}>{category.title}</a> */}
-                        <a href={`/search?adSubCategory=${category.slug}`} className={styles.link}>{category.title}</a>                        
+                        <a href={`/search?adCategory=${category.title}`} className={styles.link}>{category.title}</a>                        
 
                         <ul className={styles.subcategories}>
                             {category.subcategories.map(sub => (
@@ -24,7 +24,7 @@ const HomeCategories = () => {
 
                                     {/* <a href={`/search?category=${sub.id}`} className={styles.link}>{sub.title}</a> */}
                                     {/* <a href={`/search?skill/${sub.id}`} className={styles.link}>{sub.title}</a> */}
-                                    <a href={`/search?adSubCategory=${sub.slug}`} className={styles.link}>{sub.title}</a>
+                                    <a href={`/search?adSubCategory=${sub.title}`} className={styles.link}>{sub.title}</a>
 
                                 </li>
                             ))}

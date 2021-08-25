@@ -26,7 +26,6 @@ const SearchItem = ({ item }) => {
         weekTime = DateDiff.inWeeks(createDate, today);
     }
 
-
     return (
         <>
             <ListItem alignItems="flex-start">
@@ -119,12 +118,31 @@ const Search = () => {
 
             // convert query object to string
             const route = Object.keys(query).reduce((acc, key) => {
-                const val = query[key];
-                return `${acc}${key}/${val}/`;
+                let val = query[key];
+                let searchString = ''
+
+                console.log("### acc, key, value = ", acc, key, val)
+                if (!val) {
+                    searchString = `${acc}${key}`
+                }
+                else {
+                    searchString = `${acc}${key}/${val}`
+                }
+
+                //return `${acc}${key}/${val}`;
+                return searchString
             }, '');
-            if (query?.PostalCode && query?.adSubCategory) {
+
+             console.log("query?.postalCode, query?.adSubCategory = ", query?.postalCode, query?.adSubCategory)
+
+            if (query?.postalCode && query?.adSubCategory) {
+
+                console.log("inside postalcode and adsubcategory")
+
+
                 // call api with considering query
-                fetch(`/user/skillPostalCode/${query?.adSubCategory}&${query?.PostalCode}`).then(async res => {
+                //fetch(`/user/skillPostalCode/${query?.adSubCategory}&${query?.PostalCode}`).then(async res => {
+                fetch(`/user/adSubCategoryPostalCode/${query?.adSubCategory}&${query?.postalCode}`).then(async res => {
                     const result = await res.json();
                     if (Array.isArray(result)) {
                         // set response data to local state 

@@ -1,8 +1,8 @@
 const data = [
     {
         id: 1,
-        slug: 'art',
-        title: 'Art & Entertainment',
+        slug: 'Art and Entertainment',
+        title: 'Art and Entertainment',
         subcategories: [
             {
                 id: 1,
@@ -19,17 +19,12 @@ const data = [
                 slug: 'drawing',
                 title: 'Drawing lessons'
             },
-            {
-                id: 3,
-                slug: 'painting',
-                title: 'Custom Paintings'
-            },
         ]
     },
     {
         id: 2,
-        title: 'Business & Finance',
-        slug: 'business',
+        title: 'Business and Finance',
+        slug: 'Business and Finance',
         subcategories: [
             {
                 id: 1,
@@ -51,6 +46,7 @@ const data = [
     {
         id: 3,
         title: 'General Services',
+        slug: 'General Services',        
         subcategories: [
             {
                 id: 1,
@@ -68,7 +64,8 @@ const data = [
     },
     {
         id: 4,
-        title: 'Education & Tutors',
+        title: 'Education and Tutors',
+        slug: 'Education and Tutors',     
         subcategories: [
             {
                 id: 1,
@@ -86,7 +83,8 @@ const data = [
     },
     {
         id: 5,
-        title: 'Trade & Maintenance',
+        title: 'Trade and Maintenance',
+        slug: 'Trade and Maintenance',             
         subcategories: [
             {
                 id: 1,
@@ -104,7 +102,8 @@ const data = [
     },
     {
         id: 6,
-        title: 'Transport & Moving',
+        title: 'Transport and Moving',
+        slug: 'Transport and Moving',           
         subcategories: [
             {
                 id: 1,
@@ -122,7 +121,8 @@ const data = [
     },
     {
         id: 7,
-        title: 'IT & Programming',
+        title: 'IT and Programming',
+        slug: 'IT and Programming',
         subcategories: [
             {
                 id: 1,
@@ -141,6 +141,7 @@ const data = [
     {
         id: 8,
         title: 'Craft',
+        slug: 'Craft',
         subcategories: [
             {
                 id: 1,
@@ -158,7 +159,8 @@ const data = [
     },
     {
         id: 9,
-        title: 'Sport & Fitness',
+        title: 'Sport and Fitness',
+        slug: 'Sport and Fitness',
         subcategories: [
             {
                 id: 1,
@@ -177,6 +179,7 @@ const data = [
     {
         id: 10,
         title: 'Legal',
+        slug: 'Legal',
         subcategories: [
             {
                 id: 1,
