@@ -4,7 +4,7 @@ import Footer from './components/footer/Footer';
 import Home from './components/home/Home';
 import Search from './components/search/Search';
 
-import Profile from './components/profile/Profile';
+import CreateProfile from './components/profile/ProUserinfo';
 import BecomePro from './components/become-pro/BecomePro';
 import CreateAds from './components/create-ads/CreateAds';
 import HelpCenter from './components/help-center/HelpCenter';
@@ -53,7 +53,7 @@ const Routers = ({ redirect, loading }) => {
                             </Route>
 
                             <Route path='/profile/'>
-                                <Profile />
+                                <CreateProfile />
                             </Route>
 
                             <Route path='/become-pro'>
