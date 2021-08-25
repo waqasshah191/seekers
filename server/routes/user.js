@@ -4,11 +4,9 @@ const user = require('../models/user');
 
 router.get('/emailToId/:email', async (req, res) => {
     try {
-        console.log('email = ', req.params.email);
         let data = await user.findOne({ email: req.params.email }).select({"_id": 1});
-        
+
         res.send(data);
-    
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
@@ -40,8 +38,12 @@ router.get('/', async (req, res) => {
     //conbine data from data 1 and data 2
     let data3 = data1.map(obj => {
         const index = data2.findIndex(el => el["_id"].toString() === obj["_id"].toString());
-        const { avgRatingScore } = index !== -1 ? data2[index] : {};
-        const { countRating } = index !== -1 ? data2[index] : {};        
+        // const { avgRatingScore } = index !== -1 ? data2[index] : {};
+        // const { countRating } = index !== -1 ? data2[index] : {};        
+        const { avgRatingScore } = index !== -1 ? data2[index] : {avgRatingScore: 0.0};
+        const { countRating } = index !== -1 ? data2[index] : {countRating: 0.0};
+
+
         return {
             ...obj,
             avgRatingScore,
@@ -61,7 +63,7 @@ router.get('/', async (req, res) => {
 //Find one user by id
 router.get('/:id', async (req, res) => {
     try {
-        console.log('id = ', req.params.id);
+        // console.log('id = ', req.params.id);
         let data1 = await user.find({ _id: req.params.id }).lean().populate("ad.rating.user", { firstName: 1, lastName: 1 });
 
         //get data of aggregated average rating of all reviews per user
@@ -85,9 +87,12 @@ router.get('/:id', async (req, res) => {
         //conbine data from data 1 and data 2
         let data3 = data1.map(obj => {
             const index = data2.findIndex(el => el["_id"].toString() === obj["_id"].toString());
-            const { avgRatingScore } = index !== -1 ? data2[index] : {};
-            const { countRating } = index !== -1 ? data2[index] : {};            
-            return {
+            // const { avgRatingScore } = index !== -1 ? data2[index] : {};
+            // const { countRating } = index !== -1 ? data2[index] : {};            
+            const { avgRatingScore } = index !== -1 ? data2[index] : {avgRatingScore: 0.0};
+            const { countRating } = index !== -1 ? data2[index] : {countRating: 0.0};
+
+            return {                
                 ...obj,
                 avgRatingScore,
                 countRating
@@ -113,7 +118,7 @@ router.get('/:id', async (req, res) => {
 router.get('/adCategory/:category', async (req, res) => {
 
     try {
-        console.log('Ad Category = ', req.params.category);
+        // console.log('Ad Category = ', req.params.category);
 
         let data1 = await user.aggregate([
             {
@@ -144,12 +149,15 @@ router.get('/adCategory/:category', async (req, res) => {
                 }
             }
         ])
-
+       
         //conbine data from data 1 and data 2
         let data3 = data1.map(obj => {
             const index = data2.findIndex(el => el["_id"].toString() === obj["_id"].toString());
-            const { avgRatingScore } = index !== -1 ? data2[index] : {};
-            const { countRating } = index !== -1 ? data2[index] : {};
+            // const { avgRatingScore } = index !== -1 ? data2[index] : {};
+            // const { countRating } = index !== -1 ? data2[index] : {};
+            const { avgRatingScore } = index !== -1 ? data2[index] : {avgRatingScore: 0.0};
+            const { countRating } = index !== -1 ? data2[index] : {countRating: 0.0};
+
             return {
                 ...obj,
                 avgRatingScore,
@@ -174,10 +182,8 @@ router.get('/adCategory/:category', async (req, res) => {
 
 async function adSubCategorySearch(subCategory) {
 
-    console.log("subCategory = ", subCategory);
-
     try {
-        console.log('subCategory = ', subCategory);
+        // console.log('subCategory = ', subCategory);
 
         let data1 = await user.aggregate([
             {
@@ -189,6 +195,13 @@ async function adSubCategorySearch(subCategory) {
             {
                 "$match": { "ad.subCategory": {$regex: subCategory, $options : 'i'} }
             },
+
+            
+            {
+                "$addFields": {
+                    fromMain: 0
+                }
+            }
         ])
 
         //get data of aggregated average rating of all reviews per user
@@ -212,8 +225,11 @@ async function adSubCategorySearch(subCategory) {
         //conbine data from data 1 and data 2
         let data3 = data1.map(obj => {
             const index = data2.findIndex(el => el["_id"].toString() === obj["_id"].toString());
-            const { avgRatingScore } = index !== -1 ? data2[index] : {};
-            const { countRating } = index !== -1 ? data2[index] : {};
+            // const { avgRatingScore } = index !== -1 ? data2[index] : {};
+            // const { countRating } = index !== -1 ? data2[index] : {};
+            const { avgRatingScore } = index !== -1 ? data2[index] : {avgRatingScore: 0.0};
+            const { countRating } = index !== -1 ? data2[index] : {countRating: 0.0};
+
             return {
                 ...obj,
                 avgRatingScore,
@@ -234,11 +250,10 @@ async function adSubCategorySearch(subCategory) {
         console.log(error);
         res.sendStatus(500);
     }    
-
 }
 
 //Find users by ad.subCategory
-//To use in Postman:  http://localhost:3000/user/adSubCategory/Drawing classes
+//To use in Postman:  http://localhost:3000/user/adSubCategory/Drawing lessons
 //router.get('/adSubCategory/:subCategory', async function(req, res) {
 router.get('/adSubCategory/:subCategory', async (req, res) => {
 
@@ -282,8 +297,11 @@ router.get('/adSubCategory/:subCategory', async (req, res) => {
     //     //conbine data from data 1 and data 2
     //     let data3 = data1.map(obj => {
     //         const index = data2.findIndex(el => el["_id"].toString() === obj["_id"].toString());
-    //         const { avgRatingScore } = index !== -1 ? data2[index] : {};
-    //         const { countRating } = index !== -1 ? data2[index] : {};
+    //        // const { avgRatingScore } = index !== -1 ? data2[index] : {};
+    //        // const { countRating } = index !== -1 ? data2[index] : {};
+    //        const { avgRatingScore } = index !== -1 ? data2[index] : {avgRatingScore: 0.0};
+    //        const { countRating } = index !== -1 ? data2[index] : {countRating: 0.0};
+    //
     //         return {
     //             ...obj,
     //             avgRatingScore,
@@ -299,14 +317,12 @@ router.get('/adSubCategory/:subCategory', async (req, res) => {
     //     console.log(error);
     //     res.sendStatus(500);
     // }
-
-
 })
 
 async function postalCodeSearch(postalCode) {
 
     try {
-        console.log('postalCode = ', postalCode);
+        // console.log('postalCode = ', postalCode);
 
         //get data matching criteria
         let data1 = await user.aggregate([
@@ -316,6 +332,13 @@ async function postalCodeSearch(postalCode) {
             {
                 "$unwind": "$ad"
             },
+
+            
+            {
+                "$addFields": {
+                    fromMain: 1
+                }
+            }            
         ])
 
         //get data of aggregated average rating of all reviews per user
@@ -338,8 +361,11 @@ async function postalCodeSearch(postalCode) {
         //conbine data from data 1 and data 2
         let data3 = data1.map(obj => {
             const index = data2.findIndex(el => el["_id"].toString() === obj["_id"].toString());
-            const { avgRatingScore } = index !== -1 ? data2[index] : {};
-            const { countRating } = index !== -1 ? data2[index] : {};
+            // const { avgRatingScore } = index !== -1 ? data2[index] : {};
+            // const { countRating } = index !== -1 ? data2[index] : {};
+            const { avgRatingScore } = index !== -1 ? data2[index] : {avgRatingScore: 0.0};
+            const { countRating } = index !== -1 ? data2[index] : {countRating: 0.0};
+
             return {
                 ...obj,
                 avgRatingScore,
@@ -411,8 +437,11 @@ router.get('/postalCode/:postalCode', async (req, res) => {
     //     //conbine data from data 1 and data 2
     //     let data3 = data1.map(obj => {
     //         const index = data2.findIndex(el => el["_id"].toString() === obj["_id"].toString());
-    //         const { avgRatingScore } = index !== -1 ? data2[index] : {};
-    //         const { countRating } = index !== -1 ? data2[index] : {};
+    ////         const { avgRatingScore } = index !== -1 ? data2[index] : {};
+    ////         const { countRating } = index !== -1 ? data2[index] : {};
+    //         const { avgRatingScore } = index !== -1 ? data2[index] : {avgRatingScore: 0.0};
+    //         const { countRating } = index !== -1 ? data2[index] : {countRating: 0.0};
+    //
     //         return {
     //             ...obj,
     //             avgRatingScore,
@@ -438,23 +467,23 @@ router.get('/postalCode/:postalCode', async (req, res) => {
 //Find users by ad.subCategory and postal code
 //To use in Postman:  http://localhost:3000/user/skillpostalCode/dish&T2Y
 //router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async function(req, res) {
-router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res) => {
+router.get('/adSubCategoryPostalCode/:adSubCategory&:postalCode', async (req, res) => {
     try {
-        console.log('subCategory = ', req.params.subCategory);
-        console.log('postalCode = ', req.params.postalCode);
+        // console.log('adSubCategory = ', req.params.adSubCategory);
+        // console.log('postalCode = ', req.params.postalCode);
 
         let dataFinal = [];
 
         //get data matching criteria, subCategory + Postal Code combo
         let data1 = await user.aggregate([
             {
-                "$match": { "postalCode": {$regex: req.params.postalCode, $options : 'i'}, "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }                
+                "$match": { "postalCode": {$regex: req.params.postalCode, $options : 'i'}, "ad.subCategory": {$regex: req.params.adSubCategory, $options : 'i'} }                
             },
             {
                 "$unwind": "$ad"
             },
             {
-                "$match": { "ad.subCategory": {$regex: req.params.subCategory, $options : 'i'} }
+                "$match": { "ad.subCategory": {$regex: req.params.adSubCategory, $options : 'i'} }
             },
             {
                 "$addFields": {
@@ -463,7 +492,8 @@ router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res)
             }
         ])
        
-        console.log("subCategory + postalCode, data1.length = ", data1.length);
+        // console.log("adSubCategory + postalCode, data1.length = ", data1.length);
+        // console.log("###data1 = ", data1);
 
         //Found record(s) in subCategory + postal code combe criteria
         if (data1.length > 0) {
@@ -484,15 +514,17 @@ router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res)
                         "countRating" : { "$sum" : 1 }
                     }
                 }
-
             ])
 
             //conbine data from data 1 and data 2
             let data3 = data1.map(obj => {
                 const index = data2.findIndex(el => el["_id"].toString() === obj["_id"].toString());
-                const { avgRatingScore } = index !== -1 ? data2[index] : {};
-                const { countRating } = index !== -1 ? data2[index] : {};
-                return {
+                // const { avgRatingScore } = index !== -1 ? data2[index] : {};
+                // const { countRating } = index !== -1 ? data2[index] : {};
+                const { avgRatingScore } = index !== -1 ? data2[index] : {avgRatingScore: 0.0};
+                const { countRating } = index !== -1 ? data2[index] : {countRating: 0.0};
+            
+                return {                    
                     ...obj,
                     avgRatingScore,
                     countRating
@@ -520,7 +552,7 @@ router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res)
 
             //call search for subcategory    
             //add result to end of data1, subCategory + postal code result
-            let data4 = await adSubCategorySearch(req.params.subCategory);
+            let data4 = await adSubCategorySearch(req.params.adSubCategory);
 
             //exclude records in data4 that are already found in data1
             //data4 = data4.filter( ( el ) => !data1.includes( el ) );
@@ -529,31 +561,27 @@ router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res)
 
             dataFinal = [...data3, ...data5];
 
-            console.log('data3 = ', data3);
-            console.log('data5 = ', data5);
-            console.log('subCategory + postalCode + rest of subCategory, dataFinal = ', dataFinal);
+            // console.log('data3 = ', data3);
+            // console.log('data5 = ', data5);
+            // console.log('subCategory + postalCode + rest of subCategory, dataFinal = ', dataFinal);
 
         }
         else { //Nothing found in subCategory + postal code combe criteria
                //try finding just subCategory regardless of postal code, if something found, send it back
                //if subCategory return non, try finding just postal code regardless of subCategory, if something found, send it back
         
-            console.log("INSIDE subcategory+postalcode!!!");
-
-            let data6 = await adSubCategorySearch(req.params.subCategory);
-
-            console.log("!!!data6.length = ", data6.length);
+            let data6 = await adSubCategorySearch(req.params.adSubCategory);
 
             //found something in subCategory
             if (data6.length > 0) {
 
-                console.log("INSIDE subcategory condition if data > 0!!!");
+                // console.log("INSIDE subcategory condition if data > 0!!!");
 
                 dataFinal = [...data6];
             }
             else {
 
-                console.log("INSIDE subcategory condition else data > 0!!!");
+                // console.log("INSIDE subcategory condition else data > 0!!!");
 
                 let data7 = await postalCodeSearch(req.params.postalCode);
 
@@ -566,13 +594,12 @@ router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res)
             } 
         }
 
-        console.log("dataFinal.length = ", dataFinal.length);
+        // console.log("dataFinal.length = ", dataFinal.length);
 
         //sort based on record came from main query, number of reviews then average rating score
         dataFinal.sort((a, b) => {
-            return a.fromMain - b.fromMain || b.countRating - a.countRating || b.avgRatingScore - a.avgRatingScore
+            return b.fromMain - a.fromMain || b.countRating - a.countRating || b.avgRatingScore - a.avgRatingScore
         })
-
 
         console.info('Found the users with ad.subCategory and postal code:', dataFinal);
         res.send(dataFinal);
@@ -587,7 +614,7 @@ router.get('/adSubCategoryPostalCode/:subCategory&:postalCode', async (req, res)
 //To use in Postman: http://localhost:3000/user/userSkill/60e37fbf04423c24912344f2
 router.get('/userSkill/:id', async (req, res) => {
     try {
-        console.log('id = ', req.params.id);
+        // console.log('id = ', req.params.id);
         let data = await user.findOne({ _id: req.params.id }).select({"skills.category": 1, "skills.subCategory": 1});
         
         res.send(data);
@@ -602,7 +629,7 @@ router.get('/userSkill/:id', async (req, res) => {
 //To use in Postman:  http://localhost:3000/user/skill/dish
 router.get('/skill/:skill', async function (req, res) {
     try {
-        console.log('skill = ', req.params.skill);
+        // console.log('skill = ', req.params.skill);
         //let data = await user.find({skills: req.params.skill});
         let data = await user.find({ "skills.subCategory": new RegExp(req.params.skill) });
         console.info('Found the users with skill :', data);
@@ -617,8 +644,8 @@ router.get('/skill/:skill', async function (req, res) {
 //To use in Postman:  http://localhost:3000/user/skillpostalCode/dish&T2Y
 router.get('/skillPostalCode/:skill&:postalCode', async function (req, res) {
     try {
-        console.log('skill = ', req.params.skill);
-        console.log('postalCode = ', req.params.postalCode);
+        // console.log('skill = ', req.params.skill);
+        // console.log('postalCode = ', req.params.postalCode);
         let data = await user.find({ "skills.subCategory": new RegExp(req.params.skill), postalCode: new RegExp(req.params.postalCode) });
         console.info('Found the users with skill and postal code:', data);
         res.send(data);
@@ -632,8 +659,8 @@ router.get('/skillPostalCode/:skill&:postalCode', async function (req, res) {
 //To use in Postman:  http://localhost:3000/user/skillpostalCode/dish&Calgary
 router.get('/skillCity/:skill&:city', async function (req, res) {
     try {
-        console.log('skill = ', req.params.skill);
-        console.log('city = ', req.params.city);
+        // console.log('skill = ', req.params.skill);
+        // console.log('city = ', req.params.city);
         let data = await user.find({ "skills.subCategory": new RegExp(req.params.skill), city: new RegExp(req.params.city) });
         console.info('Found the users with skill and city:', data);
         res.send(data);
@@ -677,9 +704,9 @@ router.put('/:id', async (req, res) => {
 router.patch('/:id', async (req, res) => {
     let userToUpdate = req.body;
 
-    console.log("req.params.id = ", req.params.id);
-    console.log("req.body = ", req.body);
-    console.log("userToUpdate = ", userToUpdate);
+    // console.log("req.params.id = ", req.params.id);
+    // console.log("req.body = ", req.body);
+    // console.log("userToUpdate = ", userToUpdate);
 
     try {
         let data = await user.findByIdAndUpdate({_id: req.params.id}, {$set: userToUpdate}, {upsert: true, new: true});

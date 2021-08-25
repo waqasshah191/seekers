@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
         marginBlock: 8,
     },
     listContainer: {
-        backgroundColor: '#dde0a9',
+        backgroundColor: '#eee',
     },
     adItem: {
         display: 'flex',

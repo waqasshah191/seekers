@@ -10,10 +10,10 @@ import AvatarImg from '../images/Mark1.jpg';
 import { AppContext } from '../../context/AppProvider';
 import AdsItem from './AdsItem';
 import ReviewItem from './ReviewItem';
-
+import MessageButton from '../MessageButton';
 
 const ProfilePro = () => {
-  const { userId } = useContext(AppContext);
+  const { userId, favorites, onFavorites } = useContext(AppContext);
   const [isBookmark, setIsBookmark] = useState(false);
   const [loadingBookmark, setLoadingBookmark] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -31,18 +31,40 @@ const ProfilePro = () => {
     }
   }, [id]);
 
+  useEffect(() => {
+    if (favorites && favorites.length > 0) {
+      favorites.forEach(({ favorite }) => {
+        const fav = favorite[0];
+        if (fav._id === id) {
+          setIsBookmark(true);
+        }
+      });
+    }
+  }, [favorites, id]);
+
   const styles = useStyles();
 
   const handleBookmark = () => {
     //  Need an api to bookmark current profile
     setLoadingBookmark(true);
     if (isBookmark) {
-      
-      fetch(`/favorite/${id}`, {
+      const favItem = favorites.find(({ favorite }) => {
+        const fav = favorite[0];
+        return fav._id === id
+      });
+      console.log('favItem', favItem)
+      fetch(`/favorite/${favItem._id}`, {
         method: 'DELETE'
       }).then(async res => {
         const response = await res.json();
-        console.log(response);
+
+        // delete from favorites in context
+        const updateFav = [...favorites];
+        const index = updateFav.findIndex(i => i._id === favItem._id);
+        updateFav.splice(index, 1);
+        onFavorites(updateFav)
+
+        // update bookmark state
         setIsBookmark(false);
       }).finally(() => setLoadingBookmark(false));
     } else {
@@ -65,7 +87,7 @@ const ProfilePro = () => {
 
   console.log('data', data);
 
-return loading ? <Loading /> : data ? (
+  return loading ? <Loading /> : data ? (
     <Container justify='center'>
       <Grid container spacing={1} className={styles.container}>
         <Grid item xs={12} alignItems='center'>
@@ -81,9 +103,7 @@ return loading ? <Loading /> : data ? (
               action={userId && (
                 <div>
                   <div className={styles.btnGroup}>
-                    <Button className={styles.button} variant='contained' color='secondary'>
-                      Message
-                    </Button>
+                    <MessageButton id={id} data={data} />
                     <Button
                       className={styles.button}
                       variant='contained'
@@ -97,24 +117,24 @@ return loading ? <Loading /> : data ? (
               )}
 
               title={
-                <Typography variant='h5'style={{position:'relative', left:'50px' }}>{data.firstName} {data.lastName}</Typography>
+                <Typography variant='h5' style={{ position: 'relative', left: '50px' }}>{data.firstName} {data.lastName}</Typography>
               }
 
               subheader={
                 <div>
-                  <div style={{position:'relative', left:'50px' }} className={styles.address}>
-                    <RoomIcon/>
+                  <div style={{ position: 'relative', left: '50px' }} className={styles.address}>
+                    <RoomIcon />
                     {data?.city} {data?.postalCode}
                   </div>
                   <br />
-                  <div style={{position:'relative', left:'50px' }} className={styles.flex}>
+                  <div style={{ position: 'relative', left: '50px' }} className={styles.flex}>
                     <Rating name="half-rating" readOnly defaultValue={data.avgRatingScore} precision={0.5} />
                     <span className={styles.reviews}>
                       {data.countRating} Reviews
                     </span>
                   </div>
                   <br />
-                  <div style={{position:'relative', left:'50px' }} className={styles.flex}>
+                  <div style={{ position: 'relative', left: '50px' }} className={styles.flex}>
                     {data.skills.map(skill => (
                       <Chip
                         key={skill.id}
@@ -128,7 +148,7 @@ return loading ? <Loading /> : data ? (
                         className={styles.chip}
                       />
                     ))}
-                    
+
                   </div>
                   {/* <SearchBar /> */}
                 </div>
@@ -136,20 +156,20 @@ return loading ? <Loading /> : data ? (
 
             />
             <CardActions>
-              <Link href={data.socialMediaUrl.twitter}>
-                <Twitter fontSize='large' style={{ color: '#1da1f2', position:'relative', left :'30px' }} />
-              </Link>
-              <Link href={data.socialMediaUrl.facebook}>
-                <Facebook fontSize='large' style={{ color: '#1877f2', position:'relative', left :'30px' }} />
-              </Link>
-              <Link href={data.socialMediaUrl.instagram}>
-                <Instagram fontSize='large' style={{ color: '#e4405f', position:'relative', left :'30px' }} />
-              </Link>
+              <a href={data.socialMediaUrl.twitter}>
+                <Twitter fontSize='large' style={{ color: '#1da1f2', position: 'relative', left: '30px' }} />
+              </a>
+              <a href={data.socialMediaUrl.facebook}>
+                <Facebook fontSize='large' style={{ color: '#1877f2', position: 'relative', left: '30px' }} />
+              </a>
+              <a href={data.socialMediaUrl.instagram}>
+                <Instagram fontSize='large' style={{ color: '#e4405f', position: 'relative', left: '30px' }} />
+              </a>
             </CardActions>
             <CardContent>
-              <h3 style={{position:'relative', left:'30px' }} className={styles.label}>About Me</h3>
-            
-              <Typography component="div" style={{position:'relative', left:'30px' }}className={styles.text}>
+              <h3 style={{ position: 'relative', left: '30px' }} className={styles.label}>About Me</h3>
+
+              <Typography component="div" style={{ position: 'relative', left: '30px' }} className={styles.text}>
                 {data?.detailInformation}
               </Typography>
             </CardContent>

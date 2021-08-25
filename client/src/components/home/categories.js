@@ -1,36 +1,44 @@
-export default [
+const data = [
     {
         id: 1,
-        title: 'Art & Entertainment',
+        slug: 'Art and Entertainment',
+        title: 'Art and Entertainment',
         subcategories: [
             {
                 id: 1,
+                slug: 'piano',
                 title: 'Piano lessons'
             },
             {
                 id: 2,
+                slug: 'salsa',
                 title: 'Salsa dance lessons'
             },
             {
                 id: 3,
+                slug: 'drawing',
                 title: 'Drawing lessons'
             },
         ]
     },
     {
         id: 2,
-        title: 'Business & Finance',
+        title: 'Business and Finance',
+        slug: 'Business and Finance',
         subcategories: [
             {
                 id: 1,
+                slug: 'accounting',
                 title: 'Accounting services'
             },
             {
                 id: 2,
+                slug: 'tax',
                 title: 'Tax preparation services'
             },
             {
                 id: 3,
+                slug: 'financial',
                 title: 'Financial planning services'
             },
         ]
@@ -38,6 +46,7 @@ export default [
     {
         id: 3,
         title: 'General Services',
+        slug: 'General Services',        
         subcategories: [
             {
                 id: 1,
@@ -55,7 +64,8 @@ export default [
     },
     {
         id: 4,
-        title: 'Education & Tutors',
+        title: 'Education and Tutors',
+        slug: 'Education and Tutors',     
         subcategories: [
             {
                 id: 1,
@@ -73,7 +83,8 @@ export default [
     },
     {
         id: 5,
-        title: 'Trade & Maintenance',
+        title: 'Trade and Maintenance',
+        slug: 'Trade and Maintenance',             
         subcategories: [
             {
                 id: 1,
@@ -91,7 +102,8 @@ export default [
     },
     {
         id: 6,
-        title: 'Transport & Moving',
+        title: 'Transport and Moving',
+        slug: 'Transport and Moving',           
         subcategories: [
             {
                 id: 1,
@@ -109,7 +121,8 @@ export default [
     },
     {
         id: 7,
-        title: 'IT & Programming',
+        title: 'IT and Programming',
+        slug: 'IT and Programming',
         subcategories: [
             {
                 id: 1,
@@ -128,6 +141,7 @@ export default [
     {
         id: 8,
         title: 'Craft',
+        slug: 'Craft',
         subcategories: [
             {
                 id: 1,
@@ -145,7 +159,8 @@ export default [
     },
     {
         id: 9,
-        title: 'Sport & Fitness',
+        title: 'Sport and Fitness',
+        slug: 'Sport and Fitness',
         subcategories: [
             {
                 id: 1,
@@ -164,6 +179,7 @@ export default [
     {
         id: 10,
         title: 'Legal',
+        slug: 'Legal',
         subcategories: [
             {
                 id: 1,
@@ -180,3 +196,5 @@ export default [
         ]
     },
 ]
+
+export default data;

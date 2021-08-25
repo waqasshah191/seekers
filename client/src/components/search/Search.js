@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Alert} from '@material-ui/lab';
-import { StarRounded } from '@material-ui/icons';
+import Rating from '@material-ui/lab/Rating';
+import { Alert } from '@material-ui/lab';
 import useStyles from './Styles';
 import SearchBox from '../search-box/SearchBox';
 import { List, ListItem, Divider, ListItemText, ListItemAvatar, Avatar, Typography, Container, Button } from '@material-ui/core';
 import Map from '../Map';
 import { DateDiff } from '../../dateUtils';
-
+import MessageButton from '../MessageButton';
 
 const SearchItem = ({ item }) => {
     const classes = useStyles();
@@ -18,22 +18,23 @@ const SearchItem = ({ item }) => {
     if (ad?.dateAdded) {
         const date = ad?.dateAdded.split('T')[0];
         const timeString = ad?.dateAdded.split('T')[1];
-    
+
         const time = timeString.split('.')[0];
         const createDate = new Date(date + ' ' + time);
         const today = new Date();
-    
+
         weekTime = DateDiff.inWeeks(createDate, today);
     }
-    
 
     return (
         <>
             <ListItem alignItems="flex-start">
-                <ListItemAvatar>
+                <ListItemAvatar className={classes.avatarContainer}>
                     <Link to={`/profile/${item._id}`} className={classes.link}>
                         <Avatar className={classes.avatar} alt="Remy Sharp" src={item.imageUrl} />
                     </Link>
+                    <Rating size="small" name="half-rating" readOnly defaultValue={item.avgRatingScore} precision={0.5} />
+                    <span className={classes.reviews}>{item.countRating || 0} reviews</span>
                 </ListItemAvatar>
                 <ListItemText
                     primary={
@@ -49,10 +50,8 @@ const SearchItem = ({ item }) => {
                                 </Link>
                             </Typography>
                             <span className={classes.headMeta}>
-                                <StarRounded />
-                                {item.ad.adDescription} &nbsp;
+                                {item.ad.adDescription.substr(0, 100) + (item.ad.adDescription.length > 100 ? '...' : '')} &nbsp;
                                 {/* (45 reviews) */}
-                                {item.ad.count} reviews
                             </span>
                         </div>
                     }
@@ -70,7 +69,10 @@ const SearchItem = ({ item }) => {
                     }
                 />
                 < div className={classes.information} >
-                    <Button className={classes.button} variant="contained" color="secondary">Message</Button>
+                    <MessageButton id={item._id} data={item} />
+                    <Button href={`/profile/${item._id}`} className={classes.button} variant="contained" color="primary">
+                        Detail
+                    </Button>
                     {weekTime && (
                         <span className={classes.date}>{weekTime} {weekTime > 1 ? 'Weeks' : 'Week'} Ago</span>
                     )}
@@ -116,12 +118,31 @@ const Search = () => {
 
             // convert query object to string
             const route = Object.keys(query).reduce((acc, key) => {
-                const val = query[key];
-                return `${acc}${key}/${val}/`; 
+                let val = query[key];
+                let searchString = ''
+
+                console.log("### acc, key, value = ", acc, key, val)
+                if (!val) {
+                    searchString = `${acc}${key}`
+                }
+                else {
+                    searchString = `${acc}${key}/${val}`
+                }
+
+                //return `${acc}${key}/${val}`;
+                return searchString
             }, '');
-            if (query?.PostalCode && query?.adSubCategory) {
+
+             console.log("query?.postalCode, query?.adSubCategory = ", query?.postalCode, query?.adSubCategory)
+
+            if (query?.postalCode && query?.adSubCategory) {
+
+                console.log("inside postalcode and adsubcategory")
+
+
                 // call api with considering query
-                fetch(`/user/skillPostalCode/${query?.adSubCategory}&${query?.PostalCode}`).then(async res => {
+                //fetch(`/user/skillPostalCode/${query?.adSubCategory}&${query?.PostalCode}`).then(async res => {
+                fetch(`/user/adSubCategoryPostalCode/${query?.adSubCategory}&${query?.postalCode}`).then(async res => {
                     const result = await res.json();
                     if (Array.isArray(result)) {
                         // set response data to local state 
@@ -142,7 +163,7 @@ const Search = () => {
                     }
                 })
             }
-            
+
         })()
     }, [location]);
 
@@ -151,7 +172,7 @@ const Search = () => {
             <SearchBox />
             <Container className={styles.container}>
                 {notFound ? (
-                    <Alert severity="warning" style={{ width: '100%'}}>No Match Found!!!</Alert>
+                    <Alert severity="warning" style={{ width: '100%' }}>No Match Found!!!</Alert>
                 ) : (
                     <>
                         <SearchList data={data} />

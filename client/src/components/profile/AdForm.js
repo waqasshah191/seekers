@@ -3,7 +3,7 @@ import { TextField } from '@material-ui/core';
 import useStyles from './Styles.js';
 import SearchBar from '../searchinprofile/Searchskills.js';
 
-const AdForm = ({ value, onChangeTitle, onChangeDescription, onChangeSkill, skills = [] }) => {
+const AdForm = ({ value, onChangeAvatar, onChangeTitle, onChangeDescription, onChangeSkill, skills = [] }) => {
     const styles = useStyles();
     return (
         <div className={styles.adItem}>
@@ -11,7 +11,22 @@ const AdForm = ({ value, onChangeTitle, onChangeDescription, onChangeSkill, skil
                 initialValue={value ? { label: value.subCategory, value: value.subCategory } : undefined}
                 options={skills.map(s => ({ label: s.subCategory, value: s.subCategory }))}
                 onChange={({ selectedOption }) => onChangeSkill(selectedOption.value)}
-            />            
+            />
+            <TextField
+                type="file"
+                placeholder="Ad Image"
+                label="Ad Image"
+                id="title"
+                margin="normal"
+                size='small'
+                fullWidth
+                className={styles.input}
+                onChange={(e) => onChangeAvatar(e.target.files[0])}
+                variant="outlined"
+                InputLabelProps={{
+                    shrink: true,
+                }}
+            />
             <TextField
                 placeholder="Ad Title"
                 id="title"

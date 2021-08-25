@@ -9,6 +9,12 @@ const useStyles = makeStyles((theme) => ({
         paddingInline: 30,
         display: 'block',
         minWidth: 'auto',
+        textAlign: 'center',
+        backgroundColor: '#999',
+        "&:hover": {
+            backgroundColor: '#bbb',
+            color: '#000',
+        },
         "& span": {
             marginLeft: 0,
         }
@@ -27,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
         width: '500px',
     },
     head: {
-        display: 'flex',
         alignItems: 'center',
         marginBottom: 10,
     },
@@ -41,17 +46,29 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginBottom: 5
     },
     container: {
         display: 'flex',
         alignItems: 'start',
         paddingBlock: 16,
     },
+    avatarContainer: {
+        minWidth: 120,
+        textAlign: 'center',
+        paddingRight: 5,
+    },
     avatar: {
         width: theme.spacing(9),
         height: theme.spacing(9),
-        marginRight: 16
+        margin: 'auto',
+    },
+    reviews: {
+        display: 'block',
+        fontSize: 11,
+        fontWeight: 'bold',
+        color: '#999',
     },
     information: {
         padding: 8

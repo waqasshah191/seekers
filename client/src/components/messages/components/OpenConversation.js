@@ -1,9 +1,11 @@
+import { Button, TextField } from '@material-ui/core';
 import React, { useState, useCallback } from 'react'
-import { Form, InputGroup, Button } from 'react-bootstrap'
 import { useConversations } from '../contexts/ConversationsProvider';
+import useStyles from './Styles';
 
 export default function OpenConversation() {
   const [text, setText] = useState('')
+  const styles = useStyles();
   const setRef = useCallback(node => {
     if (node) {
       node.scrollIntoView({ smooth: true })
@@ -45,7 +47,26 @@ export default function OpenConversation() {
           })}
         </div>
       </div>
-      <Form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <TextField
+          fullWidth
+          placeholder="Type a message..."
+          id="message"
+          required
+          margin="normal"
+          value={text}
+          className={styles.input}
+          onChange={(e) => setText(e.target.value)}
+          variant="outlined"
+          InputLabelProps={{
+            shrink: !!text,
+          }}
+        />
+        <Button type="submit" className={styles.button} variant="contained" color="secondary">
+          Send
+        </Button>
+      </form>
+      {/* <Form onSubmit={handleSubmit}>
         <Form.Group className="m-2">
           <InputGroup>
             <Form.Control
@@ -60,7 +81,7 @@ export default function OpenConversation() {
             </InputGroup.Append>
           </InputGroup>
         </Form.Group>
-      </Form>
-    </div>
+      </Form> */}
+    </div >
   )
 }

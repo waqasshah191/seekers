@@ -1,36 +1,26 @@
-import React from 'react'
-import Login from './Login'
-import useLocalStorage from '../hooks/useLocalStorage';
-import Dashboard from './Dashboard'
-import { ContactsProvider } from '../contexts/ContactsProvider'
-import { ConversationsProvider } from '../contexts/ConversationsProvider';
-import { SocketProvider } from '../contexts/SocketProvider';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react"
-import { Loading } from '../..';
+import React, { useContext } from 'react'
+import Sidebar from './Sidebar';
+import OpenConversation from './OpenConversation';
+import { useConversations } from '../contexts/ConversationsProvider';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { Loading } from '../../../../src/components';
+import { AppContext } from '../../../context/AppProvider';
+import { Container } from '@material-ui/core';
 
-
-
-function Messages() {
-  const { user } = useAuth0();
-  const { name, picture, email } = user;
-  const [id, setId] = useLocalStorage('id')
-
-  const dashboard = (
-    <SocketProvider id={id}>
-      <ContactsProvider>
-        <ConversationsProvider id={id}>
-          <Dashboard id={id} />
-        </ConversationsProvider>
-      </ContactsProvider>
-    </SocketProvider>
-  )
+export function Messages() {
+  const { selectedConversation } = useConversations();
+  const { userId } = useContext(AppContext)
 
   return (
-    id ? dashboard : <Login onIdSubmit={setId} />
+    <Container>
+      <div className="d-flex" style={{ height: 'calc(100vh - 100px)', paddingBlock: 16 }}>
+        <Sidebar id={userId} />
+        {selectedConversation && <OpenConversation />}
+      </div>
+    </Container>
   )
 }
 
-// export default Messages;
 
 export default withAuthenticationRequired(Messages, {
   onRedirecting: () => <Loading />,

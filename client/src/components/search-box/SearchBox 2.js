@@ -84,7 +84,7 @@ const SearchBox = () => {
 
                             //                            href={`/search?category=${item.slug}`}
                             // href={`/search?skill/${item.slug}`}
-                            href={`/search?adSubCategory/${item.slug}`}
+                            href={`/search?adSubCategory/${item.title}`}
 
                             size="small"
                             label={item.title}

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage';
-
 import { useEffect } from 'react';
 
 const ContactsContext = React.createContext()
@@ -18,30 +17,30 @@ export function ContactsProvider({ children }) {
 
     // let prevContacts = [...contacts];
     let prevContacts = [];
-    let userEmail = '';
+    let userId = '';
     let userFirstName = '';
     let userLastName = '';
     let userName = '';
 
     console.log("users = ", users);
 
-    for(let j=0; j<users.length; j++) {
-      userEmail = users[j].email;
+    for (let j = 0; j < users.length; j++) {
+      userId = users[j]._id;
       userFirstName = users[j].firstName;
       userLastName = users[j].lastName;
       userName = userLastName ? userFirstName + ' ' + userLastName : userFirstName;
-  
-      prevContacts.push({id: userEmail, name: userName})
+
+      prevContacts.push({ id: userId, name: userName })
     }
-  
+
     console.log("prevContacts = ", prevContacts)
-  
+
     setContacts(prevContacts);
   };
-  
+
   useEffect(() => {
 
-      getUsers();
+    getUsers();
 
   }, []);
 

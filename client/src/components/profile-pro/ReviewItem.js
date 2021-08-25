@@ -18,14 +18,27 @@ const ReviewItem = ({ item }) => {
 
         weekTime = DateDiff.inWeeks(createDate, today);
     }
-
     return (
         <li className={styles.reviewItem}>
             <div className={styles.reviewHead}>
-                <h3 className={styles.reviewName}>{item.adTitle}</h3>
-                <Rating name="half-rating" readOnly defaultValue={4} precision={0.5} />
+
+                {/* <h3 className={styles.reviewName}>{item.adTitle}</h3> */}
+                <h3 className={styles.reviewHead}>{item.adTitle}</h3>                
+
+                {/* <Rating name="half-rating" readOnly defaultValue={item.avgRatingScore} precision={0.5} /> */}
             </div>
-            <p className={styles.reviewBody}>{item.adDescription}</p>
+
+            <div>              
+                {item.rating.map( ri => (
+                    <li className={styles.reviewName}>
+                        {ri.userFeedback}
+                        <Rating name="half-rating" readOnly defaultValue={ri.ratingScore} precision={0.5} />                    
+                    </li>
+                ))}                  
+            </div>
+            <br></br>
+            
+            {/* <p className={styles.reviewBody}>{item.adDescription}</p> */}
             {weekTime && (
                 <span className={styles.date}>{weekTime} {weekTime > 1 ? 'Weeks' : 'Week'} Ago</span>
             )}
